@@ -4,17 +4,27 @@ Static site. No build step, no dependencies, no framework. Vercel serves the
 folder as-is.
 
 ```
-index.html                 the whole page (CSS is inlined on purpose - see note 3)
+index.html                 homepage: hero (process animation) + an overview of every section
+co-delame/ sluzby/ zkusenosti/ lide/ projekty/ pristup/ kontakt/
+                           one page per section (folder/index.html -> clean URL /sluzby)
+assets/techtlee.css        all styles (was inlined while the site was one page)
 assets/darktec.css         @font-face declarations only
-assets/i18n.js             CZ/EN toggle + scroll reveal (~1.5 kB)
-assets/fonts/*.woff2       Geist + Geist Mono, latin & latin-ext subsets (11 files, 176 kB)
-assets/img/*.jpg           portraits (dva.jpg belongs to the archived third person)
+assets/i18n.js             CZ/EN toggle (~1 kB) - Czech in the DOM, English in data-en
+assets/site.js             theme toggle + Prague clock
+assets/motion.js           hero process animation (3 scenarios) + scroll reveals
+assets/form.js             contact form (homepage + /kontakt)
+assets/fonts/*.woff2       Geist + Geist Mono, latin & latin-ext subsets
+assets/img/*.jpg           portraits + project screenshots
 assets/favicon.svg         adapts to the visitor's light/dark OS setting
 assets/og-image.png        1200x630 social card
-assets/apple-touch-icon.png
-vercel.json                cache + security headers
-robots.txt, sitemap.xml
+vercel.json                cache + security headers, cleanUrls
+robots.txt, sitemap.xml    sitemap lists all eight pages
 ```
+
+The shared header, footer and head are repeated in every page on purpose (no
+build step). Change them in all eight files. All links and assets use
+root-absolute paths (`/sluzby`, `/assets/...`), so serve the folder - do not
+open the files via file://.
 
 Weight on first load: ~155 kB total, 10 requests, no third-party connections.
 
@@ -102,13 +112,11 @@ Certificates are issued automatically once DNS resolves.
 2. **The security headers are the conservative set** - `nosniff`,
    `strict-origin-when-cross-origin`, `SAMEORIGIN` framing, and a
    `Permissions-Policy` that switches off camera, mic and geolocation. No CSP,
-   because a CSP that forbids inline styles would break the inlined `<style>`
-   block; if you want one, extract the CSS first (see 3).
+   because the pages still use a few inline `style` attributes and an inline
+   pre-paint theme script; both would need hashes or moving out first.
 
-3. **The CSS is inlined in `index.html` rather than a separate file.** For a
-   single-page site that is one fewer render-blocking request, which is worth
-   more than the caching you give up. If the site grows past a couple of pages,
-   pull the `<style>` block out into `assets/techtlee.css` and link it.
+3. **The CSS lives in `assets/techtlee.css`.** It was inlined while the site
+   was a single page; with eight pages the shared, cacheable file wins.
 
 4. **Fonts are self-hosted, not loaded from Google.** No third-party request, no
    consent-banner question, and nothing breaks if Google Fonts is blocked. All
@@ -125,11 +133,10 @@ Certificates are issued automatically once DNS resolves.
 
 ## Still to do
 
-- **The contact form does not send anything yet.** Its `onsubmit` handler shows
-  a success state and stops - a placeholder. It needs a real endpoint before
-  launch (a Vercel Function plus a mail provider, or a hosted service such as
-  Formspree or Web3Forms). Right now a visitor will believe they have written
-  to you when they have not.
+- **The contact form needs an endpoint.** Set the form's `action` (currently
+  `FORM_ENDPOINT`) to a Formspree / Web3Forms URL or a Vercel Function. Until
+  then it validates name + e-mail and opens the visitor's mail client with the
+  message prefilled - it never pretends to have sent anything.
 - **Portraits are 276-320 px.** They are displayed at 112 px, which is fine, but
   they cannot go larger and they are soft on a high-DPR screen. Re-shoot or
   re-export at 800 px square.

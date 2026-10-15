@@ -1,6 +1,6 @@
-/* Techtlee - bilingual toggle + reveal.
+/* Techtlee - bilingual toggle.
    Czech is authored in the DOM; English lives in data-en.
-   No framework, no dependencies, ~1.2 kB. */
+   No framework, no dependencies, ~1 kB. */
 (function () {
   'use strict';
 
@@ -26,9 +26,10 @@
     }
     var btns = document.querySelectorAll('[data-lang]');
     for (var k = 0; k < btns.length; k++) {
-      btns[k].setAttribute('aria-current', btns[k].dataset.lang === lang ? 'true' : 'false');
+      btns[k].setAttribute('aria-pressed', btns[k].dataset.lang === lang ? 'true' : 'false');
     }
     try { localStorage.setItem('tt-lang', lang); } catch (e) {}
+    document.dispatchEvent(new Event('langchange'));
   }
 
   document.addEventListener('click', function (e) {
@@ -42,23 +43,6 @@
     var saved = 'cs';
     try { saved = localStorage.getItem('tt-lang') || 'cs'; } catch (e) {}
     apply(saved);
-
-    /* Reveal: opacity only, one observer, honours reduced motion. */
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var targets = document.querySelectorAll('[data-reveal]');
-    if (reduce || !('IntersectionObserver' in window)) {
-      for (var i = 0; i < targets.length; i++) targets[i].removeAttribute('data-reveal');
-      return;
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          en.target.setAttribute('data-reveal', 'in');
-          io.unobserve(en.target);
-        }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
-    for (var t = 0; t < targets.length; t++) io.observe(targets[t]);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
