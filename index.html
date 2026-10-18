@@ -6,8 +6,8 @@
 <title data-en="Techtlee - From a problem to a modern solution">Techtlee - Od problému k modernímu řešení</title>
 <meta name="description" content="Poradíme vám s problémem a víme, jak ho dnes vyřešit. Lidé, brand, data, AI a software opřené o zkušenost z vedení firem.">
 <meta name="theme-color" content="#0A0C0B" id="tc">
-<link rel="stylesheet" href="/assets/darktec.css">
-<link rel="stylesheet" href="/assets/techtlee.css">
+<link rel="stylesheet" href="/assets/darktec.css?v=20261018">
+<link rel="stylesheet" href="/assets/techtlee.css?v=20261018">
 <script>
 /* Applied before first paint: no flash of the wrong theme on reload.
    Default is dark - it is the brand. Swap the fallback to
@@ -49,7 +49,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"Techtlee",
 "url":"https://techtlee.com/","email":"info@techtlee.com","telephone":"+420737105460",
-"description":"Poradenství, projektové řízení, automatizace procesů, vývoj aplikací, datové inženýrství a nasazení AI, výběr systémů a design značky.",
+"description":"Poradenství, projektové řízení, automatizace procesů, vývoj aplikací, datové inženýrství a analytika, implementace a adopce AI, výběr systémů a design značky.",
 "address":{"@type":"PostalAddress","addressLocality":"Praha","addressCountry":"CZ"},
 "areaServed":"CZ","priceRange":"$$$",
 "founder":[{"@type":"Person","name":"Ivan Vodička","jobTitle":"Spolumajitel"},
@@ -110,15 +110,22 @@
       </div>
 
       <div class="hero__panel">
+        <!-- the first scenario is pre-rendered so the panel is complete at first paint;
+             assets/motion.js re-renders it identically and then animates -->
         <div class="flow glass" id="flow" role="region" aria-label="Ukázka: jak přestavíme proces" data-en-al="Example: how we rebuild a process">
           <div class="flow__h">
-            <div class="flow__tabs" role="tablist" aria-label="Scénář" data-en-al="Scenario"></div>
-            <button class="flow__pause" type="button"></button>
+            <div class="flow__tabs" role="tablist" aria-label="Scénář" data-en-al="Scenario"><button type="button" role="tab" aria-selected="true">Faktury</button><button type="button" role="tab" aria-selected="false">Servis</button><button type="button" role="tab" aria-selected="false">Reporting</button></div>
+            <button class="flow__pause" type="button" aria-label="Pozastavit animaci" aria-pressed="false"><svg viewBox="0 0 10 10" aria-hidden="true"><rect x="1" y="0" width="3" height="10" fill="currentColor"/><rect x="6" y="0" width="3" height="10" fill="currentColor"/></svg></button>
           </div>
-          <div class="flow__title"><b></b><span class="eyebrow" data-en="Example">Ukázka</span></div>
-          <ol class="flow__steps" aria-live="off"></ol>
+          <div class="flow__title"><b>Zpracování přijatých faktur</b><span class="eyebrow" data-en="Example">Ukázka</span></div>
+          <ol class="flow__steps" aria-live="off">
+            <li class="step"><span class="step__node" aria-hidden="true"></span><span class="step__txt"><span class="step__before">Faktura přijde e-mailem jako PDF</span><span class="step__after">AI ji přečte a vytáhne údaje</span></span><span class="step__tag">ručně</span></li>
+            <li class="step"><span class="step__node" aria-hidden="true"></span><span class="step__txt"><span class="step__before">Někdo ji přepíše do účetnictví</span><span class="step__after">Údaje se zapíšou samy</span></span><span class="step__tag">ručně</span></li>
+            <li class="step"><span class="step__node" aria-hidden="true"></span><span class="step__txt"><span class="step__before">Schvalování přes e-mail a telefon</span><span class="step__after">Schválení jedním klikem v aplikaci</span></span><span class="step__tag">ručně</span></li>
+            <li class="step"><span class="step__node" aria-hidden="true"></span><span class="step__txt"><span class="step__before">Párování s platbou v Excelu</span><span class="step__after">Platby se spárují automaticky</span></span><span class="step__tag">ručně</span></li>
+          </ol>
           <div class="flow__f">
-            <span class="flow__count"></span>
+            <span class="flow__count">Ruční kroky <b>4</b></span>
             <span class="flow__bar" aria-hidden="true"><i></i></span>
           </div>
         </div>
@@ -141,14 +148,14 @@
     <ol class="log" data-reveal-s data-stagger>
       <li><span data-en="We want to automate it, but we don&#39;t know how.">Chceme to zautomatizovat, ale nevíme jak.</span></li>
       <li><span data-en="Let&#39;s use AI for it.">Použijme na to AI.</span></li>
-      <li><span data-en="We retype invoices, orders and e-mails by hand.">Faktury, objednávky a e-maily přepisujeme ručně.</span></li>
-      <li><span data-en="Off-the-shelf software doesn&#39;t fit, so we work around it in Excel.">Krabicový software nám nesedí, tak ho obcházíme Excelem.</span></li>
-      <li><span data-en="We need our own app, but don&#39;t know where to start.">Potřebujeme vlastní aplikaci, ale nevíme, kde začít.</span></li>
       <li><span data-en="Our systems don&#39;t talk to each other, so we move data by hand.">Systémy spolu nemluví a data přenášíme ručně.</span></li>
-      <li><span data-en="A key process depends on a single person.">Klíčový proces stojí na jednom člověku.</span></li>
-      <li><span data-en="We rolled out a system, but nobody uses it.">Zavedli jsme systém, ale nikdo ho nepoužívá.</span></li>
       <li><span data-en="Reporting is stitched together by hand in Excel every month.">Reporting se každý měsíc skládá ručně v Excelu.</span></li>
+      <li><span data-en="A key process depends on a single person.">Klíčový proces stojí na jednom člověku.</span></li>
       <li><span data-en="The company is growing, but the processes are not keeping up.">Firma roste, ale procesy za ní nestíhají.</span></li>
+      <li><span data-en="Off-the-shelf software doesn&#39;t fit, so we work around it in Excel.">Krabicový software nám nesedí, tak ho obcházíme Excelem.</span></li>
+      <li><span data-en="We rolled out a system, but nobody uses it.">Zavedli jsme systém, ale nikdo ho nepoužívá.</span></li>
+      <li><span data-en="We need our own app, but don&#39;t know where to start.">Potřebujeme vlastní aplikaci, ale nevíme, kde začít.</span></li>
+      <li><span data-en="We retype documents and e-mails into our systems by hand.">Dokumenty a e-maily přepisujeme ručně do systémů.</span></li>
     </ol>
     <p class="claim" data-reveal-s><span data-en="Exactly what we solve.">Přesně tohle řešíme.</span></p>
   </div>
@@ -198,24 +205,33 @@
   <div class="wrap">
     <div class="spec">
       <p class="eyebrow"><span class="ix">04</span><span data-en="Services">Služby</span></p>
-      <p class="eyebrow" data-en="7 areas">7 oblastí</p>
+      <p class="eyebrow" data-en="8 areas">8 oblastí</p>
     </div>
     <div class="shead">
       <h2 data-en="What we actually do for you.">Co pro vás konkrétně děláme.</h2>
-      <p class="lede" data-en="Seven areas we work in. Take one, or the whole path from decision to finished solution.">Sedm oblastí, ve kterých pracujeme. Vezmete si jednu, nebo celou cestu od rozhodnutí po hotové řešení.</p>
+      <p class="lede" data-en="Eight areas we work in. Take one, or the whole path from decision to finished solution.">Osm oblastí, ve kterých pracujeme. Vezmete si jednu, nebo celou cestu od rozhodnutí po hotové řešení.</p>
     </div>
     <table class="dt" data-reveal-s data-stagger>
       <thead><tr>
         <th data-en="Service">Služba</th><th data-en="What it solves">Co řeší</th><th class="r" data-en="Type">Typ</th>
       </tr></thead>
       <tbody>
-        <tr><td class="c-name" data-en="Advisory and mentoring">Poradenství a mentoring</td><td class="c-desc" data-en="An outside view and structure for decisions no manual covers. We work directly with owners and management - as a sparring partner, mentor or interim advisor.">Pohled zvenčí a struktura pro rozhodnutí, která nejsou v žádné příručce. Pracujeme přímo s majiteli a managementem - jako sparring partner, mentor nebo interim poradce.</td><td class="r" data-en="Advisory">Poradenství</td></tr>
-        <tr><td class="c-name" data-en="Project management and delivery">Projektové řízení a delivery</td><td class="c-desc" data-en="Projects are rarely slowed down by the technology - it is how they are managed. We take the lead from brief to handover into operations.">Projekty většinou nezdrží technologie, ale způsob, jakým se řídí. Převezmeme vedení od zadání až po předání do provozu.</td><td class="r">Delivery</td></tr>
-        <tr><td class="c-name" data-en="Process analysis and automation">Analýza a automatizace procesů</td><td class="c-desc" data-en="We map how the company actually works - not how it is supposed to. We automate the routine and connect systems so they talk to each other.">Zmapujeme, jak firma skutečně funguje - ne jak by fungovat měla. Rutinu zautomatizujeme a systémy propojíme tak, aby spolu mluvily samy.</td><td class="r" data-en="Processes">Procesy</td></tr>
-        <tr><td class="c-name" data-en="Application development">Vývoj aplikací</td><td class="c-desc" data-en="Sometimes off-the-shelf software is not enough. You do not adapt to the software - the software adapts to you. From first prototype to production.">Někdy krabicový software nestačí. Nepřizpůsobujete vy sebe softwaru - software se přizpůsobí vám. Od prvního prototypu po produkci.</td><td class="r">Build</td></tr>
-        <tr><td class="c-name" data-en="Data engineering and AI deployment">Datové inženýrství a nasazení AI</td><td class="c-desc" data-en="We collect and connect your data and turn it into insight, forecasts and automated decisions. We deploy AI where it delivers a measurable result - not just for show.">Data sbíráme, propojujeme a měníme v přehledy, předpovědi a automatizovaná rozhodnutí. AI nasazujeme tam, kde přináší měřitelný výsledek - ne jen pro efekt.</td><td class="r">Data &amp; AI</td></tr>
-        <tr><td class="c-name" data-en="System selection and implementation">Výběr a implementace systémů</td><td class="c-desc" data-en="The market is full of systems promising miracles. We select independently - a solution that fits your size, budget and way of working - then deploy it so people actually use it.">Trh je plný systémů, které slibují zázraky. Vybíráme nezávisle - řešení odpovídající vaší velikosti, rozpočtu a způsobu práce - a nasadíme ho tak, aby ho lidé skutečně používali.</td><td class="r" data-en="Systems">Systémy</td></tr>
-        <tr><td class="c-name" data-en="End-to-end brand design">Komplexní design značky</td><td class="c-desc" data-en="A strong brand is not just a logo. It is a consistent visual identity that builds trust at every touchpoint and speaks your customers' language.">Silná značka není jen logo. Je to konzistentní vizuální identita, která buduje důvěru na každém kontaktním místě a mluví jazykem vašich zákazníků.</td><td class="r">Brand</td></tr>
+        <tr id="sv-poradenstvi"><td class="c-name" data-en="Advisory and mentoring">Poradenství a mentoring</td><td class="c-desc" data-en="An outside view and structure for decisions no manual covers. We work directly with owners and management - as a sparring partner, mentor or interim advisor.">Pohled zvenčí a struktura pro rozhodnutí, která nejsou v žádné příručce. Pracujeme přímo s majiteli a managementem - jako sparring partner, mentor nebo interim poradce.</td><td class="r" data-en="Advisory">Poradenství</td></tr>
+        <tr class="more-row" id="sv-poradenstvi-more"><td colspan="3"><div class="more__in"><div class="more__grid more__grid--home"><p class="more__links"><a href="/sluzby#sv-poradenstvi" data-en="Service details <span>→</span>">Detail služby <span>→</span></a></p></div></div></td></tr>
+        <tr id="sv-delivery"><td class="c-name" data-en="Project management and delivery">Projektové řízení a delivery</td><td class="c-desc" data-en="Projects are rarely slowed down by the technology - it is how they are managed. We take the lead from brief to handover into operations.">Projekty většinou nezdrží technologie, ale způsob, jakým se řídí. Převezmeme vedení od zadání až po předání do provozu.</td><td class="r">Delivery</td></tr>
+        <tr class="more-row" id="sv-delivery-more"><td colspan="3"><div class="more__in"><div class="more__grid more__grid--home"><p class="more__links"><a href="/sluzby#sv-delivery" data-en="Service details <span>→</span>">Detail služby <span>→</span></a></p></div></div></td></tr>
+        <tr id="sv-procesy"><td class="c-name" data-en="Process analysis and automation">Analýza a automatizace procesů</td><td class="c-desc" data-en="We map how the company actually works - not how it is supposed to. We automate the routine and connect systems so they talk to each other.">Zmapujeme, jak firma skutečně funguje - ne jak by fungovat měla. Rutinu zautomatizujeme a systémy propojíme tak, aby spolu mluvily samy.</td><td class="r" data-en="Processes">Procesy</td></tr>
+        <tr class="more-row" id="sv-procesy-more"><td colspan="3"><div class="more__in"><div class="more__grid more__grid--home"><p class="more__links"><a href="/sluzby#sv-procesy" data-en="Service details <span>→</span>">Detail služby <span>→</span></a></p></div></div></td></tr>
+        <tr id="sv-aplikace"><td class="c-name" data-en="Application development">Vývoj aplikací</td><td class="c-desc" data-en="Sometimes off-the-shelf software is not enough. You do not adapt to the software - the software adapts to you. From first prototype to production.">Někdy krabicový software nestačí. Nepřizpůsobujete vy sebe softwaru - software se přizpůsobí vám. Od prvního prototypu po produkci.</td><td class="r">Build</td></tr>
+        <tr class="more-row" id="sv-aplikace-more"><td colspan="3"><div class="more__in"><div class="more__grid more__grid--home"><p class="more__links"><a href="/sluzby#sv-aplikace" data-en="Service details <span>→</span>">Detail služby <span>→</span></a></p></div></div></td></tr>
+        <tr id="sv-data"><td class="c-name" data-en="Data engineering and analytics">Datové inženýrství a analytika</td><td class="c-desc" data-en="We collect and connect your data and turn it into insight and forecasts - with one definition per metric, so everyone works with the same numbers.">Data sbíráme, propojujeme a měníme v přehledy a předpovědi - s jednou definicí každé metriky, aby všichni pracovali se stejnými čísly.</td><td class="r">Data</td></tr>
+        <tr class="more-row" id="sv-data-more"><td colspan="3"><div class="more__in"><div class="more__grid more__grid--home"><p class="more__links"><a href="/sluzby#sv-data" data-en="Service details <span>→</span>">Detail služby <span>→</span></a></p></div></div></td></tr>
+        <tr id="sv-ai"><td class="c-name" data-en="AI implementation and adoption">Implementace a adopce AI ve firmě</td><td class="c-desc" data-en="We deploy AI where it delivers a measurable result, and make sure people in the company actually use it.">AI nasazujeme tam, kde přináší měřitelný výsledek, a staráme se o to, aby ji lidé ve firmě opravdu používali.</td><td class="r">AI</td></tr>
+        <tr class="more-row" id="sv-ai-more"><td colspan="3"><div class="more__in"><div class="more__grid more__grid--home"><p class="more__links"><a href="/sluzby#sv-ai" data-en="Service details <span>→</span>">Detail služby <span>→</span></a></p></div></div></td></tr>
+        <tr id="sv-systemy"><td class="c-name" data-en="System selection and implementation">Výběr a implementace systémů</td><td class="c-desc" data-en="The market is full of systems promising miracles. We select independently - a solution that fits your size, budget and way of working - then deploy it so people actually use it.">Trh je plný systémů, které slibují zázraky. Vybíráme nezávisle - řešení odpovídající vaší velikosti, rozpočtu a způsobu práce - a nasadíme ho tak, aby ho lidé skutečně používali.</td><td class="r" data-en="Systems">Systémy</td></tr>
+        <tr class="more-row" id="sv-systemy-more"><td colspan="3"><div class="more__in"><div class="more__grid more__grid--home"><p class="more__links"><a href="/sluzby#sv-systemy" data-en="Service details <span>→</span>">Detail služby <span>→</span></a></p></div></div></td></tr>
+        <tr id="sv-brand"><td class="c-name" data-en="End-to-end brand design">Komplexní design značky</td><td class="c-desc" data-en="A strong brand is not just a logo. It is a consistent visual identity that builds trust at every touchpoint and speaks your customers' language.">Silná značka není jen logo. Je to konzistentní vizuální identita, která buduje důvěru na každém kontaktním místě a mluví jazykem vašich zákazníků.</td><td class="r">Brand</td></tr>
+        <tr class="more-row" id="sv-brand-more"><td colspan="3"><div class="more__in"><div class="more__grid more__grid--home"><p class="more__links"><a href="/sluzby#sv-brand" data-en="Service details <span>→</span>">Detail služby <span>→</span></a></p></div></div></td></tr>
       </tbody>
     </table>
     <p class="more"><a href="/sluzby" data-en="All services <span>→</span>">Všechny služby <span>→</span></a></p>
@@ -268,7 +284,7 @@
   <div class="wrap">
     <div class="spec">
       <p class="eyebrow"><span class="ix">06</span><span data-en="Projects">Projekty</span></p>
-      <p class="eyebrow" data-en="2 products · 1 studio">2 produkty · 1 studio</p>
+      <p class="eyebrow" data-en="2 products · 1 studio · 1 community">2 produkty · 1 studio · 1 komunita</p>
     </div>
     <div class="shead">
       <h2 data-en="What we work on.">Na čem pracujeme.</h2>
@@ -280,6 +296,7 @@
         <tr><td class="c-name"><a href="/projekty#semanthics">Semanthics</a></td><td class="c-desc" data-en="A semantic layer and AI agents over company data. One definition of metrics for management, BI and AI.">Sémantická vrstva a AI agenti nad firemními daty. Jedna definice metrik pro management, BI i AI.</td><td class="r" data-en="In development">Ve vývoji</td></tr>
         <tr><td class="c-name"><a href="https://revizar.cz" target="_blank" rel="noopener">Revizář.cz ↗</a></td><td class="c-desc" data-en="An application for managing inspections. From first prototype to live operation.">Aplikace pro správu revizí. Od prvního prototypu po běžící provoz.</td><td class="r" data-en="In operation">V provozu</td></tr>
         <tr><td class="c-name"><a href="https://vlkorez.com" target="_blank" rel="noopener">vlkorez.com ↗</a></td><td class="c-desc" data-en="A creative studio. Brands, visual identity and production.">Kreativní studio. Značky, vizuální identita a produkce.</td><td class="r" data-en="In operation">V provozu</td></tr>
+        <tr><td class="c-name"><a href="https://agenticanalytics.cz" target="_blank" rel="noopener">Agentic Analytics ↗</a></td><td class="c-desc" data-en="A Prague community and meetup for people who use AI in data work every day - agentic analytics, semantic layers, practice without sales pitches.">Pražská komunita a setkání pro lidi, kteří denně používají AI při práci s daty - agentická analytika, sémantické vrstvy, praxe bez prodejních prezentací.</td><td class="r" data-en="Community">Komunita</td></tr>
       </tbody>
     </table>
     <p class="more"><a href="/projekty" data-en="Projects in detail <span>→</span>">Projekty v detailu <span>→</span></a></p>
@@ -360,9 +377,9 @@
 </footer>
 
 <script src="/assets/i18n.js"></script>
-<script src="/assets/site.js"></script>
-<script src="/assets/motion.js"></script>
-<script src="/assets/interact.js"></script>
-<script src="/assets/form.js"></script>
+<script src="/assets/site.js?v=20261018"></script>
+<script src="/assets/motion.js?v=20261018"></script>
+<script src="/assets/interact.js?v=20261018"></script>
+<script src="/assets/form.js?v=20261018"></script>
 </body>
 </html>

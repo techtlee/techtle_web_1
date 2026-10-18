@@ -1,6 +1,8 @@
 /* Techtlee - interaction layer (every page).
    1. Services: each row of the services table collapses to a one-line
-      preview and opens on click / Enter / Space. One row open at a time.
+      preview and opens on click / Enter / Space, revealing its detail row
+      (what we do, what you end up with, related). One row open at a time;
+      /sluzby#sv-<id> opens a given service.
    2. Pointer spotlight: a faint mint highlight follows the mouse inside the
       hairline cells. Fine pointers only, off under reduced motion.
    3. "Zní vám to povědomě?": the ten sentences become toggles; the picks
@@ -16,7 +18,8 @@
   function initServices() {
     var tables = document.querySelectorAll('#sluzby table.dt');
     [].forEach.call(tables, function (table, t) {
-      var rows = [].slice.call(table.querySelectorAll('tbody tr'));
+      /* each service row may be followed by a .more-row with its details */
+      var rows = [].slice.call(table.querySelectorAll('tbody tr:not(.more-row)'));
       if (!rows.length) return;
       table.classList.add('dt--acc');
       /* rows become grid boxes so a cell can clamp to one line; restate the
@@ -25,6 +28,10 @@
       [].forEach.call(table.querySelectorAll('tr'), function (tr) { tr.setAttribute('role', 'row'); });
       [].forEach.call(table.querySelectorAll('th'), function (th) { th.setAttribute('role', 'columnheader'); });
       [].forEach.call(table.querySelectorAll('td'), function (td) { td.setAttribute('role', 'cell'); });
+      function moreOf(row) {
+        var n = row.nextElementSibling;
+        return n && n.classList.contains('more-row') ? n : null;
+      }
       var headRow = table.querySelector('thead tr');
       if (headRow) {
         var th = document.createElement('th');
@@ -36,6 +43,8 @@
       function set(row, open) {
         row.classList.toggle('open', open);
         row._btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        var m = moreOf(row);
+        if (m) m.toggleAttribute('inert', !open);   /* closed details stay out of the tab order */
       }
       function toggle(row) {
         var open = !row.classList.contains('open');
@@ -55,13 +64,14 @@
         var b = document.createElement('button');
         b.type = 'button';
         b.className = 'tog';
-        b.setAttribute('aria-controls', desc.id);
+        var more = moreOf(row);
+        b.setAttribute('aria-controls', desc.id + (more ? ' ' + more.id : ''));
         b.setAttribute('aria-labelledby', name.id);
         b.addEventListener('click', function (e) { e.stopPropagation(); toggle(row); });
         td.appendChild(b);
         row.appendChild(td);
         row._btn = b;
-        set(row, i === 0);
+        set(row, false);
         /* the whole row is the target, but never hijack a link or a text selection */
         row.addEventListener('click', function (e) {
           if (e.target.closest('a')) return;
@@ -70,6 +80,18 @@
           toggle(row);
         });
       });
+
+      /* /sluzby#sv-aplikace opens that service */
+      function fromHash() {
+        var id = decodeURIComponent(location.hash.slice(1));
+        var hit = id && rows.filter(function (r) { return r.id === id; })[0];
+        if (!hit) return false;
+        rows.forEach(function (r) { set(r, r === hit); });
+        hit.scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' });
+        return true;
+      }
+      if (!fromHash()) set(rows[0], true);
+      window.addEventListener('hashchange', fromHash);
     });
   }
 
@@ -115,7 +137,7 @@
     en: { hint: 'Mark the ones that apply to you.', count: '{n} of 10 apply', clear: 'Clear selection',
           cta: 'Describe our situation', head: 'These sound familiar:' }
   };
-  var KEY = 'tt-pick';
+  var KEY = 'tt-pick-v2';            /* v2: sentence order changed 2026-10 */
   function lang() { return document.documentElement.lang === 'en' ? 'en' : 'cs'; }
   function loadPick() {
     try { var v = JSON.parse(sessionStorage.getItem(KEY) || '[]'); return Array.isArray(v) ? v : []; }
@@ -132,7 +154,7 @@
   }
 
   /* the sentences, captured once so the contact page can prefill too */
-  var SENT_KEY = 'tt-pick-text';
+  var SENT_KEY = 'tt-pick-text-v2';
   function prefill() {
     var ta = document.getElementById('s4');
     if (!ta) return;
