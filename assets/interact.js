@@ -280,6 +280,16 @@
     if (!tabs.length || panels.some(function (p) { return !p; })) return;
     root.classList.add('pil--js');
     var cur = -1;
+    /* desktop: the active pillar's intro is shown under the heading on the
+       left (a visual copy; the original stays in its panel for readers) */
+    var lead = root.querySelector('.pil__lead');
+    function syncLead() {
+      if (!lead || cur < 0) return;
+      var src = panels[cur].querySelector('.pil__intro');
+      lead.textContent = src ? src.textContent : '';
+      lead.classList.remove('is-in'); void lead.offsetWidth; lead.classList.add('is-in');
+    }
+    document.addEventListener('langchange', function () { setTimeout(syncLead, 0); });
     function show(i, focus) {
       if (i === cur) return;
       cur = i;
@@ -294,6 +304,7 @@
         panels[k].setAttribute('aria-hidden', on ? 'false' : 'true');
         panels[k].classList.remove('is-in');
       });
+      syncLead();
       void panels[i].offsetWidth;          /* restart the entrance */
       panels[i].classList.add('is-in');
       if (focus) tabs[i].focus();
@@ -455,7 +466,117 @@
     }
   }
 
-  function boot() { initServices(); initSpotlight(); initPick(); initPillars(); initMarquee(); initBtnGlow(); initDots(); initPeople(); initMobile(); }
+  /* ---------------------------------------------------------- pillar fit */
+  /* "Jdeme po konečném výsledku." is sized so it spans exactly from the top
+     of the pillar switch to the last line of the pillar intro next to it.
+     All intros share one row and sit on its bottom, so the target is the
+     same for every pillar and nothing changes when switching. */
+  function initPilFit() {
+    var pil = document.querySelector('.pil');
+    if (!pil) return;
+    var h2 = pil.querySelector('.pil__side > h2'), tabs = pil.querySelector('.pil__tabs');
+    var wide = window.matchMedia ? matchMedia('(min-width: 901px)') : null;
+    if (!h2 || !tabs || !wide) return;
+    /* font metrics as fractions of the font size */
+    var cv = document.createElement('canvas').getContext('2d');
+    function metrics(el) {
+      var cs = getComputedStyle(el);
+      cv.font = cs.fontWeight + ' 100px ' + cs.fontFamily;
+      var m = cv.measureText('JHkx');
+      return { A: m.fontBoundingBoxAscent / 100, D: m.fontBoundingBoxDescent / 100,
+               C: cv.measureText('H').actualBoundingBoxAscent / 100, fs: parseFloat(cs.fontSize) };
+    }
+    function textRects(el) {
+      var r = document.createRange(); r.selectNodeContents(el);
+      var rs = r.getClientRects(); return rs.length ? rs : [el.getBoundingClientRect()];
+    }
+    /* visually: the heading's cap line meets the switch's cap line, and its
+       last baseline sits on the intro's last baseline */
+    function fit() {
+      if (!wide.matches) { h2.style.fontSize = ''; h2.style.marginTop = ''; pil.style.gridTemplateColumns = ''; return; }
+      var intro = pil.querySelector('.pil__panel.is-on .pil__intro') || pil.querySelector('.pil__intro');
+      var tab = tabs.querySelector('[aria-selected="true"] .pil__t') || tabs.querySelector('.pil__t');
+      if (!intro || !tab) return;
+      var mt = metrics(tab), rt = textRects(tab)[0];
+      var capTop = rt.top + (mt.A - mt.C) * mt.fs;
+      /* intros sit at the top of a shared row; the heading reaches the last
+         line of the longest one, so it stays put when switching pillars */
+      var base = 0;
+      [].forEach.call(pil.querySelectorAll('.pil__intro'), function (el) {
+        var mi = metrics(el), rs = textRects(el), ri = rs[rs.length - 1];
+        if (ri.height) base = Math.max(base, ri.bottom - mi.D * mi.fs);
+      });
+      var mh = metrics(h2);
+      /* "Jdeme po / konečném / výsledku." - counted, so EN works too */
+      var lines = Math.max(1, Math.round(h2.getBoundingClientRect().height / parseFloat(getComputedStyle(h2).fontSize)));
+      var fs = (base - capTop) / ((lines - 1) + mh.C);
+      if (!(fs > 20 && fs < 140)) return;
+      h2.style.fontSize = fs + 'px';
+      /* the heading column is as wide as the heading's longest line, so
+         "Jdeme po" never breaks; the rest goes to the content column */
+      var cs = getComputedStyle(h2);
+      cv.font = cs.fontWeight + ' ' + fs + 'px ' + cs.fontFamily;
+      var w = 0;
+      h2.textContent.replace(/\u00a0/g, ' ').split(/ (?=konečném|výsledku|end)| (?=result)/).forEach(function (l) {
+        w = Math.max(w, cv.measureText(l).width);
+      });
+      pil.style.gridTemplateColumns = Math.ceil(w + fs * .3) + 'px minmax(0,1fr)';
+      h2.style.marginTop = '0px';
+      var top = h2.getBoundingClientRect().top;
+      var cap0 = top + (fs - (mh.A + mh.D) * fs) / 2 + (mh.A - mh.C) * fs;
+      h2.style.marginTop = (capTop - cap0) + 'px';
+    }
+    var raf = 0;
+    function later() { cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { fit(); fit(); }); }
+    window.addEventListener('resize', later);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(later);
+    document.addEventListener('langchange', later);
+    fit(); fit();
+  }
+
+  /* -------------------------------------------------------- pillar align */
+  /* desktop: all service cards share the tallest card's height, and the
+     intro under the heading starts on the same line as the descriptions */
+  function initPilAlign() {
+    var pil = document.querySelector('.pil');
+    if (!pil) return;
+    var lead = pil.querySelector('.pil__lead'), h2 = pil.querySelector('.pil__head h2');
+    var wide = window.matchMedia ? matchMedia('(min-width: 901px)') : null;
+    if (!lead || !h2 || !wide) return;
+    function top(el) { var y = 0; while (el) { y += el.offsetTop; el = el.offsetParent; } return y; }
+    function align() {
+      if (!wide.matches) { ['--svc-h', '--svc-t', '--lead-y'].forEach(function (p) { pil.style.removeProperty(p); }); return; }
+      var cards = pil.querySelectorAll('.pil__svc');
+      /* titles first: natural height of the tallest one becomes the row */
+      pil.style.setProperty('--svc-t', 'auto');
+      var tmax = 0;
+      [].forEach.call(pil.querySelectorAll('.pil__svc h3'), function (h) { tmax = Math.max(tmax, h.offsetHeight); });
+      pil.style.setProperty('--svc-t', Math.ceil(tmax) + 'px');
+      pil.style.setProperty('--svc-h', '0px');
+      var max = 0;
+      [].forEach.call(cards, function (c) { max = Math.max(max, c.offsetHeight); });
+      pil.style.setProperty('--svc-h', Math.ceil(max) + 'px');
+      var d = pil.querySelector('.pil__panel.is-on .pil__d') || pil.querySelector('.pil__d');
+      if (!d) return;
+      /* measure with entrance animations/transforms switched off for a
+         moment, so they cannot leak into the numbers */
+      pil.classList.add('is-measuring');
+      void pil.offsetWidth;
+      var y = d.getBoundingClientRect().top - h2.getBoundingClientRect().bottom;
+      pil.classList.remove('is-measuring');
+      pil.style.setProperty('--lead-y', Math.max(12, y) + 'px');
+    }
+    var raf = 0;
+    function later() { cancelAnimationFrame(raf); raf = requestAnimationFrame(align); }
+    window.addEventListener('resize', later);
+    document.addEventListener('langchange', function () { setTimeout(later, 0); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(later);
+    window.addEventListener('load', later);
+    pil.addEventListener('click', function (e) { if (e.target.closest('.pil__tab')) later(); });
+    align();
+  }
+
+  function boot() { initServices(); initSpotlight(); initPick(); initPillars(); initMarquee(); initBtnGlow(); initDots(); initPeople(); initMobile(); initPilAlign(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 })();
