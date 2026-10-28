@@ -6,8 +6,8 @@
 <title data-en="Techtlee - From a problem to a modern solution">Techtlee - Od problému k modernímu řešení</title>
 <meta name="description" content="Poradíme vám s problémem a víme, jak ho dnes vyřešit. Lidé, data, AI a software opřené o zkušenost z vedení firem.">
 <meta name="theme-color" content="#0A0C0B" id="tc">
-<link rel="stylesheet" href="/assets/darktec.css?v=20261030r">
-<link rel="stylesheet" href="/assets/techtlee.css?v=20261030r">
+<link rel="stylesheet" href="/assets/darktec.css?v=20261031t">
+<link rel="stylesheet" href="/assets/techtlee.css?v=20261031t">
 <script>
 /* Applied before first paint. Every visitor gets the dark site - a light
    choice saved earlier is ignored. The light theme still exists in the CSS:
@@ -64,7 +64,7 @@
 
 <header class="hdr">
   <div class="wrap hdr__in">
-    <a class="mark" href="/" aria-label="Techtlee"><svg class="tmark" viewBox="73 31 119 236.2" aria-hidden="true"><path d="M148.556 31C150.212 31.0001 151.556 32.3432 151.556 34V66.3652C151.556 68.0219 152.899 69.3652 154.556 69.3652H189C190.657 69.3652 192 70.7085 192 72.3652V104.467C192 106.123 190.657 107.467 189 107.467H154.556C152.899 107.467 151.556 108.81 151.556 110.467V194.886C151.556 213.766 166.862 229.072 185.742 229.072H186.396C188.052 229.072 189.396 230.415 189.396 232.072V264.173C189.395 265.83 188.052 267.173 186.396 267.173H185.742C145.819 267.173 113.455 234.809 113.455 194.886V110.467C113.455 108.81 112.112 107.467 110.455 107.467H76C74.3434 107.467 73.0004 106.123 73 104.467V72.3652C73.0002 70.7085 74.3432 69.3652 76 69.3652H110.455C112.112 69.365 113.455 68.0218 113.455 66.3652V34C113.455 32.3431 114.798 31 116.455 31H148.556ZM115.193 69.623C114.089 69.6232 113.194 70.5189 113.193 71.623V105.202C113.193 106.307 114.089 107.202 115.193 107.202H149.816C150.921 107.202 151.816 106.307 151.816 105.202V71.623C151.816 70.5189 150.921 69.6233 149.816 69.623H115.193Z"/></svg></a>
+    <a class="mark" href="/" aria-label="Techtlee"><img class="logo" src="/assets/img/techtlee-logo.svg?v=2" alt="" width="88" height="16"></a>
     <nav class="nav" aria-label="Hlavní navigace" data-en-al="Main navigation">
       <a href="/co-delame" data-en="What we do">Co děláme</a>
       <a href="/sluzby" data-en="Services">Služby</a>
@@ -75,13 +75,14 @@
       <a href="/kontakt" data-en="Contact">Kontakt</a>
     </nav>
     <div class="hdr__r">
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="navm" aria-label="Menu" data-en-al="Menu"><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
       <span class="eyebrow" id="clock">Praha -:-</span>
       <button class="theme" type="button" id="theme" hidden aria-pressed="false" aria-label="Přepnout světlý a tmavý režim" data-en-al="Toggle light and dark mode"><span class="t-l" data-en="Light">Světlý</span><span class="t-d" data-en="Dark">Tmavý</span></button>
       <span class="lang" role="group" aria-label="Jazyk / Language"><button data-lang="cs" type="button" lang="cs" aria-label="Čeština">CZ</button><i aria-hidden="true">/</i><button data-lang="en" type="button" lang="en" aria-label="English">EN</button></span>
     </div>
   </div>
 </header>
-<nav class="nav--m" aria-label="Hlavní navigace" data-en-al="Main navigation">
+<nav class="nav--m" id="navm" aria-label="Hlavní navigace" data-en-al="Main navigation">
   <ul>
     <li><a href="/co-delame" data-en="What we do">Co děláme</a></li>
     <li><a href="/sluzby" data-en="Services">Služby</a></li>
@@ -97,6 +98,7 @@
 
 <!-- ══════════════════════ HERO ══════════════════════ -->
 <section class="hero">
+  <div class="hero__pulse" aria-hidden="true"></div>
   <div class="glow" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="wrap">
     <div class="hero__in hero__in--solo">
@@ -310,15 +312,17 @@
       <h2 data-en="What we work on.">Na čem pracujeme.</h2>
       <p class="lede" data-en="Our own products and the studio we run.">Vlastní produkty a studio, které provozujeme.</p>
     </div>
+    <div class="pane pane--table">
     <table class="dt" data-reveal-s data-stagger>
-      <thead><tr><th data-en="Project">Projekt</th><th data-en="Description">Popis</th><th class="r" data-en="Status">Stav</th></tr></thead>
-      <tbody>
-        <tr><td class="c-name"><a href="/projekty#semanthics">Semanthics</a></td><td class="c-desc" data-en="A semantic layer and AI agents over company data. One definition of metrics for management, BI and AI.">Sémantická vrstva a AI agenti nad firemními daty. Jedna definice metrik pro management, BI i AI.</td><td class="r" data-en="In development">Ve vývoji</td></tr>
-        <tr><td class="c-name"><a href="https://revizar.cz" target="_blank" rel="noopener">Revizář.cz ↗</a></td><td class="c-desc" data-en="An application for managing inspections. From first prototype to live operation.">Aplikace pro správu revizí. Od prvního prototypu po běžící provoz.</td><td class="r" data-en="In operation">V provozu</td></tr>
-        <tr><td class="c-name"><a href="https://vlkorez.com" target="_blank" rel="noopener">vlkorez.com ↗</a></td><td class="c-desc" data-en="A creative studio. Brands, visual identity and production.">Kreativní studio. Značky, vizuální identita a produkce.</td><td class="r" data-en="In operation">V provozu</td></tr>
-        <tr><td class="c-name"><a href="https://agenticanalytics.cz" target="_blank" rel="noopener">Agentic Analytics ↗</a></td><td class="c-desc" data-en="A Prague community and meetup for people who use AI in data work every day - agentic analytics, semantic layers, practice without sales pitches.">Pražská komunita a setkání pro lidi, kteří denně používají AI při práci s daty - agentická analytika, sémantické vrstvy, praxe bez prodejních prezentací.</td><td class="r" data-en="Community">Komunita</td></tr>
-      </tbody>
-    </table>
+        <thead><tr><th data-en="Project">Projekt</th><th data-en="Description">Popis</th><th class="r" data-en="Status">Stav</th></tr></thead>
+        <tbody>
+          <tr><td class="c-name"><a href="/projekty#semanthics">Semanthics</a></td><td class="c-desc" data-en="A semantic layer and AI agents over company data. One definition of metrics for management, BI and AI.">Sémantická vrstva a AI agenti nad firemními daty. Jedna definice metrik pro management, BI i AI.</td><td class="r" data-en="In development">Ve vývoji</td></tr>
+          <tr><td class="c-name"><a href="https://revizar.cz" target="_blank" rel="noopener">Revizář.cz ↗</a></td><td class="c-desc" data-en="An application for managing inspections. From first prototype to live operation.">Aplikace pro správu revizí. Od prvního prototypu po běžící provoz.</td><td class="r" data-en="In operation">V provozu</td></tr>
+          <tr><td class="c-name"><a href="https://vlkorez.com" target="_blank" rel="noopener">vlkorez.com ↗</a></td><td class="c-desc" data-en="A creative studio. Brands, visual identity and production.">Kreativní studio. Značky, vizuální identita a produkce.</td><td class="r" data-en="In operation">V provozu</td></tr>
+          <tr><td class="c-name"><a href="https://agenticanalytics.cz" target="_blank" rel="noopener">Agentic Analytics ↗</a></td><td class="c-desc" data-en="A Prague community and meetup for people who use AI in data work every day - agentic analytics, semantic layers, practice without sales pitches.">Pražská komunita a setkání pro lidi, kteří denně používají AI při práci s daty - agentická analytika, sémantické vrstvy, praxe bez prodejních prezentací.</td><td class="r" data-en="Community">Komunita</td></tr>
+        </tbody>
+      </table>
+    </div>
     <p class="more"><a href="/projekty" data-en="Projects in detail <span>→</span>">Projekty v detailu <span>→</span></a></p>
   </div>
 </section>
@@ -330,23 +334,25 @@
       <p class="eyebrow"><span class="ix">06</span><span data-en="How we work">Jak pracujeme</span></p>
       <p class="eyebrow" data-en="4 phases">4 fáze</p>
     </div>
-    <div class="shead">
+    <div class="shead shead--split">
       <h2 data-en="The problem first, the tools second.">Nejdřív problém, pak nástroje.</h2>
+      <p class="lede" data-en="From running companies we know how much time and how many slow decisions bad reporting or a manual process costs.">Z vedení firem víme, kolik času a pomalých rozhodnutí sebere špatný reporting nebo ruční proces.</p>
     </div>
-    <div class="rail" data-reveal-s data-stagger>
-      <div><p class="eyebrow">01</p><h3 data-en="Discover">Poznání</h3><p data-en="We go through the numbers, processes and people the problem touches. We do not start on a solution until we truly understand the problem.">Projdeme čísla, procesy a lidi, kterých se problém týká. Nezačínáme s řešením, dokud problému skutečně nerozumíme.</p></div>
-      <div><p class="eyebrow">02</p><h3 data-en="Prototype">Prototyp</h3><p data-en="A quick working version you can use to decide whether it makes sense. We validate assumptions before investing in the full build.">Rychlá funkční verze, na které se dá rozhodnout, jestli dává smysl. Ověřujeme předpoklady dřív, než investujeme do plné stavby.</p></div>
-      <div><p class="eyebrow">03</p><h3 data-en="Production">Produkce</h3><p data-en="A proper build: tests, deployment and handover to operations. A solution has to survive daily operations, not just a presentation.">Pořádná stavba: testy, nasazení a předání do provozu. Řešení musí obstát v každodenním provozu, ne jen v prezentaci.</p></div>
-      <div><p class="eyebrow">04</p><h3 data-en="Evolve">Rozvoj</h3><p data-en="We measure what the solution delivers and keep developing it accordingly. We take every recommendation through to a decision.">Měříme, co řešení přináší, a podle toho ho dál rozvíjíme. Každé doporučení dotahujeme k rozhodnutí.</p></div>
-    </div>
+    <ol class="flowx" data-reveal-s>
+      <li class="flowx__step" style="--i:0"><span class="flowx__node" aria-hidden="true"></span><div class="flowx__card"><p class="flowx__n">01</p><h3 data-en="Discover">Poznání</h3><p class="flowx__d" data-en="We go through the numbers, processes and people the problem touches. We do not start on a solution until we truly understand the problem.">Projdeme čísla, procesy a lidi, kterých se problém týká. Nezačínáme s řešením, dokud problému skutečně nerozumíme.</p><p class="flowx__out"><span class="flowx__lbl" data-en="Outcome">Výstup</span><span data-en="A map of the problem and its priorities">Mapa problému a priorit</span></p></div></li>
+      <li class="flowx__step" style="--i:1"><span class="flowx__node" aria-hidden="true"></span><div class="flowx__card"><p class="flowx__n">02</p><h3 data-en="Prototype">Prototyp</h3><p class="flowx__d" data-en="A quick working version you can use to decide whether it makes sense. We validate assumptions before investing in the full build.">Rychlá funkční verze, na které se dá rozhodnout, jestli dává smysl. Ověřujeme předpoklady dřív, než investujeme do plné stavby.</p><p class="flowx__out"><span class="flowx__lbl" data-en="Outcome">Výstup</span><span data-en="A working prototype to decide on">Funkční prototyp k rozhodnutí</span></p></div></li>
+      <li class="flowx__step" style="--i:2"><span class="flowx__node" aria-hidden="true"></span><div class="flowx__card"><p class="flowx__n">03</p><h3 data-en="Production">Produkce</h3><p class="flowx__d" data-en="A proper build: tests, deployment and handover to operations. A solution has to survive daily operations, not just a presentation.">Pořádná stavba: testy, nasazení a předání do provozu. Řešení musí obstát v každodenním provozu, ne jen v prezentaci.</p><p class="flowx__out"><span class="flowx__lbl" data-en="Outcome">Výstup</span><span data-en="A solution in operation, handed over to your team">Řešení v provozu, předané vašemu týmu</span></p></div></li>
+      <li class="flowx__step" style="--i:3"><span class="flowx__node" aria-hidden="true"></span><div class="flowx__card"><p class="flowx__n">04</p><h3 data-en="Evolve">Rozvoj</h3><p class="flowx__d" data-en="We measure what the solution delivers and keep developing it accordingly. We take every recommendation through to a decision.">Měříme, co řešení přináší, a podle toho ho dál rozvíjíme. Každé doporučení dotahujeme k rozhodnutí.</p><p class="flowx__out"><span class="flowx__lbl" data-en="Outcome">Výstup</span><span data-en="Regular review and the next steps">Pravidelné vyhodnocení a další kroky</span></p></div></li>
+    </ol>
 
-    <div class="grid" style="margin-top:clamp(56px,7vw,110px)">
-      <figure class="q" style="grid-column:1/span 6">
-        <blockquote data-reveal-s data-en="Technology should serve people, not the other way round. And we know it can be done better today.">Technologie má sloužit lidem, ne naopak. A víme, že dnes se to dá dělat líp.</blockquote>
-        <figcaption class="eyebrow" data-en="Josef Vodička · co-owner, Techtlee">Josef Vodička · spolumajitel Techtlee</figcaption>
-      </figure>
-      <p class="lede" style="grid-column:8/span 5;align-self:end" data-en="From running companies we know how much time and how many slow decisions bad reporting or a manual process costs.">Z vedení firem víme, kolik času a pomalých rozhodnutí sebere špatný reporting nebo ruční proces.</p>
-    </div>
+    <figure class="qx pane" data-reveal-s>
+      <span class="qx__mark" aria-hidden="true">“</span>
+      <blockquote data-en="Technology should serve people, not the other way round. And we know it can be done better today.">Technologie má sloužit lidem, ne naopak. A víme, že dnes se to dá dělat líp.</blockquote>
+      <figcaption>
+        <img src="/assets/img/josef.jpg?v=2" alt="" width="52" height="52" loading="lazy">
+        <span><b>Josef Vodička</b><span data-en="Co-owner, Techtlee">Spolumajitel Techtlee</span></span>
+      </figcaption>
+    </figure>
     <p class="more"><a href="/pristup" data-en="How we work <span>→</span>">Jak pracujeme <span>→</span></a></p>
   </div>
 </section>
@@ -398,9 +404,9 @@
 </footer>
 
 <script src="/assets/i18n.js"></script>
-<script src="/assets/site.js?v=20261030r"></script>
-<script src="/assets/motion.js?v=20261030r"></script>
-<script src="/assets/interact.js?v=20261030r"></script>
-<script src="/assets/form.js?v=20261030r"></script>
+<script src="/assets/site.js?v=20261031t"></script>
+<script src="/assets/motion.js?v=20261031t"></script>
+<script src="/assets/interact.js?v=20261031t"></script>
+<script src="/assets/form.js?v=20261031t"></script>
 </body>
 </html>

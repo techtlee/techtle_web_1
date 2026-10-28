@@ -368,10 +368,18 @@
     if (reduce) return;
     if (!window.matchMedia || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
     var root = document.documentElement, frame = 0, px = 0, py = 0, idle = 0;
+    var hero = document.querySelector('.hero');
     function paint() {
       frame = 0;
       root.style.setProperty('--hx', px + 'px');
       root.style.setProperty('--hy', py + 'px');
+      /* the hero draws its own copy of the grid on top of its image, so it
+         needs the cursor in its own coordinates */
+      if (hero) {
+        var r = hero.getBoundingClientRect();
+        hero.style.setProperty('--lx', (px - r.left) + 'px');
+        hero.style.setProperty('--ly', (py - r.top) + 'px');
+      }
     }
     document.addEventListener('pointermove', function (e) {
       if (e.pointerType && e.pointerType !== 'mouse') return;
@@ -415,7 +423,39 @@
     sync();
   }
 
-  function boot() { initServices(); initSpotlight(); initPick(); initPillars(); initMarquee(); initBtnGlow(); initDots(); initPeople(); }
+  /* ------------------------------------------------------------- mobile */
+  /* phones: the page menu opens from a button; the pillar switch collapses
+     into one row that expands into the full list. Desktop is untouched. */
+  function initMobile() {
+    var mq = window.matchMedia ? matchMedia('(max-width: 1120px)') : null;
+    var btn = document.querySelector('.menu-btn'), nav = document.getElementById('navm');
+    if (btn && nav) {
+      var root = document.documentElement;
+      function set(open) {
+        root.classList.toggle('menu-open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      btn.addEventListener('click', function () { set(!root.classList.contains('menu-open')); });
+      nav.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+      if (mq) mq.addEventListener('change', function () { if (!mq.matches) set(false); });
+    }
+    var tabs = document.querySelector('.pil__tabs');
+    var small = window.matchMedia ? matchMedia('(max-width: 900px)') : null;
+    if (tabs && small) {
+      tabs.addEventListener('click', function (e) {
+        if (!small.matches) return;
+        var t = e.target.closest('.pil__tab');
+        if (!t) return;
+        /* the selected row opens / closes the list; picking another closes it */
+        if (t.getAttribute('aria-selected') === 'true' && !tabs.classList.contains('is-open')) tabs.classList.add('is-open');
+        else tabs.classList.remove('is-open');
+      });
+      small.addEventListener('change', function () { tabs.classList.remove('is-open'); });
+    }
+  }
+
+  function boot() { initServices(); initSpotlight(); initPick(); initPillars(); initMarquee(); initBtnGlow(); initDots(); initPeople(); initMobile(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 })();
