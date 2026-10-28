@@ -6,16 +6,20 @@
 <title data-en="People - Techtlee">Lidé - Techtlee</title>
 <meta name="description" content="Lidé za Techtlee: Ivan Vodička a Josef Vodička. Jméno, tvář, reference.">
 <meta name="theme-color" content="#0A0C0B" id="tc">
-<link rel="stylesheet" href="/assets/darktec.css?v=20261018">
-<link rel="stylesheet" href="/assets/techtlee.css?v=20261018">
+<link rel="stylesheet" href="/assets/darktec.css?v=20261027c">
+<link rel="stylesheet" href="/assets/techtlee.css?v=20261027c">
 <script>
-/* Applied before first paint: no flash of the wrong theme on reload.
-   Default is dark - it is the brand. Swap the fallback to
-   matchMedia('(prefers-color-scheme: light)').matches to follow the OS. */
+/* Applied before first paint. Every visitor gets the dark site - a light
+   choice saved earlier is ignored. The light theme still exists in the CSS:
+   add ?theme=light to the URL to preview it (not remembered). To give
+   visitors the switch back, remove `hidden` from #theme in the header and
+   restore the localStorage read here. */
 (function(){document.documentElement.className+=' js';try{
-  var t=localStorage.getItem('tt-theme');
-  if(t==='light')document.documentElement.setAttribute('data-theme','light');
-}catch(e){}})();
+  if(/[?&]theme=light\b/.test(location.search))document.documentElement.setAttribute('data-theme','light');
+}catch(e){}
+  /* arrived through a page transition: let that be the only animation */
+  window.addEventListener('pagereveal',function(e){if(e.viewTransition)document.documentElement.classList.add('vt');});
+})();
 </script>
 <link rel="canonical" href="https://techtlee.com/lide">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -64,7 +68,7 @@
     </nav>
     <div class="hdr__r">
       <span class="eyebrow" id="clock">Praha -:-</span>
-      <button class="theme" type="button" id="theme" aria-pressed="false" aria-label="Přepnout světlý a tmavý režim" data-en-al="Toggle light and dark mode"><span class="t-l" data-en="Light">Světlý</span><span class="t-d" data-en="Dark">Tmavý</span></button>
+      <button class="theme" type="button" id="theme" hidden aria-pressed="false" aria-label="Přepnout světlý a tmavý režim" data-en-al="Toggle light and dark mode"><span class="t-l" data-en="Light">Světlý</span><span class="t-d" data-en="Dark">Tmavý</span></button>
       <span class="lang" role="group" aria-label="Jazyk / Language"><button data-lang="cs" type="button" lang="cs" aria-label="Čeština">CZ</button><i aria-hidden="true">/</i><button data-lang="en" type="button" lang="en" aria-label="English">EN</button></span>
     </div>
   </div>
@@ -101,7 +105,7 @@
         <h3>Ivan Vodička</h3>
         <p class="role eyebrow" data-en="Co-owner">Spolumajitel</p>
         <p class="bio" data-en="Almost 30 years of leading companies across Europe - e-commerce, retail, financial services, venture building. CEO and CFO roles, turnarounds, post-merger integrations, digital transformation. Certified coach.">Téměř 30 let vedení firem v Evropě - e-commerce, retail, finanční služby, venture building. CEO a CFO role, turnaroundy, post-merger integrace, digitální transformace. Certifikovaný kouč.</p>
-        <div class="cv"><span>Creative Dock</span><span>Mall Group</span><span>Alpine Pro</span><span>Generali</span><span>PPF</span><span>Nutricia</span></div>
+        <div class="cv"><span>Creative Dock</span><span>Mall Group</span><span>Alpine Pro</span><span>Generali</span><span>PPF</span><span>Danone Nutricia</span></div>
       </article>
       <article>
         <img src="/assets/img/jva.jpg" alt="Josef Vodička" width="112" height="112" loading="lazy">
@@ -137,13 +141,13 @@
   <div class="wrap ftr__in">
     <p class="eyebrow"><svg class="tmark" viewBox="73 31 119 236.2" aria-hidden="true"><path d="M148.556 31C150.212 31.0001 151.556 32.3432 151.556 34V66.3652C151.556 68.0219 152.899 69.3652 154.556 69.3652H189C190.657 69.3652 192 70.7085 192 72.3652V104.467C192 106.123 190.657 107.467 189 107.467H154.556C152.899 107.467 151.556 108.81 151.556 110.467V194.886C151.556 213.766 166.862 229.072 185.742 229.072H186.396C188.052 229.072 189.396 230.415 189.396 232.072V264.173C189.395 265.83 188.052 267.173 186.396 267.173H185.742C145.819 267.173 113.455 234.809 113.455 194.886V110.467C113.455 108.81 112.112 107.467 110.455 107.467H76C74.3434 107.467 73.0004 106.123 73 104.467V72.3652C73.0002 70.7085 74.3432 69.3652 76 69.3652H110.455C112.112 69.365 113.455 68.0218 113.455 66.3652V34C113.455 32.3431 114.798 31 116.455 31H148.556ZM115.193 69.623C114.089 69.6232 113.194 70.5189 113.193 71.623V105.202C113.193 106.307 114.089 107.202 115.193 107.202H149.816C150.921 107.202 151.816 106.307 151.816 105.202V71.623C151.816 70.5189 150.921 69.6233 149.816 69.623H115.193Z"/></svg><span data-en="Techtlee. From a problem to a modern solution.">Techtlee. Od problému k modernímu řešení.</span></p>
     <nav aria-label="Stránky" data-en-al="Pages"><a class="eyebrow" href="/co-delame" data-en="What we do">Co děláme</a><a class="eyebrow" href="/sluzby" data-en="Services">Služby</a><a class="eyebrow" href="/zkusenosti" data-en="Experience">Zkušenosti</a><a class="eyebrow" href="/lide" data-en="People">Lidé</a><a class="eyebrow" href="/projekty" data-en="Projects">Projekty</a><a class="eyebrow" href="/pristup" data-en="Approach">Přístup</a><a class="eyebrow" href="/kontakt" data-en="Contact">Kontakt</a></nav>
-    <p class="eyebrow">© 2026 · <a href="mailto:info@techtlee.com">info@techtlee.com</a> · <a href="tel:+420737105460">+420 737 105 460</a> · Praha</p>
+    <p class="eyebrow">© 2026 · <a href="mailto:info@techtlee.com">info@techtlee.com</a> · <a href="tel:+420724355777">+420 724 355 777</a> · Praha</p>
   </div>
 </footer>
 
 <script src="/assets/i18n.js"></script>
-<script src="/assets/site.js?v=20261018"></script>
-<script src="/assets/motion.js?v=20261018"></script>
-<script src="/assets/interact.js?v=20261018"></script>
+<script src="/assets/site.js?v=20261027c"></script>
+<script src="/assets/motion.js?v=20261027c"></script>
+<script src="/assets/interact.js?v=20261027c"></script>
 </body>
 </html>
