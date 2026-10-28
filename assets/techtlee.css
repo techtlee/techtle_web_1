@@ -1611,6 +1611,31 @@ html.is-lit .hero .glow{opacity:1;transition-duration:.35s}
 #pristup .more{text-align:center}
 @media(max-width:1000px){#pristup .flowx::before,#pristup .flowx::after{left:8px;right:8px}}
 
+/* ── contact form: taller, roomier fields; the message box has no native
+   resize grip and a slim scrollbar that looks the same in every browser ── */
+.form .field input,.form .field textarea{padding:20px var(--s5);font-size:var(--fs-body)}
+.form .field label{padding:0 var(--s5)}
+.form .field:has(textarea) label{padding-top:21px}
+.form .field textarea{resize:none;min-height:clamp(200px,22vh,260px);line-height:var(--lh-body);
+  overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(188,197,216,.28) transparent}
+.form .field textarea::-webkit-scrollbar{width:10px}
+.form .field textarea::-webkit-scrollbar-track{background:transparent}
+.form .field textarea::-webkit-scrollbar-thumb{background:rgba(188,197,216,.25);border-radius:10px;
+  border:3px solid transparent;background-clip:padding-box}
+.form .field textarea::-webkit-scrollbar-thumb:hover{background-color:rgba(188,197,216,.45)}
+.form .field textarea::-webkit-scrollbar-corner,.form .field textarea::-webkit-resizer{background:transparent}
+.form .form__f{padding:16px var(--s5)}
+
+/* desktop: the form runs down to the end of the contact details beside it;
+   the message box takes up the extra height */
+@media(min-width:901px){
+  .grid:has(.contact-form){align-items:stretch}
+  .grid > div:has(> .contact-form){display:flex;flex-direction:column}
+  .contact-form{flex:1;display:flex;flex-direction:column}
+  .contact-form .field:has(textarea){flex:1;grid-template-rows:minmax(0,1fr)}
+  .contact-form .field textarea{height:100%;min-height:120px}
+}
+
 /* ══ TEST 2026-10-28: no section rules, no "01 Název" rows ══════════
    Revert = delete this whole block.                                   */
 .spec{display:none}
