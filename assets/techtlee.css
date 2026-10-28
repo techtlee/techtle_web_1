@@ -452,6 +452,7 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 .field.bad input{box-shadow:inset 2px 0 0 var(--warn)}
 .form-status{display:none;padding:13px var(--s4);border-bottom:1px solid var(--line);font-size:var(--fs-sm);color:var(--fg)}
 .form-status.ok,.form-status.err{display:block}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .form-status.ok{box-shadow:inset 2px 0 0 var(--accent)}
 .form-status.err{box-shadow:inset 2px 0 0 var(--warn)}
 .form-status a{color:var(--accent)}

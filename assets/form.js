@@ -42,7 +42,8 @@
       show('ok',t.mail); return;
     }
     var btn=form.querySelector('.send'); btn.disabled=true;
-    fetch(action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}})
+    var fd=new FormData(form), data={lang:lang()}; fd.forEach(function(v,k){ data[k]=v; });
+    fetch(action,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'application/json',Accept:'application/json'}})
       .then(function(r){ if(!r.ok) throw 0; show('ok',t.ok); form.reset(); })
       .catch(function(){ show('err',t.err,true); })
       .finally(function(){ btn.disabled=false; });

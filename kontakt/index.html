@@ -6,8 +6,8 @@
 <title data-en="Contact - Techtlee">Kontakt - Techtlee</title>
 <meta name="description" content="Napište nám pár vět. Do jednoho pracovního dne vám řekneme, jestli a jak umíme pomoct.">
 <meta name="theme-color" content="#0A0C0B" id="tc">
-<link rel="stylesheet" href="/assets/darktec.css?v=20261027c">
-<link rel="stylesheet" href="/assets/techtlee.css?v=20261027c">
+<link rel="stylesheet" href="/assets/darktec.css?v=20261028a">
+<link rel="stylesheet" href="/assets/techtlee.css?v=20261028a">
 <script>
 /* Applied before first paint. Every visitor gets the dark site - a light
    choice saved earlier is ignored. The light theme still exists in the CSS:
@@ -111,8 +111,9 @@
       </div>
       <div style="grid-column:7/span 6">
         <!-- To go live: set action to a real endpoint (e.g. Formspree). Until then submitting opens the visitor's mail client with the message prefilled. -->
-        <form class="form contact-form" action="FORM_ENDPOINT" method="POST" novalidate>
+        <form class="form contact-form" action="/api/contact" method="POST" novalidate>
           <div class="form-status" role="status" aria-live="polite"></div>
+          <div class="hp" aria-hidden="true"><label>Website <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
           <div class="field"><label class="eyebrow" for="n4" data-en="Name">Jméno</label><input id="n4" name="name" type="text" required autocomplete="name" aria-describedby="n4-h"><span class="hint" id="n4-h" data-en="Tell us what to call you.">Napište nám, jak vás oslovit.</span></div>
           <div class="field"><label class="eyebrow" for="e4">E-mail</label><input id="e4" name="email" type="email" required autocomplete="email" aria-describedby="e4-h"><span class="hint" id="e4-h" data-en="Enter an e-mail like name@company.com.">Zadejte e-mail ve tvaru jmeno@firma.cz.</span></div>
           <div class="field"><label class="eyebrow" for="s4" data-en="Situation">Situace</label><textarea id="s4" name="message" rows="4" placeholder="Co u vás nefunguje tak, jak by mělo…" data-en-ph="What is not working the way it should…"></textarea></div>
@@ -137,9 +138,9 @@
 </footer>
 
 <script src="/assets/i18n.js"></script>
-<script src="/assets/site.js?v=20261027c"></script>
-<script src="/assets/motion.js?v=20261027c"></script>
-<script src="/assets/interact.js?v=20261027c"></script>
-<script src="/assets/form.js?v=20261027c"></script>
+<script src="/assets/site.js?v=20261028a"></script>
+<script src="/assets/motion.js?v=20261028a"></script>
+<script src="/assets/interact.js?v=20261028a"></script>
+<script src="/assets/form.js?v=20261028a"></script>
 </body>
 </html>
