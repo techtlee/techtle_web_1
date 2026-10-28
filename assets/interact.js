@@ -609,7 +609,46 @@
     align();
   }
 
-  function boot() { initServices(); initSpotlight(); initPick(); initPillars(); initMarquee(); initBtnGlow(); initDots(); initPeople(); initMobile(); initPilAlign(); }
+  /* ------------------------------------------------------- service index */
+  /* /sluzby: the pill in the sticky index follows the service in view */
+  function initSvx() {
+    var nav = document.querySelector('.svx');
+    if (!nav) return;
+    var links = [].slice.call(nav.querySelectorAll('a[href^="#"]'));
+    var map = {};
+    links.forEach(function (a) {
+      var b = a.querySelector('b'); if (b) a.title = b.textContent;
+      var el = document.getElementById(a.getAttribute('href').slice(1)); if (el) map[el.id] = a;
+    });
+    function on(id) {
+      links.forEach(function (a) { a.classList.toggle('is-on', map[id] === a); });
+      var a = map[id];
+    }
+    /* the service whose top has passed 40% of the screen is the current one */
+    var ids = Object.keys(map), last = null;
+    function spy() {
+      var line = innerHeight * .4, cur = ids[0];   /* before any service: the first one */
+      ids.forEach(function (id) { if (document.getElementById(id).getBoundingClientRect().top <= line) cur = id; });
+      if (cur !== last) { last = cur; on(cur); }
+    }
+    addEventListener('scroll', spy, { passive: true });   /* 7 rects - cheap enough per event */
+    spy();
+    /* a pick lights up right away, before the smooth scroll arrives.
+       Narrow screens: the bar shows the current service only; the first
+       tap opens the list, a pick in the open list scrolls and closes it */
+    var small = window.matchMedia ? matchMedia('(max-width: 1000px)') : null;
+    links.forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        if (small && small.matches && !nav.classList.contains('is-open')) {
+          e.preventDefault(); nav.classList.add('is-open'); return;
+        }
+        nav.classList.remove('is-open');
+        var id = a.getAttribute('href').slice(1); last = id; on(id);
+      });
+    });
+  }
+
+  function boot() { initServices(); initSpotlight(); initPick(); initPillars(); initMarquee(); initBtnGlow(); initDots(); initPeople(); initMobile(); initPilAlign(); initSvx(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 })();

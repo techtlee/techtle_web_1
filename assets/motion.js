@@ -80,13 +80,14 @@
       ] }
   ];
   var UI = {
-    cs: { manual: 'ručně', count: 'Ruční kroky', pause: 'Pozastavit animaci', play: 'Spustit animaci',
+    cs: { manual: 'ručně', count: 'Ruční kroky', pause: 'Pozastavit animaci', play: 'Spustit animaci', replay: 'Přehrát znovu',
           why: 'Proč to bolí', how: 'Jak to řešíme', step: 'Krok' },
-    en: { manual: 'manual', count: 'Manual steps', pause: 'Pause animation', play: 'Play animation',
+    en: { manual: 'manual', count: 'Manual steps', pause: 'Pause animation', play: 'Play animation', replay: 'Replay',
           why: 'Why it hurts', how: 'How we solve it', step: 'Step' }
   };
   var ICON_PAUSE = '<svg viewBox="0 0 10 10" aria-hidden="true"><rect x="1" y="0" width="3" height="10" fill="currentColor"/><rect x="6" y="0" width="3" height="10" fill="currentColor"/></svg>';
   var ICON_PLAY = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 0v10L9.5 5z" fill="currentColor"/></svg>';
+  var ICON_REPLAY = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M10 6a4 4 0 1 1-1.17-2.83" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M10.4 1.4v2.9H7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   /* timing (ms): first look at the old process, then each card loads
      through its own bar (LOAD) and flips to the solution, one per beat */
@@ -102,7 +103,10 @@
     var bar = root.querySelector('.flow__bar i');
     var pauseBtn = root.querySelector('.flow__pause');
 
-    var cur = 0, done = 0, timers = [], userPaused = reduce, hoverPaused = false, visible = true;
+    /* plays the scenarios once, in order, then freezes on the last one with
+       the button turned into "replay" */
+    var cur = 0, done = 0, timers = [], userPaused = reduce, ended = false,
+        visible = !('IntersectionObserver' in window);   /* starts once it is on screen */
 
     /* phones show one card at a time (CSS, ≤600px); `shown` is that card.
        The dots and the swipe live here; on wider screens CSS hides the dots
@@ -157,9 +161,9 @@
     }
     function renderPause() {
       var u = UI[lang()];
-      pauseBtn.innerHTML = userPaused ? ICON_PLAY : ICON_PAUSE;
-      pauseBtn.setAttribute('aria-label', userPaused ? u.play : u.pause);
-      pauseBtn.setAttribute('aria-pressed', userPaused ? 'true' : 'false');
+      pauseBtn.innerHTML = ended ? ICON_REPLAY : userPaused ? ICON_PLAY : ICON_PAUSE;
+      pauseBtn.setAttribute('aria-label', ended ? u.replay : userPaused ? u.play : u.pause);
+      pauseBtn.setAttribute('aria-pressed', !ended && userPaused ? 'true' : 'false');
       pauseBtn.hidden = reduce;
     }
     function renderCount() {
@@ -212,7 +216,11 @@
       }, LOAD);
     }
 
-    function running() { return !userPaused && !hoverPaused && visible && !document.hidden; }
+    function running() { return !userPaused && !ended && visible && !document.hidden; }
+    function next() {
+      if (cur < SCENARIOS.length - 1) go(cur + 1);
+      else { ended = true; clear(); renderPause(); }
+    }
 
     /* plays the current scenario from step `done`, then moves on */
     function play() {
@@ -227,11 +235,12 @@
       for (var i = done; i < steps; i++) {
         (function (k) { later(function () { convert(k); }, t + (k - done) * BEAT); })(i);
       }
-      later(function () { go((cur + 1) % SCENARIOS.length); }, total);
+      later(next, total);
     }
     function go(i) {
       clear();
       cur = i;
+      ended = false;
       done = reduce ? SCENARIOS[i].steps.length : 0;
       shown = 0;
       render();
@@ -243,30 +252,23 @@
     function resume() {
       if (!running()) return;
       bar.style.animationPlayState = '';
-      if (done >= SCENARIOS[cur].steps.length) { go((cur + 1) % SCENARIOS.length); return; }
+      if (done >= SCENARIOS[cur].steps.length) { next(); return; }
       play();
     }
 
     pauseBtn.addEventListener('click', function () {
+      if (ended) { ended = false; userPaused = false; go(0); return; }
       userPaused = !userPaused;
       renderPause();
       userPaused ? pause() : resume();
-    });
-    root.addEventListener('mouseenter', function () { hoverPaused = true; pause(); });
-    root.addEventListener('mouseleave', function () { hoverPaused = false; resume(); });
-    root.addEventListener('focusin', function () { hoverPaused = true; pause(); });
-    root.addEventListener('focusout', function (e) {
-      if (!root.contains(e.relatedTarget)) { hoverPaused = false; resume(); }
     });
     document.addEventListener('visibilitychange', function () { document.hidden ? pause() : resume(); });
     document.addEventListener('langchange', render);
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (es) {
-        var was = visible;
         visible = es[0].isIntersecting;
-        if (!visible) pause();
-        else if (!was) resume();   /* the first callback reports what we already assume */
-      }).observe(root);
+        visible ? resume() : pause();
+      }, { threshold: .15 }).observe(root);
     }
     go(0);
   }

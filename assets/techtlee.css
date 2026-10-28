@@ -732,7 +732,10 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 @media (prefers-reduced-transparency:reduce){.is-sp{background-image:none}}
 
 /* ── page-to-page transitions (Chrome/Edge, Safari 18.2+) ────────── */
-@media (prefers-reduced-motion:no-preference){
+/* Desktop only: on phones the blurred header and the menu panel were
+   snapshotted mid-close and flashed as a smear at the top of the next page,
+   so phones load the next page plainly. */
+@media (prefers-reduced-motion:no-preference) and (min-width:1121px){
   @view-transition{navigation:auto}
 }
 /* The header (and the mobile nav strip) never move during a page change:
@@ -1869,4 +1872,45 @@ html.is-lit .hero .glow{opacity:1;transition-duration:.35s}
 @media(max-width:600px){
   .hero__cta{margin-top:var(--s12);flex-direction:column;align-items:flex-start;gap:var(--s4)}
   .hero__cta .btn--ghost{padding-left:0}
+}
+
+/* ══ /sluzby: services index as a side menu that stays in view; the
+   service on screen is marked with a lit line. Phones: a sticky
+   one-row picker that opens the full list. ══ */
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.svc{scroll-margin-top:90px}
+.svx a{text-decoration:none}
+@media(min-width:1001px){
+  .svlayout{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,220px);column-gap:clamp(32px,4vw,64px);align-items:start}
+  .svlayout > .svx{grid-column:2;grid-row:1}
+  .svlayout > .discs{grid-column:1;grid-row:1}
+  .svx{position:sticky;top:96px;display:flex !important;flex-direction:column;gap:2px;margin:var(--s4) 0 0;border:0 !important}
+  .svx a{position:relative;display:block !important;padding:10px 0 10px 16px !important;border:0 !important}
+  .svx a::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:2px;border-radius:2px;background:var(--line-2);
+    transition:background-color .25s,box-shadow .25s}
+  .svx a span{display:none !important}
+  .svx a b{display:block;font-weight:var(--fw-med);font-size:var(--fs-sm);line-height:1.3;color:var(--fg-3);transition:color .2s}
+  .svx a:hover b{color:var(--fg)}
+  .svx a.is-on b{color:var(--fg)}
+  .svx a.is-on::before{background:var(--accent);box-shadow:0 0 12px rgba(149,173,216,.6)}
+  .svx a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+  .svlayout .disc.svc{grid-template-columns:minmax(0,1fr) minmax(0,.85fr)}
+  .svlayout .disc.svc:first-child{padding-top:var(--s4)}
+}
+@media(max-width:1000px){
+  .svx{position:sticky;top:57px;z-index:20;display:flex !important;flex-direction:column;margin:0 0 var(--s6);
+    border:1px solid var(--line-2) !important;border-radius:12px;overflow:hidden;
+    background:color-mix(in srgb,var(--bg) 88%,transparent);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%)}
+  .svx a{display:none !important;padding:13px 48px 13px 16px !important;border:0 !important}
+  .svx a span{display:none !important}
+  .svx a b{font-weight:var(--fw-med);font-size:var(--fs-body);color:var(--fg)}
+  .svx a.is-on,.svx:not(:has(.is-on)) a:first-child{display:block !important}
+  .svx::after{content:'';position:absolute;right:18px;top:19px;width:8px;height:8px;pointer-events:none;
+    border-right:1.5px solid var(--fg-3);border-bottom:1.5px solid var(--fg-3);transform:rotate(45deg);transition:transform .2s}
+  .svx.is-open::after{transform:translateY(4px) rotate(-135deg)}
+  .svx.is-open a{display:block !important}
+  .svx.is-open a + a{border-top:1px solid var(--line) !important}
+  .svx.is-open a.is-on{background:rgba(149,173,216,.08)}
 }
