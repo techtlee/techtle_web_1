@@ -5,7 +5,7 @@ folder as-is.
 
 ```
 index.html                 homepage: hero (process animation) + an overview of every section
-co-delame/ sluzby/ zkusenosti/ lide/ projekty/ pristup/ kontakt/
+sluzby/ zkusenosti/ lide/ projekty/ pristup/ kontakt/
                            one page per section (folder/index.html -> clean URL /sluzby)
 assets/techtlee.css        all styles (was inlined while the site was one page)
 assets/darktec.css         @font-face declarations only

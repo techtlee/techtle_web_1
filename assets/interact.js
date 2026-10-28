@@ -614,7 +614,7 @@
   function initSvx() {
     var nav = document.querySelector('.svx');
     if (!nav) return;
-    var links = [].slice.call(nav.querySelectorAll('a[href^="#"]'));
+    var links = [].slice.call(nav.querySelectorAll('a[href^="#"]:not(.svx__p)'));
     var map = {};
     links.forEach(function (a) {
       var b = a.querySelector('b'); if (b) a.title = b.textContent;
@@ -622,6 +622,8 @@
     });
     function on(id) {
       links.forEach(function (a) { a.classList.toggle('is-on', map[id] === a); });
+      /* the pillar group that holds the current service */
+      [].forEach.call(nav.querySelectorAll('.svx__grp'), function (g) { g.classList.toggle('is-in', !!(map[id] && g.contains(map[id]))); });
       var a = map[id];
     }
     /* the service whose top has passed 40% of the screen is the current one */
