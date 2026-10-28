@@ -405,33 +405,46 @@
   }
 
   /* ------------------------------------------------------------- people */
-  /* "Jméno, tvář, reference": a sideways strip of cards with arrows and a
-     progress line that follows the scroll position. */
+  /* "Jméno, tvář, reference": one person is open at a time; picking a
+     face opens that card and shows the bio. Arrows step through people. */
   function initPeople() {
     var root = document.querySelector('.ppl');
     if (!root) return;
-    var track = root.querySelector('.ppl__track'), bar = root.querySelector('.ppl__bar i');
+    var cards = [].slice.call(root.querySelectorAll('.ppl__card'));
+    var picks = cards.map(function (c) { return c.querySelector('.ppl__pick'); });
     var btns = root.querySelectorAll('.ppl__btn');
-    function step() {
-      var c = track.querySelector('.ppl__card');
-      return c ? c.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0) : track.clientWidth;
+    var bar = root.querySelector('.ppl__bar i'), count = root.querySelector('.ppl__count');
+    if (!cards.length) return;
+    root.classList.add('ppl--js');
+    var cur = -1;                         /* nobody is open until picked */
+    function show(i, focus) {
+      cur = i < 0 ? -1 : (i + cards.length) % cards.length;
+      root.classList.toggle('has-open', cur > -1);
+      cards.forEach(function (c, k) {
+        var on = k === cur;
+        c.classList.toggle('is-on', on);
+        picks[k].setAttribute('aria-expanded', on ? 'true' : 'false');
+        c.querySelector('.ppl__txt').inert = !on;
+      });
+      if (bar) bar.style.transform = 'scaleX(' + ((cur + 1) / cards.length) + ')';
+      if (count) count.textContent = (cur < 0 ? '–' : cur + 1) + ' / ' + cards.length;
+      if (focus && cur > -1) picks[cur].focus();
     }
-    function sync() {
-      var max = track.scrollWidth - track.clientWidth;
-      var p = max > 0 ? track.scrollLeft / max : 1;
-      var seen = track.scrollWidth ? track.clientWidth / track.scrollWidth : 1;
-      bar.style.transform = 'scaleX(' + Math.min(1, seen + (1 - seen) * p) + ')';
-      btns[0].disabled = track.scrollLeft <= 2;
-      btns[1].disabled = track.scrollLeft >= max - 2;
-    }
-    [].forEach.call(btns, function (b) {
-      b.addEventListener('click', function () {
-        track.scrollBy({ left: +b.dataset.dir * step(), behavior: reduce ? 'auto' : 'smooth' });
+    picks.forEach(function (p, i) {
+      /* clicking the open person closes them again */
+      p.addEventListener('click', function () { show(i === cur ? -1 : i); });
+      p.addEventListener('keydown', function (e) {
+        var k = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+        if (k) { e.preventDefault(); show((cur < 0 ? i : cur) + k, true); }
       });
     });
-    track.addEventListener('scroll', function () { requestAnimationFrame(sync); }, { passive: true });
-    window.addEventListener('resize', sync);
-    sync();
+    [].forEach.call(btns, function (b) {
+      b.addEventListener('click', function () {
+        var d = +b.dataset.dir;
+        show(cur < 0 ? (d > 0 ? 0 : cards.length - 1) : cur + d);
+      });
+    });
+    show(-1);
   }
 
   /* ------------------------------------------------------------- mobile */

@@ -375,7 +375,7 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 .cl li:first-child{padding-left:0;border-left:0}
 
 /* ═══════════════ PEOPLE ══════════════════════════════════════════ */
-.who{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line-2)}
+.who{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line-2)}
 .who article{padding:var(--s6) var(--s6) var(--s8);border-left:1px solid var(--line)}
 .who article:first-child{padding-left:0;border-left:0}
 .who article:last-child{padding-right:0}
@@ -1228,7 +1228,9 @@ html.is-lit body::after{opacity:1;transition-duration:.35s}
 /* the hero and the subpage headers stay plain; their bottom edge fades
    into the dots instead of cutting off */
 .hero{background:var(--bg)}
-.phead{background:linear-gradient(var(--bg) calc(100% - 120px),transparent)}
+/* subpage headers: no hero glow, no own ground - the dot grid runs through */
+.phead{background:none}
+.phead .glow{display:none}
 @media (prefers-reduced-motion:reduce){body::after,html::before{display:none}}
 
 /* ══ GLASS ACCENTS ═══════════════════════════════════════════════════
@@ -1635,6 +1637,45 @@ html.is-lit .hero .glow{opacity:1;transition-duration:.35s}
   .contact-form .field:has(textarea){flex:1;grid-template-rows:minmax(0,1fr)}
   .contact-form .field textarea{height:100%;min-height:120px}
 }
+
+/* ── people, v2: expanding cards. Closed cards show only the face, name and
+   role; the open one widens and reveals the bio beside the photo. ── */
+.ppl--js .ppl__track{display:flex;justify-content:center;gap:clamp(12px,1.4vw,20px);overflow:visible;margin-right:0;padding-right:0;scroll-snap-type:none}
+.ppl--js .ppl__card{flex:0 0 190px;display:flex;gap:0;min-width:0;scroll-snap-align:none;grid-template-columns:none;
+  transition:flex-basis .55s cubic-bezier(.65,0,.35,1),gap .55s cubic-bezier(.65,0,.35,1)}
+.ppl--js .ppl__card.is-on{flex:0 0 auto;gap:clamp(24px,2.6vw,40px)}
+.ppl__pick{all:unset;box-sizing:border-box;flex:0 0 190px;display:flex;flex-direction:column;gap:var(--s4);cursor:pointer;border-radius:var(--r)}
+.ppl__pick:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.ppl__pick .ppl__ph{width:190px;transition:filter .35s,opacity .35s,box-shadow .35s,transform .35s cubic-bezier(.2,.8,.2,1)}
+
+.ppl__pick:hover .ppl__ph{transform:translateY(-3px);box-shadow:0 0 0 1px rgba(149,173,216,.3),0 14px 34px -18px rgba(62,90,142,.8)}
+.ppl--js .ppl__card.is-on .ppl__ph{box-shadow:0 0 0 1px rgba(149,173,216,.45),0 18px 44px -20px rgba(62,90,142,.9)}
+.ppl__id{display:flex;flex-direction:column;gap:2px}
+.ppl__id .ppl__role{font-size:var(--fs-sm);color:var(--fg-4);margin:0}
+.ppl__id .ppl__name{font-size:var(--fs-body);font-weight:var(--fw-med);color:var(--fg-3);transition:color .25s}
+.ppl--js .ppl__card.is-on .ppl__id .ppl__name,.ppl__pick:hover .ppl__name{color:var(--fg)}
+.ppl--js .ppl__txt{flex:1 1 0;min-width:0;overflow:hidden;opacity:0;transform:translateX(-12px);max-width:0;
+  transition:opacity .3s ease,transform .45s cubic-bezier(.2,.8,.2,1),max-width .55s cubic-bezier(.65,0,.35,1)}
+.ppl--js .ppl__card.is-on .ppl__txt{opacity:1;transform:none;max-width:440px;flex:0 0 440px;transition-delay:.18s,.18s,0s}
+.ppl__h{margin:0 0 var(--s4);font-size:clamp(28px,1vw + 18px,36px);line-height:1.08;letter-spacing:var(--ls-h2);font-weight:var(--fw-disp);color:var(--fg);white-space:nowrap}
+.ppl__txt .ppl__bio{margin:0;max-width:46ch;font-size:var(--fs-body);color:var(--fg-2)}
+.ppl__txt .ppl__cv{margin:0;padding-top:var(--s5);max-width:46ch;font-size:var(--fs-sm)}
+/* the open card names the person in its heading; under the photo only the role */
+@media(min-width:901px){.ppl--js .ppl__card.is-on .ppl__id .ppl__name{visibility:hidden}}
+.ppl--js .ppl__nav{margin-top:var(--s6)}
+/* a closed card's bio is squeezed to zero width - it must not keep its (very tall) height */
+@media(min-width:901px){.ppl--js .ppl__card{align-items:flex-start}.ppl--js .ppl__card:not(.is-on) .ppl__txt{max-height:0}}
+.ppl__count{font-size:var(--fs-micro);color:var(--fg-4);font-variant-numeric:tabular-nums;min-width:3.5em;text-align:right}
+@media(max-width:900px){
+  .ppl--js .ppl__track{flex-direction:column}
+  .ppl--js .ppl__card,.ppl--js .ppl__card.is-on{flex:none;flex-direction:column;gap:var(--s5)}
+  .ppl__pick{flex:none;flex-direction:row;align-items:center}
+  .ppl__pick .ppl__ph{width:72px}
+  .ppl--js .ppl__txt{max-width:none;max-height:0;transform:none;transition:opacity .3s,max-height .45s ease}
+  .ppl--js .ppl__card.is-on .ppl__txt{max-width:none;max-height:900px}
+  .ppl__h{display:none}
+}
+@media (prefers-reduced-motion:reduce){.ppl--js .ppl__card,.ppl--js .ppl__txt,.ppl__pick .ppl__ph{transition:none}}
 
 /* ══ TEST 2026-10-28: no section rules, no "01 Název" rows ══════════
    Revert = delete this whole block.                                   */
