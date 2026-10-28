@@ -1596,6 +1596,21 @@ html.is-lit .hero .glow{opacity:1;transition-duration:.35s}
   .pil__lead{margin-top:var(--lead-y,24px) !important}
 }
 
+/* ── "Nejdřív problém, pak nástroje" centred: heading + lede stacked,
+   phase cards centred inside, quote and link centred ── */
+#pristup .shead--split{display:block;text-align:center}
+#pristup .shead--split h2{max-width:none;margin:0 auto}
+#pristup .shead--split .lede{margin:var(--s3) auto 0;max-width:52ch}
+#pristup .flowx__card{text-align:center;align-items:center}
+#pristup .flowx__out{align-self:stretch;align-items:center}
+#pristup .flowx__node{align-self:center}
+#pristup .flowx::before,#pristup .flowx::after{left:12.5%;right:12.5%}
+#pristup .qx{grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center;row-gap:var(--s5)}
+#pristup .qx__mark{grid-row:auto;font-size:clamp(110px,8vw,150px);line-height:1;height:.42em;margin:0 0 var(--s3)}
+#pristup .qx blockquote{max-width:28ch}
+#pristup .more{text-align:center}
+@media(max-width:1000px){#pristup .flowx::before,#pristup .flowx::after{left:8px;right:8px}}
+
 /* ══ TEST 2026-10-28: no section rules, no "01 Název" rows ══════════
    Revert = delete this whole block.                                   */
 .spec{display:none}
