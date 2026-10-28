@@ -37,17 +37,20 @@
 
   /* ── text ramp ────────────────────────────────────────────────────
      Four steps. Nobody ships #fff body text on dark.                 */
-  --fg:        #F2F5F2;   /* headings                    15.9:1 */
-  --fg-2:      #C6CDC8;   /* body                        10.7:1 */
-  --fg-3:      #8E968F;   /* lede, secondary              5.5:1 */
-  --fg-4:      #79817B;   /* labels, metadata             4.1:1 - large/short only */
+  --fg:        #EEF2FB;   /* headings, cool grey        17.4:1 */
+  --fg-2:      #BCC5D8;   /* body                       11.3:1 */
+  --fg-3:      #8590A8;   /* lede, secondary             6.1:1 */
+  --fg-4:      #717C94;   /* labels, metadata            4.6:1 */
 
   /* ── signal ───────────────────────────────────────────────────────
      Monochrome by default. Colour appears only where it carries
      meaning: interaction, positive variance, negative variance.      */
-  --accent:    #58DBA2;
-  --accent-dim:#3E9C74;
-  --warn:      #E8A33D;
+  --accent:    #73A7F4;   /* light blue: action, solved, links */
+  --accent-dim:#2C2ED8;   /* deep blue: the far end of the gradient */
+  --warn:      #8C8EF2;   /* "problem" - deep blue lifted for legible text on dark */
+  --grad:      linear-gradient(90deg,#73A7F4 0%,#2C2ED8 50%,#73A7F4 100%);
+  --grad-line: linear-gradient(90deg,#73A7F4,#2C2ED8);
+  --grad-text: linear-gradient(90deg,#73A7F4,#7F81F4);
 
   /* ── type: sizes ──────────────────────────────────────────────────
      Fluid 390px → 1440px. Strong contrast between levels, few steps
@@ -110,8 +113,8 @@
    2. SMOOTHING COMES OFF. -webkit-font-smoothing:antialiased is the
       correct fix for light-on-dark and the wrong one here: on light
       it thins glyphs further. Reverted to subpixel.
-   3. THE SIGNAL COLOURS CHANGE HUE, NOT JUST LIGHTNESS.  Mint #58DBA2
-      is 1.8:1 on white and unusable; amber #E8A33D is 2.1:1. Both are
+   3. THE SIGNAL COLOURS CHANGE HUE, NOT JUST LIGHTNESS.  Mint #73A7F4
+      is 1.8:1 on white and unusable; amber #2C2ED8 is 2.1:1. Both are
       replaced with darker, less saturated equivalents that hold the
       same semantic role (action / positive, deviation) at AA.
 
@@ -513,11 +516,11 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 .glow{position:absolute;inset:0;pointer-events:none;z-index:0}
 .glow i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.42}
 .glow i:nth-child(1){width:520px;height:520px;right:-6%;top:-12%;
-  background:radial-gradient(circle,#58DBA2 0%,rgba(88,219,162,0) 68%);animation:drift1 22s ease-in-out infinite alternate}
+  background:radial-gradient(circle,#2C2ED8 0%,rgba(44,46,216,0) 68%);animation:drift1 22s ease-in-out infinite alternate}
 .glow i:nth-child(2){width:420px;height:420px;right:24%;top:38%;opacity:.3;
-  background:radial-gradient(circle,#2F8F9D 0%,rgba(47,143,157,0) 68%);animation:drift2 28s ease-in-out infinite alternate}
+  background:radial-gradient(circle,#2C2ED8 0%,rgba(44,46,216,0) 68%);animation:drift2 28s ease-in-out infinite alternate}
 .glow i:nth-child(3){width:300px;height:300px;right:4%;bottom:-8%;opacity:.22;
-  background:radial-gradient(circle,#E8A33D 0%,rgba(232,163,61,0) 68%);animation:drift3 19s ease-in-out infinite alternate}
+  background:radial-gradient(circle,#73A7F4 0%,rgba(115,167,244,0) 68%);animation:drift3 19s ease-in-out infinite alternate}
 :root[data-theme="light"] .glow i{opacity:.28}
 :root[data-theme="light"] .glow i:nth-child(3){opacity:.16}
 @keyframes drift1{to{transform:translate(-90px,70px) scale(1.12)}}
@@ -594,9 +597,9 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 .step__after{margin:0;color:var(--fg);font-size:var(--fs-sm);font-weight:var(--fw-med);line-height:1.2}
 .step.done .step__how{color:var(--fg-2)}
 .step__tag{font-family:inherit;font-variant-numeric:tabular-nums;font-size:var(--fs-micro);letter-spacing:var(--ls-caps);
-  padding:4px 8px;border:1px solid rgba(232,163,61,.35);color:var(--warn);
+  padding:4px 8px;border:1px solid rgba(44,46,216,.35);color:var(--warn);
   white-space:nowrap;transition:color .3s,border-color .3s,background-color .3s}
-.step.done .step__tag{color:var(--accent);border-color:rgba(88,219,162,.4);background:rgba(88,219,162,.08)}
+.step.done .step__tag{color:var(--accent);border-color:rgba(115,167,244,.4);background:rgba(115,167,244,.08)}
 :root[data-theme="light"] .step.done .step__tag{border-color:rgba(12,122,82,.35);background:rgba(12,122,82,.06)}
 @supports (grid-template-rows:subgrid){
   /* rows line up across cards: every bar sits at the same height */
@@ -637,7 +640,7 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
   transform:scaleX(0);transform-origin:left;transition:transform 2.6s cubic-bezier(.4,0,.2,1) .35s}
 .rail[data-reveal-s="in"]::after{transform:scaleX(1)}
 /* "Přesně tohle řešíme." gets underlined */
-.claim span{background:linear-gradient(var(--accent),var(--accent)) left bottom/0 2px no-repeat;
+.claim span{background:var(--grad-line) left bottom/0 2px no-repeat;
   padding-bottom:4px;transition:background-size 1s cubic-bezier(.65,0,.35,1) .25s}
 .claim[data-reveal-s="in"] span{background-size:100% 2px}
 @media (prefers-reduced-motion:reduce){
@@ -786,7 +789,7 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 .panel .k{color:var(--fg-2)}
 .panel .up{color:var(--accent)}
 .panel .dn{color:var(--warn)}
-.flag td{background:rgba(232,163,61,.07)}
+.flag td{background:rgba(44,46,216,.07)}
 :root[data-theme="light"] .flag td{background:rgba(154,98,6,.075)}
 .flag .k{color:var(--fg)}
 .panel__f{padding:11px 16px;border-top:1px solid var(--line);display:flex;
@@ -811,7 +814,7 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 .sx__g{display:flex;flex-wrap:wrap;align-items:center;row-gap:8px}
 .sx__n{font-family:inherit;font-variant-numeric:tabular-nums;font-size:var(--fs-micro);padding:5px 9px;
   border:1px solid var(--line-3);color:var(--fg-4);transition:color .22s,border-color .22s,background-color .22s}
-.sx__n.lit{color:var(--fg);border-color:var(--accent);background:rgba(88,219,162,.08)}
+.sx__n.lit{color:var(--fg);border-color:var(--accent);background:rgba(115,167,244,.08)}
 :root[data-theme="light"] .sx__n.lit{background:rgba(12,122,82,.07)}
 .sx__e{width:14px;height:1px;background:var(--line-3);transition:background-color .3s}
 .sx__e.lit{background:var(--accent)}
@@ -849,7 +852,7 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 .log__hint{margin:0 0 var(--s5);text-align:center}
 .log__b{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;gap:10px;max-width:100%;
   min-height:44px;padding:9px 18px 9px 10px;border-radius:999px;cursor:pointer;
-  border:1px solid var(--line-2);background:color-mix(in srgb,var(--fg) 3%,transparent);
+  border:1px solid var(--line-2);background:color-mix(in srgb,var(--fg) 3%,var(--bg));
   font-size:var(--fs-body);letter-spacing:-.01em;line-height:1.2;color:var(--fg-2);
   transition:color .25s,border-color .25s,background-color .25s,transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
 .log__b::before{content:'';flex:none;width:24px;height:24px;border-radius:50%;
@@ -867,7 +870,7 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
   background-color:color-mix(in srgb,var(--warn) 14%,transparent);
   box-shadow:0 0 0 3px color-mix(in srgb,var(--warn) 12%,transparent)}
 .log__b[aria-pressed="true"]::before{border-color:var(--warn);transform:none;
-  background:var(--warn) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 12.5l3.2 3.2L17 9' fill='none' stroke='%23111' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat}
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 12.5l3.2 3.2L17 9' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat,var(--grad-line)}
 .log__b[aria-pressed="true"]:hover::before{transform:none}
 .log__sum{display:flex;align-items:center;gap:var(--s3) var(--s5);flex-wrap:wrap;margin-top:var(--s6)}
 .log__sum[hidden]{display:none}
@@ -994,7 +997,7 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 .mp__st i{width:13px;height:13px;border:1px solid var(--fg-4);background:var(--bg-2);position:relative;z-index:1}
 .mp__st .done i{background:var(--accent);border-color:var(--accent)}
 .mp__st .done{color:var(--fg-2)}
-.mp__st .now i{border-color:var(--warn);box-shadow:0 0 0 4px rgba(232,163,61,.16)}
+.mp__st .now i{border-color:var(--warn);box-shadow:0 0 0 4px rgba(44,46,216,.16)}
 .mp__st .now{color:var(--fg)}
 /* swap: "today" values get struck through, "after" values appear (procesy) */
 .mp--swap td.was{position:relative;color:var(--warn)}
@@ -1126,5 +1129,137 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 .cl--mq li{font-size:var(--fs-h3);letter-spacing:var(--ls-h3);color:var(--fg);white-space:nowrap;
   padding:22px clamp(24px,3vw,44px)}
 .cl--mq li:first-child{padding-left:clamp(24px,3vw,44px);border-left:1px solid var(--line)}
-.mq:hover .cl--mq{animation-play-state:paused}
 @keyframes mq{to{transform:translateX(-50%)}}
+
+/* ── "Deset vět" centred: heading, lede, pills, claim and the action row ── */
+#povedome{padding-top:clamp(48px,7vw,120px)}
+#povedome .shead{text-align:center}
+#povedome .shead h2,#povedome .shead .lede{margin-left:auto;margin-right:auto}
+#povedome .shead h2{max-width:none}
+#povedome .shead .lede{margin-top:var(--s3)}
+#povedome .claim{text-align:center}
+#povedome .log__sum{justify-content:center}
+
+/* ── "Kde s námi mají zkušenosti" centred (home section) ── */
+#zkusenosti .shead{text-align:center}
+#zkusenosti .shead h2,#zkusenosti .shead .lede{margin-left:auto;margin-right:auto}
+#zkusenosti .shead .lede{margin-top:var(--s3)}
+#zkusenosti .more{text-align:center}
+
+/* ══ ACCENT: blue gradient (#73A7F4 → #2C2ED8) ═════════════════════
+   Fills, rules and bars carry the gradient; buttons slide it on hover,
+   text links turn into gradient text on hover.                        */
+.btn:not(.btn--ghost),.send{position:relative;isolation:isolate;overflow:hidden;border-radius:999px;
+  background:#2C2ED8;border-color:transparent;color:#fff;
+  transition:box-shadow .3s,transform .2s}
+/* hover: a light spot that follows the cursor (position set by interact.js) */
+.btn:not(.btn--ghost)::before,.send::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(160px circle at var(--bx,50%) var(--by,50%),rgba(170,200,255,.75),rgba(115,167,244,.25) 45%,transparent 75%);
+  opacity:0;transition:opacity .25s}
+.btn:not(.btn--ghost):hover::before,.send:hover::before{opacity:1}
+.btn:not(.btn--ghost):hover,.send:hover{background:#2C2ED8;color:#fff;
+  box-shadow:0 12px 32px -12px rgba(44,46,216,.8);transform:translateY(-1px)}
+.btn:not(.btn--ghost):active,.send:active{transform:none}
+.more a:hover,.more__links a:hover,.dt a:hover,.ftr a:hover,.dl a:hover,.form-status a:hover,
+.btn--ghost:hover,.pil__svc:hover h3 a{
+  background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav a[aria-current="page"]{box-shadow:none;background:var(--grad-line) left bottom/100% 1px no-repeat}
+.pil__tab::after,.flow__bar i,.rail::after,.step__load i,.step.done .step__load i{background:var(--grad-line)}
+.rail--sync > div.is-on::before,.rail--sync > div.is-done::before,.dot,.dl .ok::before{background:var(--grad-line)}
+.log__b[aria-pressed="true"]{border-color:#5B6BEA}
+.step.active{border-color:color-mix(in srgb,#2C2ED8 70%,var(--line))}
+::selection{background:#2C2ED8;color:#fff}
+@media (prefers-reduced-motion:reduce){.btn:not(.btn--ghost),.send{transition:none}.btn:not(.btn--ghost):hover,.send:hover{transform:none}}
+/* ══ END ACCENT ═════════════════════════════════════════════════════ */
+
+/* ── page background (everything but the hero / page header): a dot grid
+   that lights up in light blue around the cursor ───────────────────── */
+body::before,body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none}
+body::before{background:radial-gradient(circle,rgba(188,197,216,.14) .9px,transparent 1.4px) 10px 10px/20px 20px}
+/* the glow under the cursor: its own layer so it can fade with the dots */
+html::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(340px circle at var(--hx,-999px) var(--hy,-999px),rgba(44,46,216,.07),transparent 70%);
+  opacity:0;transition:opacity .9s ease}
+html.is-lit::before{opacity:1;transition-duration:.35s}
+body::after{
+  background:radial-gradient(circle,rgba(115,167,244,.55) 1.1px,transparent 1.6px) 10px 10px/20px 20px;
+  -webkit-mask-image:radial-gradient(180px circle at var(--hx,-999px) var(--hy,-999px),#000 0%,rgba(0,0,0,.45) 45%,transparent 100%);
+          mask-image:radial-gradient(180px circle at var(--hx,-999px) var(--hy,-999px),#000 0%,rgba(0,0,0,.45) 45%,transparent 100%);
+  opacity:0;transition:opacity .9s ease}
+html.is-lit body::after{opacity:1;transition-duration:.35s}
+/* the hero and the subpage headers stay plain; their bottom edge fades
+   into the dots instead of cutting off */
+.hero,.phead{background:linear-gradient(var(--bg) calc(100% - 120px),transparent)}
+@media (prefers-reduced-motion:reduce){body::after,html::before{display:none}}
+
+/* ══ GLASS ACCENTS ═══════════════════════════════════════════════════
+   Buttons and active/selected modules: frosted glass tinted with the
+   blue gradient, a gradient hairline edge, and a stronger tint + glow
+   on hover. The dot grid behind shows through, blurred.               */
+:root{
+  --glass-tint:   linear-gradient(135deg,rgba(115,167,244,.20),rgba(44,46,216,.30));
+  --glass-tint-h: linear-gradient(135deg,rgba(115,167,244,.32),rgba(44,46,216,.46));
+  --glass-edge:   linear-gradient(135deg,rgba(170,200,255,.75),rgba(44,46,216,.55) 60%,rgba(115,167,244,.45));
+  --glass-blur:   blur(14px) saturate(150%);
+}
+.log__b[aria-pressed="true"],
+.flow__tabs button[aria-selected="true"],
+.step.done .step__tag{
+  background:var(--glass-tint) padding-box,var(--glass-edge) border-box;
+  border:1px solid transparent;color:var(--fg);
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 8px 24px -14px rgba(44,46,216,.7)}
+.log__b[aria-pressed="true"]:hover,
+.flow__tabs button[aria-selected="true"]:hover{
+  background:var(--glass-tint-h) padding-box,var(--glass-edge) border-box;color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 0 0 3px rgba(115,167,244,.12),0 14px 36px -12px rgba(44,46,216,.85)}
+.step.done{background:linear-gradient(135deg,rgba(115,167,244,.07),rgba(44,46,216,.10));
+  border-color:rgba(115,167,244,.32)}
+.step.done .step__tag{color:#CFE0FF}
+/* idle bubbles are glass too, so the grid shows through softly */
+.log__b{background:rgba(188,197,216,.035);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.log__b:hover{background-color:rgba(115,167,244,.08)}
+
+/* "Kde s námi mají zkušenosti": the moving strip is a frosted pane over the grid */
+.mq{background:rgba(188,197,216,.03);
+  -webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%);
+  border-color:rgba(188,197,216,.12)}
+
+@media (prefers-reduced-transparency:reduce){
+  .log__b[aria-pressed="true"],.flow__tabs button[aria-selected="true"],.step.done .step__tag{
+    background:#2C2ED8;-webkit-backdrop-filter:none;backdrop-filter:none;color:#fff}
+  .log__b,.mq{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--bg-2)}
+}
+/* ══ END GLASS ACCENTS ═══════════════════════════════════════════════ */
+
+/* ── hero image: the glowing T mark on the right; it fades out to the
+   left (under the text) and to the bottom (into the dot grid) ────────── */
+.hero .glow,.hero .rails{display:none}
+.hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  /* anchored to the page centre, not the viewport edge, so on wide screens
+     the mark stays beside the text instead of drifting right. The left arm
+     sits ~150px right of centre; the text column ends ~110px right of it. */
+  background:url(/assets/img/hero-t.jpg) no-repeat;background-size:1440px auto;
+  background-position:calc(50% - 512px + 0px) 45%;background-position-x:calc(50vw - 512px);
+  -webkit-mask-image:linear-gradient(90deg,transparent calc(50% + 90px),#000 calc(50% + 210px),#000 calc(50% + 700px),transparent calc(50% + 920px)),linear-gradient(to bottom,#000 62%,transparent);
+  -webkit-mask-composite:source-in;
+          mask-image:linear-gradient(90deg,transparent calc(50% + 90px),#000 calc(50% + 210px),#000 calc(50% + 700px),transparent calc(50% + 920px)),linear-gradient(to bottom,#000 62%,transparent);
+          mask-composite:intersect}
+@media(max-width:900px){.hero::before{opacity:.4;background-position:right -40vw center;-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);mask-image:linear-gradient(to bottom,#000 55%,transparent)}}
+
+/* ══ TEST 2026-10-28: no section rules, no "01 Název" rows ══════════
+   Revert = delete this whole block.                                   */
+.spec{display:none}
+.spec + .shead,.spec + .pil__anchor + .pil,.spec + .split{margin-top:0}
+.phead{border-bottom:0}
+.phead .eyebrow:has(> .ix){display:none}
+.phead h1{margin-top:0}
+.cta{border-top:0}
+.disc{border-top:0}
+.praxe{border-top:0;padding-top:0}
+/* more air between blocks now that no rule separates them */
+:root{--sec-py:clamp(96px, 60.3px + 9.14vw, 192px);--sec-py-tight:clamp(96px, 60.3px + 9.14vw, 192px)}
+.disc{padding:clamp(64px,7vw,120px) 0}
+.disc:first-child{padding-top:var(--s4)}
+.praxe{margin-top:clamp(80px,8vw,136px)}
+/* ══ END TEST ═══════════════════════════════════════════════════════ */

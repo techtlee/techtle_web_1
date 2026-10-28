@@ -340,7 +340,52 @@
     });
   }
 
-  function boot() { initServices(); initSpotlight(); initPick(); initPillars(); initMarquee(); }
+  /* -------------------------------------------------------- button glow */
+  /* primary buttons: a light spot follows the cursor across the gradient */
+  function initBtnGlow() {
+    if (reduce) return;
+    if (!window.matchMedia || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    var frame = 0, cur = null, px = 0, py = 0;
+    function paint() {
+      frame = 0;
+      if (!cur) return;
+      var r = cur.getBoundingClientRect();
+      cur.style.setProperty('--bx', (px - r.left) + 'px');
+      cur.style.setProperty('--by', (py - r.top) + 'px');
+    }
+    document.addEventListener('pointermove', function (e) {
+      if (e.pointerType && e.pointerType !== 'mouse') return;
+      cur = e.target.closest ? e.target.closest('.btn:not(.btn--ghost), .send') : null;
+      px = e.clientX; py = e.clientY;
+      if (cur && !frame) frame = requestAnimationFrame(paint);
+    }, { passive: true });
+  }
+
+  /* ---------------------------------------------------------- page dots */
+  /* page background dots light up around the cursor; position from here,
+     the rest is CSS (body::before / body::after) */
+  function initDots() {
+    if (reduce) return;
+    if (!window.matchMedia || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    var root = document.documentElement, frame = 0, px = 0, py = 0, idle = 0;
+    function paint() {
+      frame = 0;
+      root.style.setProperty('--hx', px + 'px');
+      root.style.setProperty('--hy', py + 'px');
+    }
+    document.addEventListener('pointermove', function (e) {
+      if (e.pointerType && e.pointerType !== 'mouse') return;
+      px = e.clientX; py = e.clientY;
+      root.classList.add('is-lit');
+      if (!frame) frame = requestAnimationFrame(paint);
+      /* the light fades out once the cursor has rested for 2 s */
+      clearTimeout(idle);
+      idle = setTimeout(function () { root.classList.remove('is-lit'); }, 2000);
+    }, { passive: true });
+    document.documentElement.addEventListener('pointerleave', function () { clearTimeout(idle); root.classList.remove('is-lit'); });
+  }
+
+  function boot() { initServices(); initSpotlight(); initPick(); initPillars(); initMarquee(); initBtnGlow(); initDots(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 })();
