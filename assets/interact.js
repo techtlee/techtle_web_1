@@ -99,7 +99,7 @@
   function initSpotlight() {
     if (reduce) return;
     if (!window.matchMedia || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-    var SEL = '.four > div, .rail > div, .who article, .dt tbody tr';
+    var SEL = '.four > div, .rail > div, .who article, .dt tbody tr, .pil__svc';
     var cur = null, frame = 0, px = 0, py = 0;
     function paint() {
       frame = 0;
@@ -269,7 +269,78 @@
     setTimeout(function () { g.remove(); to.classList.remove('bump'); void to.offsetWidth; to.classList.add('bump'); }, 600);
   }
 
-  function boot() { initServices(); initSpotlight(); initPick(); }
+  /* ------------------------------------------------------------ pillars */
+  /* home "Co děláme": four pillar tabs, each opens its services. Without
+     JS every panel stays visible, each under its own pillar name. */
+  function initPillars() {
+    var root = document.querySelector('.pil');
+    if (!root) return;
+    var tabs = [].slice.call(root.querySelectorAll('.pil__tab'));
+    var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+    if (!tabs.length || panels.some(function (p) { return !p; })) return;
+    root.classList.add('pil--js');
+    var cur = -1;
+    function show(i, focus) {
+      if (i === cur) return;
+      cur = i;
+      tabs.forEach(function (t, k) {
+        var on = k === i;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        /* panels stay in the layout (stacked in one cell, sized by the
+           tallest) so switching never moves anything below */
+        panels[k].classList.toggle('is-on', on);
+        panels[k].inert = !on;
+        panels[k].setAttribute('aria-hidden', on ? 'false' : 'true');
+        panels[k].classList.remove('is-in');
+      });
+      void panels[i].offsetWidth;          /* restart the entrance */
+      panels[i].classList.add('is-in');
+      if (focus) tabs[i].focus();
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(i); });
+      t.addEventListener('keydown', function (e) {
+        var k = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+        if (e.key === 'Home') k = -cur; else if (e.key === 'End') k = tabs.length - 1 - cur;
+        if (k === undefined) return;
+        e.preventDefault();
+        show((cur + k + tabs.length) % tabs.length, true);
+      });
+    });
+    /* a link to /#sv-ai opens the pillar that holds it */
+    function fromHash() {
+      var el = location.hash && document.getElementById(location.hash.slice(1));
+      var k = el ? panels.findIndex(function (p) { return p.contains(el); }) : -1;
+      if (k > -1) { show(k); el.scrollIntoView({ block: 'center' }); }
+    }
+    show(0);
+    fromHash();
+    window.addEventListener('hashchange', fromHash);
+  }
+
+  /* ----------------------------------------------------------- marquee */
+  /* "Kde s námi mají zkušenosti": the company names run as an endless
+     strip. The list is doubled (copy hidden from screen readers) and the
+     strip slides by half its width, so the loop has no seam. */
+  function initMarquee() {
+    if (reduce) return;
+    [].forEach.call(document.querySelectorAll('ul.cl'), function (ul) {
+      var box = document.createElement('div');
+      box.className = 'mq';
+      ul.parentNode.insertBefore(box, ul);
+      box.appendChild(ul);
+      [].slice.call(ul.children).forEach(function (li) {
+        var c = li.cloneNode(true);
+        c.setAttribute('aria-hidden', 'true');
+        ul.appendChild(c);
+      });
+      ul.classList.add('cl--mq');
+      ul.style.setProperty('--mq-dur', (ul.children.length * 3.2) + 's');
+    });
+  }
+
+  function boot() { initServices(); initSpotlight(); initPick(); initPillars(); initMarquee(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 })();
