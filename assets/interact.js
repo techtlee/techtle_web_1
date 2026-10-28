@@ -385,7 +385,37 @@
     document.documentElement.addEventListener('pointerleave', function () { clearTimeout(idle); root.classList.remove('is-lit'); });
   }
 
-  function boot() { initServices(); initSpotlight(); initPick(); initPillars(); initMarquee(); initBtnGlow(); initDots(); }
+  /* ------------------------------------------------------------- people */
+  /* "Jméno, tvář, reference": a sideways strip of cards with arrows and a
+     progress line that follows the scroll position. */
+  function initPeople() {
+    var root = document.querySelector('.ppl');
+    if (!root) return;
+    var track = root.querySelector('.ppl__track'), bar = root.querySelector('.ppl__bar i');
+    var btns = root.querySelectorAll('.ppl__btn');
+    function step() {
+      var c = track.querySelector('.ppl__card');
+      return c ? c.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0) : track.clientWidth;
+    }
+    function sync() {
+      var max = track.scrollWidth - track.clientWidth;
+      var p = max > 0 ? track.scrollLeft / max : 1;
+      var seen = track.scrollWidth ? track.clientWidth / track.scrollWidth : 1;
+      bar.style.transform = 'scaleX(' + Math.min(1, seen + (1 - seen) * p) + ')';
+      btns[0].disabled = track.scrollLeft <= 2;
+      btns[1].disabled = track.scrollLeft >= max - 2;
+    }
+    [].forEach.call(btns, function (b) {
+      b.addEventListener('click', function () {
+        track.scrollBy({ left: +b.dataset.dir * step(), behavior: reduce ? 'auto' : 'smooth' });
+      });
+    });
+    track.addEventListener('scroll', function () { requestAnimationFrame(sync); }, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+  }
+
+  function boot() { initServices(); initSpotlight(); initPick(); initPillars(); initMarquee(); initBtnGlow(); initDots(); initPeople(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 })();

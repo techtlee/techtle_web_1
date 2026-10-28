@@ -50,6 +50,8 @@
   --warn:      #8C8EF2;   /* "problem" - deep blue lifted for legible text on dark */
   --grad:      linear-gradient(90deg,#73A7F4 0%,#2C2ED8 50%,#73A7F4 100%);
   --grad-line: linear-gradient(90deg,#73A7F4,#2C2ED8);
+  /* drawn lines on active elements: grey → colour → grey */
+  --grad-active: linear-gradient(90deg,var(--line-2) 0%,var(--accent) 50%,var(--line-2) 100%);
   --grad-text: linear-gradient(90deg,#73A7F4,#7F81F4);
 
   /* ── type: sizes ──────────────────────────────────────────────────
@@ -640,7 +642,7 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
   transform:scaleX(0);transform-origin:left;transition:transform 2.6s cubic-bezier(.4,0,.2,1) .35s}
 .rail[data-reveal-s="in"]::after{transform:scaleX(1)}
 /* "Přesně tohle řešíme." gets underlined */
-.claim span{background:var(--grad-line) left bottom/0 2px no-repeat;
+.claim span{background:var(--grad-active) left bottom/0 2px no-repeat;
   padding-bottom:4px;transition:background-size 1s cubic-bezier(.65,0,.35,1) .25s}
 .claim[data-reveal-s="in"] span{background-size:100% 2px}
 @media (prefers-reduced-motion:reduce){
@@ -1079,7 +1081,8 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 .pil--js .pil__ph{display:none}
 .pil__panel + .pil__panel{margin-top:var(--s12)}
 .pil--js .pil__panel + .pil__panel{margin-top:0}
-.pil--js .pil__panels{display:grid;grid-template-rows:auto auto}
+.pil--js .pil__panels{display:grid;grid-template-rows:auto 1fr}
+.pil--js .pil__panel > .pil__grid{align-self:end}
 .pil--js .pil__panel{grid-column:1;grid-row:1 / span 2;display:grid;grid-template-rows:subgrid;align-content:start}
 .pil--js .pil__panel:not(.is-on){visibility:hidden}
 .pil--js .pil__panel:not(.is-on) *{animation:none}
@@ -1118,7 +1121,7 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
   .pil__tab,.pil__tab::after,.pil__svc h3 a{transition:none}
   .pil__panel.is-in > *,.pil__panel.is-in .pil__svc{animation:none}
 }
-.pil__more{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s8)}
+.pil__more{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s8);grid-column:1 / -1;margin-top:clamp(56px,6vw,96px);margin-bottom:calc(clamp(44px,6vw,96px) * -1 + clamp(22px,2.2vw,32px))}
 
 /* ── "Kde s námi mají zkušenosti": one-line heading, names in a moving strip ── */
 #zkusenosti .shead h2,main:has(> #zkusenosti) .phead h1{max-width:none}
@@ -1163,9 +1166,36 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 .more a:hover,.more__links a:hover,.dt a:hover,.ftr a:hover,.dl a:hover,.form-status a:hover,
 .btn--ghost:hover,.pil__svc:hover h3 a{
   background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
-.nav a[aria-current="page"]{box-shadow:none;background:var(--grad-line) left bottom/100% 1px no-repeat}
-.pil__tab::after,.flow__bar i,.rail::after,.step__load i,.step.done .step__load i{background:var(--grad-line)}
-.rail--sync > div.is-on::before,.rail--sync > div.is-done::before,.dot,.dl .ok::before{background:var(--grad-line)}
+/* nav: links run the full header height; the active one is marked on the
+   header's own bottom border, not under the word */
+.hdr__in{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch}
+.hdr__in > *{align-self:center}
+.hdr__in > .mark{justify-self:start}
+.hdr__in > .nav{align-self:stretch;justify-self:center}
+.hdr__in > .hdr__r{justify-self:end}
+@media(max-width:1120px){.hdr__in{grid-template-columns:auto 1fr}.hdr__in > .hdr__r{grid-column:2}}
+.nav a{position:relative;display:flex;align-items:center;padding:0 10px}
+.nav a:hover{background:none}
+.nav a[aria-current="page"]{box-shadow:none;background:none}
+.nav a[aria-current="page"]::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--grad-active)}
+/* every link has the line ready; hover draws it out from the middle */
+.nav a::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--grad-active);
+  transform:scaleX(0);transform-origin:center;transition:transform .22s cubic-bezier(.3,0,.2,1)}
+.nav a:hover::after,.nav a:focus-visible::after{transform:scaleX(1)}
+.nav a[aria-current="page"]::after{transform:scaleX(1)}
+.nav a::before{content:'';position:absolute;left:8%;right:8%;bottom:0;height:22px;pointer-events:none;
+  background:radial-gradient(ellipse 60% 100% at 50% 100%,rgba(115,167,244,.55),rgba(115,167,244,.12) 55%,transparent 75%);
+  filter:blur(6px);opacity:0;transform:scaleX(.4);transform-origin:center bottom;
+  transition:opacity .22s ease,transform .22s cubic-bezier(.3,0,.2,1)}
+.nav a:hover::before,.nav a:focus-visible::before{opacity:1;transform:none}
+.nav a[aria-current="page"]::before{opacity:.75;transform:none}
+/* the line draws itself out from the middle when a page opens */
+.nav a[aria-current="page"]::after{transform-origin:center;animation:navdraw .32s cubic-bezier(.3,0,.2,1) .08s backwards}
+@keyframes navdraw{from{transform:scaleX(0);opacity:.4}}
+@media (prefers-reduced-motion:reduce){.nav a[aria-current="page"]::after{animation:none}.nav a::after,.nav a::before{transition:none}}
+.pil__tab::after,.flow__bar i,.rail::after,.step__load i,.step.done .step__load i{background:var(--grad-active)}
+.rail--sync > div.is-on::before,.rail--sync > div.is-done::before{background:var(--grad-active)}
+.dot,.dl .ok::before{background:var(--grad-line)}
 .log__b[aria-pressed="true"]{border-color:#5B6BEA}
 .step.active{border-color:color-mix(in srgb,#2C2ED8 70%,var(--line))}
 ::selection{background:#2C2ED8;color:#fff}
@@ -1246,6 +1276,123 @@ html.is-lit body::after{opacity:1;transition-duration:.35s}
           mask-image:linear-gradient(90deg,transparent calc(50% + 90px),#000 calc(50% + 210px),#000 calc(50% + 700px),transparent calc(50% + 920px)),linear-gradient(to bottom,#000 62%,transparent);
           mask-composite:intersect}
 @media(max-width:900px){.hero::before{opacity:.4;background-position:right -40vw center;-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);mask-image:linear-gradient(to bottom,#000 55%,transparent)}}
+
+/* ══ BLUE CONTROLS + ROUNDED CORNERS ══════════════════════════════════
+   Every button-like control uses the same solid blue as the main
+   buttons (selected statements, scenario tabs, pause, solved tags).
+   Boxes get rounded corners; controls and tags are pills.            */
+:root{--blue:#2C2ED8;--blue-h:#3A3CEB;--r:14px;--r-sm:10px}
+.log__b[aria-pressed="true"],
+.flow__tabs button[aria-selected="true"],
+.flow__pause,
+.step.done .step__tag{
+  background:var(--blue);border-color:var(--blue);color:#fff;
+  -webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 8px 22px -14px rgba(44,46,216,.9)}
+.log__b[aria-pressed="true"]:hover,
+.flow__tabs button[aria-selected="true"]:hover,
+.flow__pause:hover{
+  background:var(--blue-h);border-color:var(--blue-h);color:#fff;
+  box-shadow:0 0 0 3px rgba(115,167,244,.14),0 12px 28px -12px rgba(44,46,216,.9)}
+/* the tick on a selected statement: white on a lighter disc */
+.log__b[aria-pressed="true"]::before{border-color:rgba(255,255,255,.55);
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 12.5l3.2 3.2L17 9' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat,rgba(255,255,255,.18)}
+
+.panel,.flow,.form,.shot,.mq,.glass{border-radius:var(--r);overflow:hidden}
+.step{border-radius:var(--r-sm)}
+.who img{border-radius:var(--r)}
+.flow__tabs button,.flow__pause,.step__tag,.sx__n,.chip{border-radius:999px}
+.tog::before,.mp__st i{border-radius:50%}
+/* ══ END BLUE + ROUNDED ═══════════════════════════════════════════════ */
+
+/* ── logo: on hover the T fills with the accent gradient ── */
+.mark{position:relative}
+.mark::after{content:'';position:absolute;left:0;top:50%;width:15px;height:30px;transform:translateY(-50%);
+  background:var(--grad-line);pointer-events:none;opacity:0;transition:opacity .35s ease;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='73 31 119 236.2'%3E%3Cpath d='M148.556 31C150.212 31.0001 151.556 32.3432 151.556 34V66.3652C151.556 68.0219 152.899 69.3652 154.556 69.3652H189C190.657 69.3652 192 70.7085 192 72.3652V104.467C192 106.123 190.657 107.467 189 107.467H154.556C152.899 107.467 151.556 108.81 151.556 110.467V194.886C151.556 213.766 166.862 229.072 185.742 229.072H186.396C188.052 229.072 189.396 230.415 189.396 232.072V264.173C189.395 265.83 188.052 267.173 186.396 267.173H185.742C145.819 267.173 113.455 234.809 113.455 194.886V110.467C113.455 108.81 112.112 107.467 110.455 107.467H76C74.3434 107.467 73.0004 106.123 73 104.467V72.3652C73.0002 70.7085 74.3432 69.3652 76 69.3652H110.455C112.112 69.365 113.455 68.0218 113.455 66.3652V34C113.455 32.3431 114.798 31 116.455 31H148.556ZM115.193 69.623C114.089 69.6232 113.194 70.5189 113.193 71.623V105.202C113.193 106.307 114.089 107.202 115.193 107.202H149.816C150.921 107.202 151.816 106.307 151.816 105.202V71.623C151.816 70.5189 150.921 69.6233 149.816 69.623H115.193Z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='73 31 119 236.2'%3E%3Cpath d='M148.556 31C150.212 31.0001 151.556 32.3432 151.556 34V66.3652C151.556 68.0219 152.899 69.3652 154.556 69.3652H189C190.657 69.3652 192 70.7085 192 72.3652V104.467C192 106.123 190.657 107.467 189 107.467H154.556C152.899 107.467 151.556 108.81 151.556 110.467V194.886C151.556 213.766 166.862 229.072 185.742 229.072H186.396C188.052 229.072 189.396 230.415 189.396 232.072V264.173C189.395 265.83 188.052 267.173 186.396 267.173H185.742C145.819 267.173 113.455 234.809 113.455 194.886V110.467C113.455 108.81 112.112 107.467 110.455 107.467H76C74.3434 107.467 73.0004 106.123 73 104.467V72.3652C73.0002 70.7085 74.3432 69.3652 76 69.3652H110.455C112.112 69.365 113.455 68.0218 113.455 66.3652V34C113.455 32.3431 114.798 31 116.455 31H148.556ZM115.193 69.623C114.089 69.6232 113.194 70.5189 113.193 71.623V105.202C113.193 106.307 114.089 107.202 115.193 107.202H149.816C150.921 107.202 151.816 106.307 151.816 105.202V71.623C151.816 70.5189 150.921 69.6233 149.816 69.623H115.193Z'/%3E%3C/svg%3E") center/contain no-repeat}
+.mark:hover::after,.mark:focus-visible::after{opacity:1}
+@media (prefers-reduced-motion:reduce){.mark::after{transition:none}}
+
+/* ══ BUTTON STYLE: blue glass tile ═══════════════════════════════════
+   Deep blue body that darkens toward the centre, a lit inner rim
+   (brightest at the top-left edge) and a soft blue halo. On hover the
+   rim and halo light up; the cursor spot keeps following the mouse.  */
+:root{
+  --tile-bg: radial-gradient(ellipse 85% 130% at 50% 55%,
+               color-mix(in srgb,#2C2ED8 28%,#03051A) 0%,
+               color-mix(in srgb,#2C2ED8 62%,#03051A) 62%,
+               #2C2ED8 100%);
+  --tile-rim: inset 0 0 0 1px rgba(115,167,244,.55),
+              inset 1px 1px 0 rgba(214,228,255,.55),
+              inset 0 0 14px rgba(115,167,244,.35);
+  --tile-rim-h: inset 0 0 0 1px rgba(150,190,255,.9),
+                inset 1px 1px 0 rgba(235,242,255,.85),
+                inset 0 0 22px rgba(115,167,244,.65);
+}
+.btn:not(.btn--ghost),.send,
+.log__b[aria-pressed="true"],
+.flow__tabs button[aria-selected="true"],
+.flow__pause,
+.step.done .step__tag{
+  background:var(--tile-bg);border-color:transparent;color:#fff;
+  box-shadow:var(--tile-rim),0 10px 28px -14px rgba(44,46,216,.95)}
+.btn:not(.btn--ghost),.send{border-radius:12px}
+.btn:not(.btn--ghost):hover,.send:hover,
+.log__b[aria-pressed="true"]:hover,
+.flow__tabs button[aria-selected="true"]:hover,
+.flow__pause:hover{
+  background:var(--tile-bg);border-color:transparent;color:#fff;
+  box-shadow:var(--tile-rim-h),0 0 30px -6px rgba(115,167,244,.6),0 14px 34px -12px rgba(44,46,216,1)}
+.btn:not(.btn--ghost)::before,.send::before{
+  background:radial-gradient(140px circle at var(--bx,50%) var(--by,50%),rgba(115,167,244,.45),rgba(44,46,216,.18) 50%,transparent 75%)}
+.btn:not(.btn--ghost),.send,.log__b,.flow__tabs button,.flow__pause{transition:box-shadow .3s ease,transform .2s,color .2s}
+/* small tags: a lighter rim and halo so the effect reads at 24px */
+.step.done .step__tag{box-shadow:inset 0 0 0 1px rgba(115,167,244,.6),inset 1px 1px 0 rgba(214,228,255,.5),
+  inset 0 0 8px rgba(115,167,244,.35),0 4px 14px -8px rgba(44,46,216,.9)}
+/* ══ END BUTTON STYLE ════════════════════════════════════════════════ */
+
+/* ── "Jméno, tvář, reference": card carousel ─────────────────────────
+   Cards run off the right edge of the page (the next one peeks in);
+   arrows and a progress line sit underneath.                         */
+.ppl{margin-top:var(--s12)}
+.ppl__track{display:flex;column-gap:clamp(28px,3.4vw,52px);overflow-x:auto;scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;scrollbar-width:none;margin-right:calc(50% - 50vw);padding-right:var(--inset)}
+.ppl__track::-webkit-scrollbar{display:none}
+.ppl__track:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+.ppl__card{flex:0 0 min(600px,84vw);display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);
+  column-gap:clamp(20px,2.4vw,36px);scroll-snap-align:start}
+.ppl__ph{width:100%;height:auto;aspect-ratio:255/304;object-fit:cover;object-position:50% 0;border-radius:var(--r);
+  filter:saturate(.95) contrast(1.03)}
+.ppl__txt{display:flex;flex-direction:column;min-width:0;padding-top:4px}
+.ppl__role{margin:0;font-size:var(--fs-sm);color:var(--fg-3)}
+.ppl__name{margin:var(--s1) 0 0;font-size:clamp(26px,.8vw + 18px,32px);line-height:1.08;letter-spacing:var(--ls-h2);
+  font-weight:var(--fw-disp);color:var(--fg)}
+.ppl__bio{margin:var(--s5) 0 0;font-size:var(--fs-sm);line-height:var(--lh-body);color:var(--fg-2);max-width:42ch}
+.ppl__cv{margin:auto 0 0;padding-top:var(--s5);font-size:var(--fs-sm);line-height:var(--lh-body);color:var(--fg);max-width:42ch}
+.ppl__cv span + span::before{content:' / '}
+.ppl__nav{display:flex;align-items:center;gap:8px;margin-top:var(--s10)}
+.ppl__btn{all:unset;box-sizing:border-box;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
+  cursor:pointer;background:rgba(188,197,216,.14);color:var(--fg);transition:background-color .2s,opacity .2s,box-shadow .3s}
+.ppl__btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ppl__btn:hover:not(:disabled){background:var(--tile-bg);box-shadow:var(--tile-rim-h),0 0 24px -6px rgba(115,167,244,.6)}
+.ppl__btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.ppl__btn:disabled{opacity:.35;cursor:default}
+.ppl__bar{flex:1;height:2px;margin-left:clamp(16px,2vw,28px);background:var(--line-2);position:relative;overflow:hidden}
+.ppl__bar i{position:absolute;inset:0;background:linear-gradient(90deg,rgba(115,167,244,.35),var(--accent));
+  transform:scaleX(.5);transform-origin:left;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+@media(max-width:700px){
+  .ppl__card{grid-template-columns:minmax(0,1fr);row-gap:var(--s6)}
+  .ppl__ph{max-width:190px}
+}
+@media (prefers-reduced-motion:reduce){.ppl__track{scroll-behavior:auto}.ppl__bar i{transition:none}}
+
+/* ── "Jdeme po konečném výsledku": the whole block sits on a frosted pane
+   so the copy reads cleanly over the dot grid ── */
+.pil{padding:clamp(44px,6vw,96px) clamp(28px,3.6vw,56px);border-radius:var(--r);min-height:clamp(420px,40vw,600px);grid-template-rows:1fr auto;
+  background:linear-gradient(160deg,rgba(188,197,216,.06),rgba(188,197,216,.02) 45%,rgba(188,197,216,.04));
+  border:1px solid rgba(188,197,216,.12);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 30px 70px -45px rgba(0,0,0,.8)}
+@media (prefers-reduced-transparency:reduce){.pil{background:var(--bg-2);-webkit-backdrop-filter:none;backdrop-filter:none}}
 
 /* ══ TEST 2026-10-28: no section rules, no "01 Název" rows ══════════
    Revert = delete this whole block.                                   */
