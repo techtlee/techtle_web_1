@@ -81,9 +81,9 @@
   ];
   var UI = {
     cs: { manual: 'ručně', count: 'Ruční kroky', pause: 'Pozastavit animaci', play: 'Spustit animaci',
-          why: 'Proč to bolí', how: 'Jak to řešíme' },
+          why: 'Proč to bolí', how: 'Jak to řešíme', step: 'Krok' },
     en: { manual: 'manual', count: 'Manual steps', pause: 'Pause animation', play: 'Play animation',
-          why: 'Why it hurts', how: 'How we solve it' }
+          why: 'Why it hurts', how: 'How we solve it', step: 'Step' }
   };
   var ICON_PAUSE = '<svg viewBox="0 0 10 10" aria-hidden="true"><rect x="1" y="0" width="3" height="10" fill="currentColor"/><rect x="6" y="0" width="3" height="10" fill="currentColor"/></svg>';
   var ICON_PLAY = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 0v10L9.5 5z" fill="currentColor"/></svg>';
@@ -103,6 +103,42 @@
     var pauseBtn = root.querySelector('.flow__pause');
 
     var cur = 0, done = 0, timers = [], userPaused = reduce, hoverPaused = false, visible = true;
+
+    /* phones show one card at a time (CSS, ≤600px); `shown` is that card.
+       The dots and the swipe live here; on wider screens CSS hides the dots
+       and every card stays visible, so nothing changes there. */
+    var shown = 0;
+    var dots = document.createElement('div');
+    dots.className = 'flow__dots';
+    list.parentNode.insertBefore(dots, list.nextSibling);
+    function setShown(i) {
+      var n = list.children.length;
+      if (!n) return;
+      shown = Math.max(0, Math.min(n - 1, i));
+      [].forEach.call(list.children, function (li, k) { li.classList.toggle('is-shown', k === shown); });
+      [].forEach.call(dots.children, function (d, k) {
+        if (k === shown) d.setAttribute('aria-current', 'step'); else d.removeAttribute('aria-current');
+      });
+    }
+    function renderDots() {
+      dots.innerHTML = '';
+      [].forEach.call(list.children, function (li, k) {
+        var d = document.createElement('button');
+        d.type = 'button';
+        d.setAttribute('aria-label', UI[lang()].step + ' ' + (k + 1));
+        d.addEventListener('click', function () { hold(); setShown(k); });
+        dots.appendChild(d);
+      });
+    }
+    /* a manual pick stops the autoplay, like the pause button */
+    function hold() { if (!userPaused) { userPaused = true; renderPause(); pause(); } }
+    var tx = null;
+    list.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; }, { passive: true });
+    list.addEventListener('touchend', function (e) {
+      if (tx === null) return;
+      var dx = e.changedTouches[0].clientX - tx; tx = null;
+      if (Math.abs(dx) > 40) { hold(); setShown(shown + (dx < 0 ? 1 : -1)); }
+    }, { passive: true });
 
     function clear() { timers.forEach(clearTimeout); timers = []; }
     function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
@@ -156,12 +192,15 @@
       list.innerHTML = '';
       sc.steps.forEach(function (st, i) { list.appendChild(card(st, i, l)); });
       renderTabs(); renderPause(); renderCount();
+      /* autoplay: the card being worked on; reduced motion / language switch: keep the reader's card */
+      renderDots(); setShown(reduce || !done ? shown : done - 1);
     }
 
     /* the card's bar loads, then the manual step flips to the solution */
     function convert(i) {
       var li = list.children[i];
       if (!li) return;
+      setShown(i);
       li.style.setProperty('--load', LOAD + 'ms');
       li.classList.add('active');
       later(function () {
@@ -194,6 +233,7 @@
       clear();
       cur = i;
       done = reduce ? SCENARIOS[i].steps.length : 0;
+      shown = 0;
       render();
       if (reduce) return;
       bar.classList.remove('run'); bar.style.transform = '';

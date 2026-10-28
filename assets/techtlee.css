@@ -1760,3 +1760,113 @@ html.is-lit .hero .glow{opacity:1;transition-duration:.35s}
   .shead--split .lede,.ppl__bio,.ppl__cv{max-width:none}
 }
 @media(max-width:1120px) and (prefers-reduced-motion:reduce){.nav--m,.menu-btn span{transition:none}}
+
+/* ══ MOBILE: "Deset vět" folds into a dropdown (≤600px only) ══════════ */
+.log__fold{display:none}
+@media(max-width:600px){
+  /* room inside the clipping box so a selected chip's ring and glow are not cut */
+  .log--pick{position:relative;max-height:206px;overflow:hidden;padding:10px 6px;margin:-10px -6px 0;
+    transition:max-height .45s cubic-bezier(.2,.8,.2,1)}
+  .log--pick::after{content:'';position:absolute;left:0;right:0;bottom:0;height:72px;pointer-events:none;
+    background:linear-gradient(transparent,var(--bg));transition:opacity .25s}
+  .log--pick.is-open{max-height:1400px}
+  .log--pick.is-open::after{opacity:0}
+  .log__fold{all:unset;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;min-height:48px;margin-top:var(--s3);border-radius:999px;cursor:pointer;
+    border:1px solid var(--line-2);background:rgba(188,197,216,.04);color:var(--fg-2);font-size:var(--fs-sm)}
+  .log__fold::after{content:'';width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+    transform:translateY(-2px) rotate(45deg);transition:transform .25s}
+  .log__fold[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
+  .log__fold:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  @media (prefers-reduced-motion:reduce){.log--pick,.log__fold::after{transition:none}}
+}
+
+/* ══ MOBILE: process demo shows one card at a time (≤600px only) ═══════ */
+.flow__dots{display:none}
+@media(max-width:600px){
+  .flow .flow__steps{display:grid !important;grid-template-columns:minmax(0,1fr) !important}
+  /* one stacked cell; cards lay out on their own (no shared subgrid rows here) */
+  .flow .flow__steps > .step{grid-area:1 / 1 !important;display:flex !important;flex-direction:column;grid-template-rows:none;transition:opacity .35s ease,transform .35s cubic-bezier(.2,.8,.2,1),visibility 0s}
+  .flow .flow__steps > .step:not(.is-shown){opacity:0;visibility:hidden;transform:translateX(16px);
+    transition:opacity .2s ease,transform .2s ease,visibility 0s .2s}
+  .flow__dots{display:flex;justify-content:center;gap:2px;padding:0 16px 8px}
+  .flow__dots button{all:unset;box-sizing:border-box;width:44px;height:28px;display:grid;place-items:center;cursor:pointer}
+  .flow__dots button::before{content:'';width:8px;height:8px;border-radius:999px;background:var(--line-3);
+    transition:width .25s cubic-bezier(.2,.8,.2,1),background-color .25s}
+  .flow__dots button[aria-current]::before{width:22px;background:var(--accent)}
+  .flow__dots button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:8px}
+  @media (prefers-reduced-motion:reduce){.flow .flow__steps > .step,.flow__dots button::before{transition:none}}
+}
+
+/* ══ MOBILE: pillar services as compact link rows (≤600px only) ════════ */
+@media(max-width:600px){
+  .pil__panels .pil__grid{row-gap:8px !important;margin-top:var(--s5) !important}
+  /* select → intro: one small step instead of margin + row gap */
+  .pil{row-gap:var(--s4) !important}
+  .pil__tabs{margin-bottom:0 !important}
+  .pil__svc{display:flex !important;align-items:center;min-height:56px;padding:12px 56px 12px 16px !important;
+    border-radius:12px}
+  .pil__svc .pil__type,.pil__svc .pil__d{display:none !important}
+  .pil__svc h3{margin:0 !important;height:auto !important;min-height:0 !important;font-size:var(--fs-body);
+    line-height:1.3;color:var(--fg)}
+  .pil__svc h3 a::after{top:50% !important;right:12px !important;transform:translateY(-50%) !important;width:30px;height:30px}
+  .pil__svc:hover h3 a::after,.pil__svc h3 a:focus-visible::after{transform:translateY(-50%) !important}
+}
+
+/* ══ MOBILE: people - an open bio is only as tall as its text (≤900px) ══
+   On desktop the open bio has a 440px flex-basis for its width; in the
+   stacked mobile column that basis turned into 440px of height.        */
+@media(max-width:900px){
+  .ppl--js .ppl__card .ppl__txt,.ppl--js .ppl__card.is-on .ppl__txt{flex:none !important}
+  .ppl--js .ppl__card:not(.is-on){gap:0 !important}
+  .ppl--js .ppl__card.is-on{padding-bottom:var(--s5)}
+}
+
+/* ══ MOBILE: phases as a vertical timeline (≤600px only) ══════════════ */
+@media(max-width:600px){
+  #pristup .flowx{display:block !important;position:relative;padding:0 0 0 30px;margin:var(--s8) 0 0 !important;overflow:visible}
+  #pristup .flowx::before,#pristup .flowx::after{display:block !important;content:'';position:absolute;
+    left:7px !important;right:auto !important;top:10px !important;bottom:24px;width:1px;height:auto !important}
+  #pristup .flowx::before{background:var(--line-2)}
+  #pristup .flowx::after{width:2px;left:6.5px !important;
+    background:linear-gradient(180deg,var(--line-2) 0%,var(--accent) 50%,var(--line-2) 100%);
+    transform:scaleY(0);transform-origin:top;transition:transform 1.8s cubic-bezier(.45,0,.2,1) .2s}
+  #pristup .flowx[data-reveal-s="in"]::after{transform:scaleY(1)}
+  #pristup .flowx__step{display:block;position:relative}
+  #pristup .flowx__node{display:block !important;position:absolute;left:-30px;top:5px;margin:0}
+  #pristup .flowx__card{display:grid !important;grid-template-columns:auto minmax(0,1fr);column-gap:10px;row-gap:0 !important;align-items:baseline;
+    position:relative;margin:0 !important;padding:0 0 var(--s6) !important;text-align:left !important;
+    border:0 !important;background:none !important;box-shadow:none !important;
+    -webkit-backdrop-filter:none !important;backdrop-filter:none !important;opacity:1 !important;transform:none !important}
+  #pristup .flowx__card:hover{box-shadow:none}
+  #pristup .flowx__n{grid-column:1;font-size:var(--fs-sm);color:var(--accent);letter-spacing:0}
+  #pristup .flowx__card h3{grid-column:2;margin:0;font-size:var(--fs-h3)}
+  #pristup .flowx__d{grid-column:2 / -1;margin:var(--s2) 0 0}
+  #pristup .flowx__out{display:none !important}
+  @media (prefers-reduced-motion:reduce){#pristup .flowx::after{transform:scaleY(1);transition:none}}
+}
+
+/* ══ MOBILE: "Na čem pracujeme" as compact rows - name + status (≤600px) ══ */
+@media(max-width:600px){
+  #projekty .pane--table{padding:4px 16px}
+  #projekty .dt tbody tr{display:flex !important;align-items:center;justify-content:space-between;gap:var(--s4);
+    min-height:56px;padding:12px 0}
+  #projekty .dt tbody tr:last-child{border-bottom:0}
+  #projekty .dt td{padding:0 !important}
+  #projekty .dt .c-desc{display:none !important}
+  #projekty .dt .c-name{font-size:var(--fs-body)}
+  #projekty .dt .r{flex:none;padding:0 !important;text-align:right;white-space:nowrap}
+}
+
+/* ══ MOBILE: contact form fields - label on top, input right under it (≤620px) ══ */
+@media(max-width:620px){
+  .form .field label,.form .field:has(textarea) label{padding:14px var(--s5) 0}
+  .form .field input,.form .field textarea{padding:6px var(--s5) 14px}
+  .form .field textarea{min-height:160px}
+}
+
+/* ══ MOBILE: hero call to action sits lower, flush left (≤600px) ══ */
+@media(max-width:600px){
+  .hero__cta{margin-top:var(--s12);flex-direction:column;align-items:flex-start;gap:var(--s4)}
+  .hero__cta .btn--ghost{padding-left:0}
+}

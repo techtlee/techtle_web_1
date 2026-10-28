@@ -133,9 +133,11 @@
      its button untouched, so i18n keeps translating it. */
   var PICK = {
     cs: { hint: 'Označte, co platí i u vás.', count: 'Platí {n} z 10', clear: 'Zrušit výběr',
-          cta: 'Popsat naši situaci', head: 'Poznáváme se v těchto větách:' },
+          cta: 'Popsat naši situaci', head: 'Poznáváme se v těchto větách:',
+          more: 'Zobrazit všech 10 vět', less: 'Skrýt věty' },
     en: { hint: 'Mark the ones that apply to you.', count: '{n} of 10 apply', clear: 'Clear selection',
-          cta: 'Describe our situation', head: 'These sound familiar:' }
+          cta: 'Describe our situation', head: 'These sound familiar:',
+          more: 'Show all 10 statements', less: 'Hide statements' }
   };
   var KEY = 'tt-pick-v2';            /* v2: sentence order changed 2026-10 */
   function lang() { return document.documentElement.lang === 'en' ? 'en' : 'cs'; }
@@ -226,6 +228,23 @@
     var claim = ol.parentNode.querySelector('.claim');
     (claim || ol).parentNode.insertBefore(sum, (claim || ol).nextSibling);
 
+    /* phones only (CSS hides it elsewhere): the list starts folded, this
+       button opens the rest of the statements */
+    var fold = document.createElement('button');
+    fold.type = 'button';
+    fold.className = 'log__fold';
+    fold.setAttribute('aria-expanded', 'false');
+    if (!ol.id) ol.id = 'log-list';
+    fold.setAttribute('aria-controls', ol.id);
+    fold.addEventListener('click', function () {
+      var open = !ol.classList.contains('is-open');
+      ol.classList.toggle('is-open', open);
+      fold.setAttribute('aria-expanded', open ? 'true' : 'false');
+      sync();
+      if (!open) ol.scrollIntoView({ block: 'nearest' });
+    });
+    ol.parentNode.insertBefore(fold, ol.nextSibling);
+
 
     function sync() {
       var p = loadPick(), t = PICK[lang()];
@@ -237,6 +256,7 @@
       clear.textContent = t.clear;
       cta.innerHTML = t.cta + ' <span aria-hidden="true">→</span>';
       sum.hidden = p.length === 0;
+      fold.textContent = ol.classList.contains('is-open') ? t.less : t.more;
       prefill();
     }
     document.addEventListener('langchange', sync);
