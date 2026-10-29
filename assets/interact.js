@@ -132,14 +132,14 @@
      what the visitor typed. Each sentence's <span data-en> is moved inside
      its button untouched, so i18n keeps translating it. */
   var PICK = {
-    cs: { hint: 'Označte, co platí i u vás.', count: 'Platí {n} z 10', clear: 'Zrušit výběr',
+    cs: { hint: 'Označte, co platí i u vás.', count: 'Platí {n} z {t}', clear: 'Zrušit výběr',
           cta: 'Popsat naši situaci', head: 'Poznáváme se v těchto větách:',
-          more: 'Zobrazit všech 10 vět', less: 'Skrýt věty' },
-    en: { hint: 'Mark the ones that apply to you.', count: '{n} of 10 apply', clear: 'Clear selection',
+          more: 'Zobrazit všech {t} vět', less: 'Skrýt věty' },
+    en: { hint: 'Mark the ones that apply to you.', count: '{n} of {t} apply', clear: 'Clear selection',
           cta: 'Describe our situation', head: 'These sound familiar:',
-          more: 'Show all 10 statements', less: 'Hide statements' }
+          more: 'Show all {t} statements', less: 'Hide statements' }
   };
-  var KEY = 'tt-pick-v2';            /* v2: sentence order changed 2026-10 */
+  var KEY = 'tt-pick-v4';            /* v4: sentences changed 2026-10-29 */
   function lang() { return document.documentElement.lang === 'en' ? 'en' : 'cs'; }
   function loadPick() {
     try { var v = JSON.parse(sessionStorage.getItem(KEY) || '[]'); return Array.isArray(v) ? v : []; }
@@ -156,7 +156,7 @@
   }
 
   /* the sentences, captured once so the contact page can prefill too */
-  var SENT_KEY = 'tt-pick-text-v2';
+  var SENT_KEY = 'tt-pick-text-v4';
   function prefill() {
     var ta = document.getElementById('s4');
     if (!ta) return;
@@ -252,11 +252,11 @@
         b.setAttribute('aria-pressed', p.indexOf(+b.dataset.i) > -1 ? 'true' : 'false');
       });
       hint.textContent = t.hint;
-      count.textContent = t.count.replace('{n}', p.length);
+      count.textContent = t.count.replace('{n}', p.length).replace('{t}', items.length);
       clear.textContent = t.clear;
       cta.innerHTML = t.cta + ' <span aria-hidden="true">→</span>';
       sum.hidden = p.length === 0;
-      fold.textContent = ol.classList.contains('is-open') ? t.less : t.more;
+      fold.textContent = ol.classList.contains('is-open') ? t.less : t.more.replace('{t}', items.length);
       prefill();
     }
     document.addEventListener('langchange', sync);

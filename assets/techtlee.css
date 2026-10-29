@@ -2018,3 +2018,98 @@ html{scroll-behavior:smooth}
 .pilx__jump a:first-child::after{left:0}
 .pilx__jump a:hover{color:var(--fg) !important;background:none !important;-webkit-background-clip:border-box;background-clip:border-box}
 .pilx__jump a:hover::after{transform:scaleX(1)}
+
+/* ══ nav: "Projekty" opens a small glass menu of projects (hover / focus) ══ */
+.nav__dd{position:relative;display:flex;align-items:stretch}
+.nav__menu{position:absolute;left:50%;top:100%;z-index:90;min-width:200px;padding:6px;margin-top:6px;
+  display:flex;flex-direction:column;gap:2px;border-radius:14px;border:1px solid var(--line-2);
+  /* opaque: a nested backdrop-filter inside the blurred header does not
+     composite reliably over the hero */
+  background:var(--bg-2);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 24px 48px -20px rgba(0,0,0,.95);
+  opacity:0;visibility:hidden;transform:translate(-50%,-6px);
+  transition:opacity .18s ease,transform .18s ease,visibility 0s .18s}
+.nav__menu::before{content:'';position:absolute;left:0;right:0;top:-10px;height:10px}   /* hover bridge */
+.nav__dd:hover .nav__menu,.nav__dd:focus-within .nav__menu{opacity:1;visibility:visible;transform:translate(-50%,0);
+  transition:opacity .18s ease,transform .18s ease}
+.nav__menu a{display:flex !important;flex-direction:column;align-items:flex-start;gap:2px;padding:10px 12px !important;
+  border-radius:10px;color:var(--fg-2);text-decoration:none;white-space:nowrap}
+.nav__menu a::after{display:none !important}
+.nav__menu a b{font-weight:var(--fw-med);font-size:var(--fs-sm);color:var(--fg)}
+.nav__menu a span{font-size:var(--fs-micro);color:var(--fg-4)}
+.nav__menu a:hover,.nav__menu a:focus-visible{background:rgba(149,173,216,.08)}
+.nav__menu a:hover b{color:#fff}
+.nav__menu .nav__all{margin-top:4px;border-top:1px solid var(--line);border-radius:0 0 10px 10px;flex-direction:row;
+  gap:6px;font-size:var(--fs-sm);color:var(--accent)}
+/* mobile menu: projects listed under "Projekty", indented */
+.nav--m__sub a{padding-left:18px !important;font-size:var(--fs-body) !important;color:var(--fg-3) !important;min-height:40px !important}
+.nav--m li.nav--m__sub{border-top:0 !important}
+@media (prefers-reduced-motion:reduce){.nav__menu{transition:none}}
+
+/* ══ APPOLINO: animated data flow (/projekty) ═════════════════════════
+   One stage with a fixed aspect; an SVG (viewBox 1000×380) draws the
+   links, the HTML chips sit on the same coordinates in %.            */
+.apf__head{text-align:center}
+.apf__head h2,.apf__head .lede{margin-left:auto;margin-right:auto}
+.apf__head .lede{margin-top:var(--s3)}
+.apf__soon{display:inline-flex;align-items:center;gap:8px;margin:0 0 var(--s4);padding:5px 12px;border-radius:999px;
+  border:1px solid var(--line-2);font-size:var(--fs-micro);color:var(--fg-2)}
+.apf__soon i{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:apfblink 1.8s ease-in-out infinite}
+@keyframes apfblink{50%{opacity:.35}}
+.apf{position:relative;aspect-ratio:1000/380;margin-top:var(--s10);overflow:hidden}
+.apf__lines{position:absolute;inset:0;width:100%;height:100%}
+.apf__paths path{fill:none;stroke:var(--line-3);stroke-width:1.4;stroke-dasharray:260;stroke-dashoffset:260;transition:stroke-dashoffset 1.2s ease}
+.apf__paths path[id^="apf-o"]{transition-delay:.9s}
+.apf__dots circle{fill:#fff;filter:drop-shadow(0 0 5px var(--accent));opacity:0;transition:opacity .4s 1.8s}
+.apf__chip{position:absolute;transform:translateY(-50%);top:calc(var(--y) / 380 * 100%);display:flex;align-items:center;
+  height:clamp(34px,4vw,46px);padding:0 clamp(12px,1.4vw,18px);border-radius:12px;border:1px solid var(--line-2);
+  background:var(--bg-2);color:var(--fg);font-size:clamp(12px,1.1vw,15px);white-space:nowrap;
+  opacity:0;translate:-10px 0;transition:opacity .4s ease,translate .5s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i) * .12s)}
+.apf__src{left:3%;width:20.2%}
+.apf__more{color:var(--fg-4);border-style:dashed;background:none}
+.apf__out{left:76.8%;width:20.2%;translate:10px 0;transition-delay:calc(1.6s + var(--i) * .2s)}
+.apf__ready{border-color:rgba(149,173,216,.6);box-shadow:0 0 0 3px rgba(149,173,216,.08)}
+.apf__ready::after{content:'';width:7px;height:7px;border-radius:50%;background:var(--accent);margin-left:auto;box-shadow:0 0 8px var(--accent)}
+.apf__core{position:absolute;left:38.6%;width:22.8%;top:calc(95 / 380 * 100%);height:calc(150 / 380 * 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(4px,.6vw,8px);border-radius:14px;
+  background:var(--tile-bg);box-shadow:var(--tile-rim),0 18px 44px -18px rgba(62,90,142,.9);color:#fff;
+  opacity:0;scale:.92;transition:opacity .5s ease .7s,scale .6s cubic-bezier(.2,.8,.2,1) .7s}
+.apf__core b{font-weight:var(--fw-disp);font-size:clamp(18px,2vw,28px);letter-spacing:var(--ls-h3)}
+.apf__mark{width:clamp(20px,2.2vw,30px);height:auto;fill:none;stroke:#DCE4F2;stroke-width:1.5;stroke-linejoin:round}
+.apf__tags{display:flex;gap:6px}
+.apf__tags em{font-style:normal;font-size:clamp(10px,.9vw,12px);padding:2px 8px;border-radius:999px;border:1px solid rgba(220,228,242,.35);color:#DCE4F2}
+.apf__meta{position:absolute;left:38.6%;width:22.8%;top:calc(270 / 380 * 100%);height:calc(64 / 380 * 100%);
+  display:grid;grid-template-columns:auto 1fr;grid-auto-rows:1fr;column-gap:10px;row-gap:4px;align-items:center;padding:8px 12px;
+  border-radius:10px;border:1px dashed var(--line-3);opacity:0;transition:opacity .4s 1.2s}
+.apf__meta span{grid-row:1 / span 4;font-size:clamp(10px,.9vw,12px);color:var(--fg-3)}
+.apf__meta i{display:block;height:3px;border-radius:3px;background:rgba(149,173,216,.45);transform:scaleX(0);transform-origin:left;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.apf__meta i:nth-of-type(1){width:90%;transition-delay:1.4s}.apf__meta i:nth-of-type(2){width:60%;transition-delay:1.6s}
+.apf__meta i:nth-of-type(3){width:75%;transition-delay:1.8s}.apf__meta i:nth-of-type(4){width:45%;transition-delay:2s}
+/* played once in view */
+.apf[data-reveal-s="in"] .apf__paths path{stroke-dashoffset:0}
+.apf[data-reveal-s="in"] .apf__dots circle{opacity:1}
+.apf[data-reveal-s="in"] .apf__chip{opacity:1;translate:0 0}
+.apf[data-reveal-s="in"] .apf__more{opacity:.8}
+.apf[data-reveal-s="in"] .apf__core{opacity:1;scale:1}
+.apf[data-reveal-s="in"] .apf__meta{opacity:1}
+.apf[data-reveal-s="in"] .apf__meta i{transform:none}
+.js .apf[data-reveal-s]{transform:none !important;opacity:1 !important}
+.apf__facts{margin-top:var(--s10)}
+@media (prefers-reduced-motion:reduce){
+  .apf *{transition:none !important;animation:none !important}
+  .apf .apf__paths path{stroke-dashoffset:0}.apf .apf__chip,.apf .apf__core,.apf .apf__meta{opacity:1;translate:0 0;scale:1}
+  .apf .apf__meta i{transform:none}.apf__dots{display:none}
+}
+/* phones: sources → Appolino → outputs, stacked */
+@media(max-width:800px){
+  .apf{aspect-ratio:auto;display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:20px 16px;overflow:visible}
+  .apf__lines{display:none}
+  .apf__chip,.apf__core,.apf__meta{position:relative;left:auto;top:auto;width:auto;height:auto;transform:none}
+  .apf__chip{height:44px;font-size:var(--fs-sm)}
+  .apf__core{padding:18px;margin:14px 0 4px}
+  .apf__core::before,.apf__meta + .apf__out::before{content:'';position:absolute;left:50%;top:-14px;width:1.5px;height:12px;background:var(--accent)}
+  .apf__meta{grid-auto-rows:6px;margin-bottom:14px}
+  .apf__meta span{grid-row:1 / span 4}
+  .apf__meta + .apf__out{margin-top:0}
+}
