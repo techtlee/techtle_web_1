@@ -2113,3 +2113,66 @@ html{scroll-behavior:smooth}
   .apf__meta span{grid-row:1 / span 4}
   .apf__meta + .apf__out{margin-top:0}
 }
+
+/* ══ /projekty overview: one card per project; the main two open their
+   own pages, the others link out ══ */
+.pcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.pcard{position:relative;display:flex;flex-direction:column;gap:var(--s3);min-height:220px;padding:clamp(22px,2.4vw,32px);
+  border-radius:var(--r);border:1px solid rgba(188,197,216,.12);
+  background:linear-gradient(160deg,rgba(188,197,216,.06),rgba(188,197,216,.02) 45%,rgba(188,197,216,.04));
+  -webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);
+  transition:border-color .25s,transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.pcard:hover{border-color:rgba(149,173,216,.4);transform:translateY(-2px);box-shadow:0 20px 44px -26px rgba(62,90,142,.8)}
+.pcard__st{margin:0;align-self:flex-start;padding:4px 10px;border-radius:999px;border:1px solid var(--line-2);
+  font-size:var(--fs-micro);color:var(--fg-3)}
+.pcard__name{margin:var(--s2) 0 0;font-size:clamp(28px,1.4vw + 16px,38px);line-height:1.05;letter-spacing:var(--ls-h2);font-weight:var(--fw-disp)}
+.pcard__name a{color:var(--fg);text-decoration:none}
+.pcard__name a::before{content:'';position:absolute;inset:0}            /* whole card is the link */
+.pcard__d{margin:0;max-width:44ch;color:var(--fg-3)}
+.pcard__go{margin:auto 0 0;padding-top:var(--s4);font-weight:var(--fw-med);color:var(--accent)}
+.pcard__go span{display:inline-block;transition:transform .2s}
+.pcard:hover .pcard__go span{transform:translateX(4px)}
+.pcard--ext:hover .pcard__go span{transform:translate(2px,-2px)}
+.pcard:not(.pcard--ext){background:linear-gradient(160deg,rgba(149,173,216,.10),rgba(62,90,142,.06) 50%,rgba(188,197,216,.03))}
+@media(max-width:700px){.pcards{grid-template-columns:minmax(0,1fr)}.pcard{min-height:0}}
+@media (prefers-reduced-motion:reduce){.pcard,.pcard__go span{transition:none}.pcard:hover{transform:none}}
+/* project pages: breadcrumb above the title */
+.phead .crumb{color:var(--fg-3);text-decoration:none}
+.phead .crumb:hover{color:var(--fg)}
+
+/* /sluzby side nav, compact: five short section markers */
+@media(min-width:1001px){
+  .svlayout:has(.svx--mini){grid-template-columns:minmax(0,1fr) 120px}
+  .svx--mini{gap:2px !important}
+  .svx--mini a b{font-size:var(--fs-sm)}
+}
+.svx--mini .svx__grp,.svx--mini .svx__p{display:none !important}
+
+/* /sluzby side nav v3: no column at all - a slim stack of bubbles pinned to
+   the right edge of the screen. The current section is a filled pill with its
+   name; the others are small dots that open into pills on hover. */
+@media(min-width:1001px){
+  .svlayout:has(.svx--mini){display:block}
+  .svx.svx--mini{position:fixed;right:clamp(12px,1.6vw,28px);top:50%;transform:translateY(-50%);z-index:30;
+    display:flex !important;flex-direction:column;align-items:flex-end;gap:8px !important;margin:0}
+  .svx--mini a{position:relative;display:flex !important;flex-direction:row !important;align-items:center;justify-content:flex-end;
+    height:28px !important;min-height:0 !important;padding:0 !important;border-radius:999px}
+  .svx--mini a::before{display:none !important}
+  .svx--mini a b{display:block;overflow:hidden;white-space:nowrap;max-width:0;opacity:0;
+    padding:0;height:28px !important;font-size:var(--fs-micro) !important;line-height:28px !important;color:var(--fg-2) !important;
+    transition:max-width .3s cubic-bezier(.2,.8,.2,1),opacity .2s,padding .3s}
+  .svx--mini a::after{content:'';flex:none;width:10px;height:10px;margin-right:9px;border-radius:50%;
+    border:1.5px solid var(--fg-4);background:var(--bg);transition:background-color .2s,border-color .2s}
+  /* hover over the stack - or the page still at the top - shows every name */
+  .svx--mini.is-full a{background:var(--bg-2);border:1px solid var(--line-2)}
+  .svx--mini.is-full a b{max-width:140px;opacity:1;padding:0 4px 0 12px}
+  .svx--mini:hover a{background:var(--bg-2);border:1px solid var(--line-2)}
+  .svx--mini:hover a b{max-width:140px;opacity:1;padding:0 4px 0 12px}
+  .svx--mini a:hover b{color:var(--fg) !important}
+  /* current section: filled blue pill with its name */
+  .svx--mini a.is-on{background:var(--tile-bg);box-shadow:var(--tile-rim),0 8px 20px -10px rgba(62,90,142,.9);border:0}
+  .svx--mini a.is-on b{max-width:140px;opacity:1;padding:0 4px 0 12px;color:#fff !important}
+  .svx--mini a.is-on::after{background:#fff;border-color:#fff;width:8px;height:8px;margin-right:10px}
+  .svx--mini a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+}
+@media (prefers-reduced-motion:reduce){.svx--mini a b{transition:none}}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-en="Appolino - Techtlee">Appolino - Techtlee</title>
+<meta name="description" content="Appolino: všechny zdroje dat v jednom sdíleném cloudu. Datová platforma od Techtlee, již brzy.">
+<meta name="theme-color" content="#0A0C0B" id="tc">
+<link rel="stylesheet" href="/assets/darktec.css?v=20261103v">
+<link rel="stylesheet" href="/assets/techtlee.css?v=20261103v">
+<script>
+/* Applied before first paint. Every visitor gets the dark site - a light
+   choice saved earlier is ignored. The light theme still exists in the CSS:
+   add ?theme=light to the URL to preview it (not remembered). To give
+   visitors the switch back, remove `hidden` from #theme in the header and
+   restore the localStorage read here. */
+(function(){document.documentElement.className+=' js';try{
+  if(/[?&]theme=light\b/.test(location.search))document.documentElement.setAttribute('data-theme','light');
+}catch(e){}
+  /* arrived through a page transition: let that be the only animation */
+  window.addEventListener('pagereveal',function(e){if(e.viewTransition)document.documentElement.classList.add('vt');});
+})();
+</script>
+<link rel="canonical" href="https://techtlee.com/projekty/appolino">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="alternate" hreflang="cs" href="https://techtlee.com/projekty/appolino">
+<link rel="alternate" hreflang="x-default" href="https://techtlee.com/projekty/appolino">
+
+<!-- Fonts are self-hosted, so there is no third-party connection to warm up.
+     All four subsets are preloaded: Czech copy needs latin-ext from the first
+     paint, not as a second wave, or the diacritics reflow. 82 kB total. -->
+<link rel="preload" href="/assets/fonts/google-sans-flex-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/google-sans-flex-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Techtlee">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:url" content="https://techtlee.com/projekty/appolino">
+<meta property="og:title" content="Appolino - Techtlee">
+<meta property="og:description" content="Appolino: všechny zdroje dat v jednom sdíleném cloudu. Datová platforma od Techtlee, již brzy.">
+<meta property="og:image" content="https://techtlee.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Appolino - Techtlee">
+<meta name="twitter:description" content="Appolino: všechny zdroje dat v jednom sdíleném cloudu. Datová platforma od Techtlee, již brzy.">
+<meta name="twitter:image" content="https://techtlee.com/assets/og-image.png">
+
+</head>
+<body>
+<a class="skip" href="#top" data-en="Skip to content">Přeskočit na obsah</a>
+
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="mark" href="/" aria-label="Techtlee"><img class="logo" src="/assets/img/techtlee-logo.svg?v=2" alt="" width="88" height="16"></a>
+    <nav class="nav" aria-label="Hlavní navigace" data-en-al="Main navigation">
+      <a href="/sluzby" data-en="Services">Služby</a>
+      <a href="/zkusenosti" data-en="Experience">Zkušenosti</a>
+      <a href="/lide" data-en="People">Lidé</a>
+      <div class="nav__dd"><a aria-current="page" href="/projekty" data-en="Projects" aria-haspopup="true">Projekty</a><div class="nav__menu" role="menu"><a href="/projekty/agentic-analytics"><b>Agentic Analytics</b></a><a href="/projekty/appolino"><b>Appolino</b></a><a href="/projekty#revizar"><b>Revizář</b></a><a href="/projekty#vlkorez"><b>Vlkorez</b></a><a class="nav__all" href="/projekty" data-en="All projects <span>→</span>">Všechny projekty <span>→</span></a></div></div>
+      <a href="/pristup" data-en="Approach">Přístup</a>
+      <a href="/kontakt" data-en="Contact">Kontakt</a>
+    </nav>
+    <div class="hdr__r">
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="navm" aria-label="Menu" data-en-al="Menu"><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+      <span class="eyebrow" id="clock">Praha -:-</span>
+      <button class="theme" type="button" id="theme" hidden aria-pressed="false" aria-label="Přepnout světlý a tmavý režim" data-en-al="Toggle light and dark mode"><span class="t-l" data-en="Light">Světlý</span><span class="t-d" data-en="Dark">Tmavý</span></button>
+      <span class="lang" role="group" aria-label="Jazyk / Language"><button data-lang="cs" type="button" lang="cs" aria-label="Čeština">CZ</button><i aria-hidden="true">/</i><button data-lang="en" type="button" lang="en" aria-label="English">EN</button></span>
+    </div>
+  </div>
+</header>
+<nav class="nav--m" id="navm" aria-label="Hlavní navigace" data-en-al="Main navigation">
+  <ul>
+    <li><a href="/sluzby" data-en="Services">Služby</a></li>
+    <li><a href="/zkusenosti" data-en="Experience">Zkušenosti</a></li>
+    <li><a href="/lide" data-en="People">Lidé</a></li>
+    <li><a aria-current="page" href="/projekty" data-en="Projects">Projekty</a></li><li class="nav--m__sub"><a href="/projekty/agentic-analytics">Agentic Analytics</a></li><li class="nav--m__sub"><a href="/projekty/appolino">Appolino</a></li><li class="nav--m__sub"><a href="/projekty#revizar">Revizář</a></li><li class="nav--m__sub"><a href="/projekty#vlkorez">Vlkorez</a></li>
+    <li><a href="/pristup" data-en="Approach">Přístup</a></li>
+    <li><a href="/kontakt" data-en="Contact">Kontakt</a></li>
+  </ul>
+</nav>
+
+<main id="top">
+
+<section class="phead">
+  <div class="wrap">
+    <p class="eyebrow"><a class="crumb" href="/projekty" data-en="Projects">Projekty</a><span aria-hidden="true"> / </span><span data-en="Appolino">Appolino</span></p>
+    <h1>Appolino</h1>
+    <p class="hero__lede" data-en="A data platform that brings every source into one shared cloud. Coming soon.">Datová platforma, která přenese všechny zdroje dat do jednoho sdíleného cloudu. Již brzy.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════ APPOLINO ══════════════════════ -->
+<section class="sec" id="appolino">
+  <div class="wrap">
+    <div class="spec">
+      <p class="eyebrow"><span class="ix">B</span>Appolino</p>
+      <p class="eyebrow" data-en="Data platform · coming soon">Datová platforma · již brzy</p>
+    </div>
+    <div class="shead apf__head" data-reveal-s>
+      <p class="apf__soon"><i aria-hidden="true"></i><span data-en="Data platform · coming soon">Datová platforma · již brzy</span></p>
+      <h2 data-en="Appolino: every data source in one shared cloud.">Appolino: všechny zdroje dat v jednom sdíleném cloudu.</h2>
+      <p class="lede" data-en="No more retyping data between systems. Data from any source in one place - ready for analysts and business users alike.">Konec ručního přepisování mezi systémy. Data z jakéhokoli zdroje na jednom místě - připravená pro analytiky i business.</p>
+    </div>
+    <div class="apf pane" data-reveal-s role="img" aria-label="Zdroje dat proudí do Appolina, které z nich vytvoří tabulky, transformace a sémantickou vrstvu" data-en-al="Data sources flow into Appolino, which turns them into tables, transformations and a semantic layer">
+      <svg class="apf__lines" viewBox="0 0 1000 380" aria-hidden="true"><g class="apf__paths"><path id="apf-i0" d="M232 80 C320 80 300 170 386 170"/><path id="apf-i1" d="M232 160 C320 160 300 170 386 170"/><path id="apf-i2" d="M232 240 C320 240 300 170 386 170"/><path id="apf-o0" d="M614 170 C700 170 680 90 768 90"/><path id="apf-o1" d="M614 170 C700 170 680 190 768 190"/><path id="apf-o2" d="M614 170 C700 170 680 290 768 290"/></g><g class="apf__dots"><circle r="3.5"><animateMotion dur="2.4s" begin="0.0s" repeatCount="indefinite"><mpath href="#apf-i0"/></animateMotion></circle><circle r="3.5"><animateMotion dur="2.4s" begin="0.6s" repeatCount="indefinite"><mpath href="#apf-i1"/></animateMotion></circle><circle r="3.5"><animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite"><mpath href="#apf-i2"/></animateMotion></circle><circle r="3.5"><animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite"><mpath href="#apf-o0"/></animateMotion></circle><circle r="3.5"><animateMotion dur="2.4s" begin="1.8s" repeatCount="indefinite"><mpath href="#apf-o1"/></animateMotion></circle><circle r="3.5"><animateMotion dur="2.4s" begin="2.4s" repeatCount="indefinite"><mpath href="#apf-o2"/></animateMotion></circle></g></svg>
+      <span class="apf__chip apf__src" style="--y:80;--i:0" data-en="SharePoint · Excel">SharePoint · Excel</span><span class="apf__chip apf__src" style="--y:160;--i:1" data-en="PostgreSQL">PostgreSQL</span><span class="apf__chip apf__src" style="--y:240;--i:2" data-en="E-mail">E-mail</span><span class="apf__chip apf__src apf__more" style="--y:312;--i:3" data-en="and more…">a další…</span>
+      <div class="apf__core"><svg class="apf__mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8.5 4.5L12 12 3.5 7.5z"/><path d="M3.5 12L12 16.5 20.5 12"/><path d="M3.5 16.5L12 21l8.5-4.5"/></svg><b>Appolino</b><span class="apf__tags"><em>AWS</em><em>Governance</em></span></div>
+      <div class="apf__meta"><span data-en="Metadata">Metadata</span><i></i><i></i><i></i><i></i></div>
+      <span class="apf__chip apf__out" style="--y:90;--i:0" data-en="Unified tables">Sjednocené tabulky</span><span class="apf__chip apf__out" style="--y:190;--i:1" data-en="Transformations &amp; aggregations">Transformace a agregace</span><span class="apf__chip apf__out apf__ready" style="--y:290;--i:2" data-en="Semantic layer">Sémantická vrstva</span>
+    </div>
+    <div class="four four--3 apf__facts" data-reveal-s data-stagger>
+      <div><h3 data-en="Any source">Jakýkoli zdroj</h3><p data-en="Excel syncing from SharePoint, PostgreSQL, e-mails and more. No manual retyping.">Excel synchronizovaný ze SharePointu, PostgreSQL, e-maily a další. Bez ručního přepisování.</p></div>
+      <div><h3 data-en="Governance on AWS">Governance na AWS</h3><p data-en="It runs on AWS with a high level of governance - you know where data comes from and who can access it.">Běží na AWS s vysokou úrovní governance - víte, odkud data jsou a kdo k nim má přístup.</p></div>
+      <div><h3 data-en="For analysts and business">Pro analytiky i business</h3><p data-en="Transformations, aggregations and everything else right in the platform. And the metadata for a semantic layer builds itself.">Transformace, agregace a vše další přímo v platformě. A metadata pro sémantickou vrstvu vznikají samy.</p></div>
+    </div>
+  </div>
+</section>
+<section class="sec sec--tight">
+  <div class="wrap"><p class="more"><a href="/projekty" data-en="<span>←</span> All projects"><span>←</span> Všechny projekty</a></p></div>
+</section>
+
+<section class="cta">
+  <div class="wrap cta__in" data-reveal-s>
+    <h2 data-en="Got a problem nobody can crack?">Máte problém, který nikdo neumí uchopit?</h2>
+    <a class="btn" href="/kontakt" data-en="Book a consultation">Domluvit konzultaci</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap ftr__in">
+    <p class="eyebrow"><svg class="tmark" viewBox="73 31 119 236.2" aria-hidden="true"><path d="M148.556 31C150.212 31.0001 151.556 32.3432 151.556 34V66.3652C151.556 68.0219 152.899 69.3652 154.556 69.3652H189C190.657 69.3652 192 70.7085 192 72.3652V104.467C192 106.123 190.657 107.467 189 107.467H154.556C152.899 107.467 151.556 108.81 151.556 110.467V194.886C151.556 213.766 166.862 229.072 185.742 229.072H186.396C188.052 229.072 189.396 230.415 189.396 232.072V264.173C189.395 265.83 188.052 267.173 186.396 267.173H185.742C145.819 267.173 113.455 234.809 113.455 194.886V110.467C113.455 108.81 112.112 107.467 110.455 107.467H76C74.3434 107.467 73.0004 106.123 73 104.467V72.3652C73.0002 70.7085 74.3432 69.3652 76 69.3652H110.455C112.112 69.365 113.455 68.0218 113.455 66.3652V34C113.455 32.3431 114.798 31 116.455 31H148.556ZM115.193 69.623C114.089 69.6232 113.194 70.5189 113.193 71.623V105.202C113.193 106.307 114.089 107.202 115.193 107.202H149.816C150.921 107.202 151.816 106.307 151.816 105.202V71.623C151.816 70.5189 150.921 69.6233 149.816 69.623H115.193Z"/></svg><span data-en="Techtlee. From a problem to a modern solution.">Techtlee. Od problému k modernímu řešení.</span></p>
+    <nav aria-label="Stránky" data-en-al="Pages"><a class="eyebrow" href="/sluzby" data-en="Services">Služby</a><a class="eyebrow" href="/zkusenosti" data-en="Experience">Zkušenosti</a><a class="eyebrow" href="/lide" data-en="People">Lidé</a><a class="eyebrow" href="/projekty" data-en="Projects">Projekty</a><a class="eyebrow" href="/pristup" data-en="Approach">Přístup</a><a class="eyebrow" href="/kontakt" data-en="Contact">Kontakt</a></nav>
+    <p class="eyebrow">© 2026 · <a href="mailto:info@techtlee.com">info@techtlee.com</a> · <a href="tel:+420724355777">+420 724 355 777</a> · Praha</p>
+  </div>
+</footer>
+
+<script src="/assets/i18n.js"></script>
+<script src="/assets/site.js?v=20261103v"></script>
+<script src="/assets/motion.js?v=20261103v"></script>
+<script src="/assets/interact.js?v=20261103v"></script>
+</body>
+</html>

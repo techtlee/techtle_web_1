@@ -633,6 +633,11 @@
       ids.forEach(function (id) { if (document.getElementById(id).getBoundingClientRect().top <= line) cur = id; });
       if (cur !== last) { last = cur; on(cur); }
     }
+    /* at the top of the page the menu shows every name; once the reader
+       scrolls it folds into bubbles */
+    function full() { nav.classList.toggle('is-full', scrollY < 80); }
+    addEventListener('scroll', full, { passive: true });
+    full();
     addEventListener('scroll', spy, { passive: true });   /* 7 rects - cheap enough per event */
     spy();
     /* a pick lights up right away, before the smooth scroll arrives.

@@ -6,8 +6,8 @@
 <title data-en="Projects - Techtlee">Projekty - Techtlee</title>
 <meta name="description" content="Služba a komunita Agentic Analytics, datová platforma Appolino, aplikace Revizář.cz a studio vlkorez.com.">
 <meta name="theme-color" content="#0A0C0B" id="tc">
-<link rel="stylesheet" href="/assets/darktec.css?v=20261103q">
-<link rel="stylesheet" href="/assets/techtlee.css?v=20261103q">
+<link rel="stylesheet" href="/assets/darktec.css?v=20261103v">
+<link rel="stylesheet" href="/assets/techtlee.css?v=20261103v">
 <script>
 /* Applied before first paint. Every visitor gets the dark site - a light
    choice saved earlier is ignored. The light theme still exists in the CSS:
@@ -59,7 +59,7 @@
       <a href="/sluzby" data-en="Services">Služby</a>
       <a href="/zkusenosti" data-en="Experience">Zkušenosti</a>
       <a href="/lide" data-en="People">Lidé</a>
-      <div class="nav__dd"><a aria-current="page" href="/projekty" data-en="Projects" aria-haspopup="true">Projekty</a><div class="nav__menu" role="menu"><a href="/projekty#semanthics"><b>Agentic Analytics</b></a><a href="/projekty#appolino"><b>Appolino</b></a><a href="/projekty#revizar"><b>Revizář</b></a><a href="/projekty#vlkorez"><b>Vlkorez</b></a><a class="nav__all" href="/projekty" data-en="All projects <span>→</span>">Všechny projekty <span>→</span></a></div></div>
+      <div class="nav__dd"><a aria-current="page" href="/projekty" data-en="Projects" aria-haspopup="true">Projekty</a><div class="nav__menu" role="menu"><a href="/projekty/agentic-analytics"><b>Agentic Analytics</b></a><a href="/projekty/appolino"><b>Appolino</b></a><a href="/projekty#revizar"><b>Revizář</b></a><a href="/projekty#vlkorez"><b>Vlkorez</b></a><a class="nav__all" href="/projekty" data-en="All projects <span>→</span>">Všechny projekty <span>→</span></a></div></div>
       <a href="/pristup" data-en="Approach">Přístup</a>
       <a href="/kontakt" data-en="Contact">Kontakt</a>
     </nav>
@@ -76,7 +76,7 @@
     <li><a href="/sluzby" data-en="Services">Služby</a></li>
     <li><a href="/zkusenosti" data-en="Experience">Zkušenosti</a></li>
     <li><a href="/lide" data-en="People">Lidé</a></li>
-    <li><a aria-current="page" href="/projekty" data-en="Projects">Projekty</a></li><li class="nav--m__sub"><a href="/projekty#semanthics">Agentic Analytics</a></li><li class="nav--m__sub"><a href="/projekty#appolino">Appolino</a></li><li class="nav--m__sub"><a href="/projekty#revizar">Revizář</a></li><li class="nav--m__sub"><a href="/projekty#vlkorez">Vlkorez</a></li>
+    <li><a aria-current="page" href="/projekty" data-en="Projects">Projekty</a></li><li class="nav--m__sub"><a href="/projekty/agentic-analytics">Agentic Analytics</a></li><li class="nav--m__sub"><a href="/projekty/appolino">Appolino</a></li><li class="nav--m__sub"><a href="/projekty#revizar">Revizář</a></li><li class="nav--m__sub"><a href="/projekty#vlkorez">Vlkorez</a></li>
     <li><a href="/pristup" data-en="Approach">Přístup</a></li>
     <li><a href="/kontakt" data-en="Contact">Kontakt</a></li>
   </ul>
@@ -96,79 +96,31 @@
 <section class="sec sec--page" id="projekty">
   <div class="wrap">
 
-    <table class="dt" data-reveal-s data-stagger>
-      <thead><tr><th data-en="Project">Projekt</th><th data-en="Description">Popis</th><th class="r" data-en="Status">Stav</th></tr></thead>
-      <tbody>
-        <tr><td class="c-name"><a href="#semanthics">Agentic Analytics</a></td><td class="c-desc" data-en="Agentic analytics over company data - a semantic layer and AI agents for management, BI and AI - and a Prague community around AI in data.">Agentická analytika nad firemními daty - sémantická vrstva a AI agenti pro management, BI i AI - a pražská komunita kolem AI v datech.</td><td class="r" data-en="Service &amp; community">Služba a komunita</td></tr>
-        <tr><td class="c-name"><a href="#appolino">Appolino</a></td><td class="c-desc" data-en="One shared cloud for every data source - Excel from SharePoint, PostgreSQL, e-mails and more. Analysts and business users transform and aggregate the data in one place.">Jeden sdílený cloud pro všechny zdroje dat - Excel ze SharePointu, PostgreSQL, e-maily a další. Analytici i business uživatelé data transformují a agregují na jednom místě.</td><td class="r" data-en="Coming soon">Již brzy</td></tr>
-        <tr><td class="c-name"><a href="https://revizar.cz" target="_blank" rel="noopener">Revizář ↗</a></td><td class="c-desc" data-en="An application for managing inspections. From first prototype to live operation.">Aplikace pro správu revizí. Od prvního prototypu po běžící provoz.</td><td class="r" data-en="In operation">V provozu</td></tr>
-        <tr><td class="c-name"><a href="https://vlkorez.com" target="_blank" rel="noopener">Vlkorez ↗</a></td><td class="c-desc" data-en="A creative studio. Brands, visual identity and production.">Kreativní studio. Značky, vizuální identita a produkce.</td><td class="r" data-en="In operation">V provozu</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ══════════════════════ AGENTIC ANALYTICS (service; was Semanthics) ══════════════════════ -->
-<section class="sec" id="semanthics">
-  <div class="wrap">
-    <div class="spec">
-      <p class="eyebrow"><span class="ix">A</span>Agentic Analytics</p>
-      <p class="eyebrow" data-en="Service &amp; community">Služba a komunita</p>
-    </div>
-    <div class="shead">
-      <h2 data-en="Agentic Analytics: let agents watch your business.">Agentic Analytics: nechte agenty hlídat váš byznys.</h2>
-      <p class="lede" data-en="We build your company a single, shared meaning of its key metrics - so management, BI and AI agents all work with the same numbers. And so agents can watch how the business develops, flag problems and prepare recommendations.">Postavíme vaší firmě jednotný význam klíčových metrik - aby management, BI i&nbsp;AI agenti pracovali se stejnými čísly. A&nbsp;aby agenti sami hlídali vývoj byznysu, upozorňovali na problémy a&nbsp;připravovali doporučení.</p>
-    </div>
-
-    <p class="mini" data-en="Why Agentic Analytics exists">Proč Agentic Analytics existuje</p>
-    <div class="four" data-reveal-s data-stagger>
-      <div><h3 data-en="Reports take days">Report trvá dny</h3><p data-en="The data team runs in sprints and ad-hoc requests queue behind planned work. Every change to the brief is a new ticket - and decisions drag on.">Datový tým jede ve sprintech a&nbsp;ad-hoc požadavky se řadí do fronty. Každá úprava zadání je nový ticket - a&nbsp;rozhodnutí se protahují.</p></div>
-      <div><h3 data-en="Two numbers for one metric">Dvě čísla pro tutéž metriku</h3><p data-en="Marketing reports 1,240, Sales 1,455. There is no single definition - the rules live in people's heads and in separate dashboards.">Marketing hlásí 1&nbsp;240, Sales 1&nbsp;455. Neexistuje jedna definice - pravidla žijí v&nbsp;hlavách a&nbsp;v&nbsp;jednotlivých dashboardech.</p></div>
-      <div><h3 data-en="Decisions from the hip">Rozhodování od stolu</h3><p data-en="Before their turn in the analytics queue, a director needs to decide now - so they guess the number in Excel. The data exists, it just is not there in time.">Než se ředitel dostane na řadu v&nbsp;analytické frontě, potřebuje rozhodnout teď - tak si číslo tipne v&nbsp;Excelu. Data existují, ale nejsou dostupná včas.</p></div>
-      <div><h3 data-en="Brute-force AI fails">AI „na sílu“ nefunguje</h3><p data-en="Pointing AI straight at raw data is not enough. Without firm definitions AI hallucinates - exactly where it should help most.">Pustit AI přímo na surová data nestačí. Bez pevných definic AI halucinuje - přesně tam, kde má pomáhat nejvíc.</p></div>
-    </div>
-
-    <p class="mini" data-en="How it works">Jak to funguje</p>
-    <div class="rail" data-reveal-s data-stagger>
-      <div><p class="eyebrow">01</p><h3 data-en="Business question">Byznys otázka</h3><p data-en="“Revenue YoY by region?” In natural language, in a chat. The agent picks only from allowed, certified metrics - it writes no SQL of its own.">„Revenue meziročně po regionech?“ Přirozeným jazykem, v&nbsp;chatu. Agent vybírá jen z&nbsp;povolených, certifikovaných metrik - žádné SQL si nevymýšlí.</p></div>
-      <div><p class="eyebrow">02</p><h3 data-en="Semantic graph">Sémantický graf</h3><p data-en="The engine builds a graph from the definitions and resolves the correct join path itself. Leap years and calendars live in the definition, not in luck.">Engine si z&nbsp;definic postaví graf a&nbsp;sám najde správnou cestu mezi tabulkami. Přestupné roky a&nbsp;kalendáře řeší definice, ne náhoda.</p></div>
-      <div><p class="eyebrow">03</p><h3 data-en="Correct SQL">Správné SQL</h3><p data-en="The definition compiles into SQL for your warehouse. Deterministically - the same question always gives the same query and result.">Definice se zkompiluje do SQL pro váš sklad. Deterministicky - stejná otázka dá vždy stejný dotaz i&nbsp;výsledek.</p></div>
-      <div><p class="eyebrow">04</p><h3 data-en="Answer + audit">Odpověď + audit</h3><p data-en="You get the number with an audit trail: which metric, which rules, which source. The whole calculation, not a black box.">Dostanete číslo i&nbsp;s&nbsp;auditem: jaká metrika, jaká pravidla, jaký zdroj. Celý výpočet, ne černou skříňku.</p></div>
-    </div>
-
-    <p class="mini" data-en="What the agent does on its own">Co agent dělá sám</p>
-    <div class="four four--3" data-reveal-s data-stagger>
-      <div><h3 data-en="Overnight monitoring">Noční hlídání</h3><p data-en="The agent runs every governed metric against its expected range. By morning you get a summary of deviations - not forty raw alerts nobody reads.">Agent projede všechny řízené metriky proti očekávaným rozsahům. Ráno máte shrnutí odchylek - ne čtyřicet syrových alertů, které nikdo nečte.</p></div>
-      <div><h3 data-en="Automatic root cause">Automatická root-cause</h3><p data-en="The agent breaks an outlier down by channel, campaign, region and day, and finds exactly where the change happened.">Číslo, které vybočilo, agent rozpadne po kanálech, kampaních, regionech a&nbsp;dnech a&nbsp;najde, kde přesně změna vznikla.</p></div>
-      <div><h3>Self-service</h3><p data-en="Management asks in natural language and gets the number with its calculation audit - plus a recommended next step, not just a chart.">Management se ptá přirozeným jazykem a&nbsp;dostane číslo i&nbsp;s&nbsp;auditem výpočtu - a&nbsp;k&nbsp;tomu doporučený další krok, ne jen graf.</p></div>
-    </div>
-    <p class="note" data-en="This pattern is called agentic analytics: agents reason over a governed model, not raw data.">Tomuhle vzoru se říká agentická analytika: agenti uvažují nad řízeným modelem, ne nad surovými daty.</p>
-  </div>
-</section>
-
-<!-- ══════════════════════ APPOLINO ══════════════════════ -->
-<section class="sec" id="appolino">
-  <div class="wrap">
-    <div class="spec">
-      <p class="eyebrow"><span class="ix">B</span>Appolino</p>
-      <p class="eyebrow" data-en="Data platform · coming soon">Datová platforma · již brzy</p>
-    </div>
-    <div class="shead apf__head" data-reveal-s>
-      <p class="apf__soon"><i aria-hidden="true"></i><span data-en="Data platform · coming soon">Datová platforma · již brzy</span></p>
-      <h2 data-en="Appolino: every data source in one shared cloud.">Appolino: všechny zdroje dat v jednom sdíleném cloudu.</h2>
-      <p class="lede" data-en="No more retyping data between systems. Data from any source in one place - ready for analysts and business users alike.">Konec ručního přepisování mezi systémy. Data z jakéhokoli zdroje na jednom místě - připravená pro analytiky i business.</p>
-    </div>
-    <div class="apf pane" data-reveal-s role="img" aria-label="Zdroje dat proudí do Appolina, které z nich vytvoří tabulky, transformace a sémantickou vrstvu" data-en-al="Data sources flow into Appolino, which turns them into tables, transformations and a semantic layer">
-      <svg class="apf__lines" viewBox="0 0 1000 380" aria-hidden="true"><g class="apf__paths"><path id="apf-i0" d="M232 80 C320 80 300 170 386 170"/><path id="apf-i1" d="M232 160 C320 160 300 170 386 170"/><path id="apf-i2" d="M232 240 C320 240 300 170 386 170"/><path id="apf-o0" d="M614 170 C700 170 680 90 768 90"/><path id="apf-o1" d="M614 170 C700 170 680 190 768 190"/><path id="apf-o2" d="M614 170 C700 170 680 290 768 290"/></g><g class="apf__dots"><circle r="3.5"><animateMotion dur="2.4s" begin="0.0s" repeatCount="indefinite"><mpath href="#apf-i0"/></animateMotion></circle><circle r="3.5"><animateMotion dur="2.4s" begin="0.6s" repeatCount="indefinite"><mpath href="#apf-i1"/></animateMotion></circle><circle r="3.5"><animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite"><mpath href="#apf-i2"/></animateMotion></circle><circle r="3.5"><animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite"><mpath href="#apf-o0"/></animateMotion></circle><circle r="3.5"><animateMotion dur="2.4s" begin="1.8s" repeatCount="indefinite"><mpath href="#apf-o1"/></animateMotion></circle><circle r="3.5"><animateMotion dur="2.4s" begin="2.4s" repeatCount="indefinite"><mpath href="#apf-o2"/></animateMotion></circle></g></svg>
-      <span class="apf__chip apf__src" style="--y:80;--i:0" data-en="SharePoint · Excel">SharePoint · Excel</span><span class="apf__chip apf__src" style="--y:160;--i:1" data-en="PostgreSQL">PostgreSQL</span><span class="apf__chip apf__src" style="--y:240;--i:2" data-en="E-mail">E-mail</span><span class="apf__chip apf__src apf__more" style="--y:312;--i:3" data-en="and more…">a další…</span>
-      <div class="apf__core"><svg class="apf__mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8.5 4.5L12 12 3.5 7.5z"/><path d="M3.5 12L12 16.5 20.5 12"/><path d="M3.5 16.5L12 21l8.5-4.5"/></svg><b>Appolino</b><span class="apf__tags"><em>AWS</em><em>Governance</em></span></div>
-      <div class="apf__meta"><span data-en="Metadata">Metadata</span><i></i><i></i><i></i><i></i></div>
-      <span class="apf__chip apf__out" style="--y:90;--i:0" data-en="Unified tables">Sjednocené tabulky</span><span class="apf__chip apf__out" style="--y:190;--i:1" data-en="Transformations &amp; aggregations">Transformace a agregace</span><span class="apf__chip apf__out apf__ready" style="--y:290;--i:2" data-en="Semantic layer">Sémantická vrstva</span>
-    </div>
-    <div class="four four--3 apf__facts" data-reveal-s data-stagger>
-      <div><h3 data-en="Any source">Jakýkoli zdroj</h3><p data-en="Excel syncing from SharePoint, PostgreSQL, e-mails and more. No manual retyping.">Excel synchronizovaný ze SharePointu, PostgreSQL, e-maily a další. Bez ručního přepisování.</p></div>
-      <div><h3 data-en="Governance on AWS">Governance na AWS</h3><p data-en="It runs on AWS with a high level of governance - you know where data comes from and who can access it.">Běží na AWS s vysokou úrovní governance - víte, odkud data jsou a kdo k nim má přístup.</p></div>
-      <div><h3 data-en="For analysts and business">Pro analytiky i business</h3><p data-en="Transformations, aggregations and everything else right in the platform. And the metadata for a semantic layer builds itself.">Transformace, agregace a vše další přímo v platformě. A metadata pro sémantickou vrstvu vznikají samy.</p></div>
+    <div class="pcards" data-reveal-s data-stagger>
+      <article class="pcard">
+        <p class="pcard__st" data-en="Service &amp; community">Služba a komunita</p>
+        <h2 class="pcard__name"><a href="/projekty/agentic-analytics">Agentic Analytics</a></h2>
+        <p class="pcard__d" data-en="A semantic layer and AI agents over company data, plus a Prague community around AI in data.">Sémantická vrstva a AI agenti nad firemními daty a pražská komunita kolem AI v datech.</p>
+        <p class="pcard__go" data-en="Project details <span>→</span>">Detail projektu <span>→</span></p>
+      </article>
+      <article class="pcard">
+        <p class="pcard__st" data-en="Coming soon">Již brzy</p>
+        <h2 class="pcard__name"><a href="/projekty/appolino">Appolino</a></h2>
+        <p class="pcard__d" data-en="Every data source in one shared cloud - for analysts and business users alike.">Všechny zdroje dat v jednom sdíleném cloudu - pro analytiky i business.</p>
+        <p class="pcard__go" data-en="Project details <span>→</span>">Detail projektu <span>→</span></p>
+      </article>
+      <article class="pcard pcard--ext">
+        <p class="pcard__st" data-en="In operation">V provozu</p>
+        <h2 class="pcard__name"><a href="https://revizar.cz" target="_blank" rel="noopener">Revizář</a></h2>
+        <p class="pcard__d" data-en="An application for managing inspections. From first prototype to live operation.">Aplikace pro správu revizí. Od prvního prototypu po běžící provoz.</p>
+        <p class="pcard__go" data-en="revizar.cz <span>↗</span>">revizar.cz <span>↗</span></p>
+      </article>
+      <article class="pcard pcard--ext">
+        <p class="pcard__st" data-en="In operation">V provozu</p>
+        <h2 class="pcard__name"><a href="https://vlkorez.com" target="_blank" rel="noopener">Vlkorez</a></h2>
+        <p class="pcard__d" data-en="A creative studio. Brands, visual identity and production.">Kreativní studio. Značky, vizuální identita a produkce.</p>
+        <p class="pcard__go" data-en="vlkorez.com <span>↗</span>">vlkorez.com <span>↗</span></p>
+      </article>
     </div>
   </div>
 </section>
@@ -177,7 +129,7 @@
 <section class="sec" id="revizar">
   <div class="wrap">
     <div class="spec">
-      <p class="eyebrow"><span class="ix">C</span>Revizář</p>
+      <p class="eyebrow"><span class="ix">A</span>Revizář</p>
       <p class="eyebrow" data-en="Software · in operation">Software · v provozu</p>
     </div>
     <div class="split shead" data-reveal-s>
@@ -196,7 +148,7 @@
 <section class="sec" id="vlkorez">
   <div class="wrap">
     <div class="spec">
-      <p class="eyebrow"><span class="ix">D</span>Vlkorez</p>
+      <p class="eyebrow"><span class="ix">B</span>Vlkorez</p>
       <p class="eyebrow" data-en="Creative · in operation">Kreativa · v provozu</p>
     </div>
     <div class="split shead" data-reveal-s>
@@ -211,25 +163,6 @@
   </div>
 </section>
 
-
-<!-- ══════════════════════ AGENTIC ANALYTICS ══════════════════════ -->
-<section class="sec" id="agentic">
-  <div class="wrap">
-    <div class="spec">
-      <p class="eyebrow"><span class="ix">E</span>agenticanalytics.cz</p>
-      <p class="eyebrow" data-en="Agentic Analytics · community">Agentic Analytics · komunita</p>
-    </div>
-    <div class="split shead" data-reveal-s>
-      <div>
-        <h2 data-en="Agentic Analytics: a community around AI in data.">Agentic Analytics: komunita kolem AI v datech.</h2>
-        <p class="lede" style="margin-top:var(--s5)" data-en="In Prague we run meetups for analysts, analytics and data engineers and data scientists who work with AI agents every day. We share practical experience and honest lessons - with no sales pitches.">V Praze pořádáme setkání pro analytiky, analytics a data engineery a data scientisty, kteří s AI agenty pracují každý den. Sdílíme praktické zkušenosti a poctivé lekce - bez prodejních prezentací.</p>
-        <p class="lede" data-en="Topics range from semantic layers in production and agents on top of dbt to pipeline monitoring and the future of data work. The meetups are held in English.">Témata sahají od sémantických vrstev v produkci a agentů nad dbt po monitoring pipeline a budoucnost práce s daty. Setkání probíhají v angličtině.</p>
-        <p class="more"><a href="https://agenticanalytics.cz" target="_blank" rel="noopener">agenticanalytics.cz <span>↗</span></a></p>
-      </div>
-      <figure class="shot shot--panel"><div class="panel mp "><div class="panel__h"><b data-en="The meetup">Setkání</b></div><div class="mp__body"><div class="mp__kv" data-s style="--s:1"><span class="k" data-en="For">Pro koho</span><span data-en="analysts, data engineers, data scientists">analytici, data engineeři, data scientisté</span></div><div class="mp__kv" data-s style="--s:2"><span class="k" data-en="Format">Formát</span><span data-en="discussion, short talks, beer">diskuse, krátké talky, pivo</span></div><div class="mp__kv" data-s style="--s:3"><span class="k" data-en="Topics">Témata</span><span data-en="agents, semantic layers, dbt">agenti, sémantické vrstvy, dbt</span></div><div class="mp__kv" data-s style="--s:4"><span class="k" data-en="Language">Jazyk</span><span data-en="English">angličtina</span></div><div class="mp__kv" data-s style="--s:5"><span class="k" data-en="Where">Kde</span><span data-en="Prague">Praha</span></div></div><div class="panel__f mp__f" data-s style="--s:6"><span class="eyebrow ok" data-en="No sales pitches">Bez prodejních prezentací</span></div></div></figure>
-    </div>
-  </div>
-</section>
 
 <section class="cta">
   <div class="wrap cta__in" data-reveal-s>
@@ -249,9 +182,13 @@
 </footer>
 
 <script src="/assets/i18n.js"></script>
-<script src="/assets/site.js?v=20261103q"></script>
-<script src="/assets/motion.js?v=20261103q"></script>
-<script src="/assets/interact.js?v=20261103q"></script>
-<script src="/assets/semanthics.js?v=20261103q"></script>
+<script src="/assets/site.js?v=20261103v"></script>
+<script src="/assets/motion.js?v=20261103v"></script>
+<script src="/assets/interact.js?v=20261103v"></script>
+<script>
+/* old in-page anchors moved to their own pages */
+(function(){var m={'#semanthics':'/projekty/agentic-analytics','#agentic':'/projekty/agentic-analytics#agentic','#appolino':'/projekty/appolino'};
+if(m[location.hash])location.replace(m[location.hash]);})();
+</script>
 </body>
 </html>

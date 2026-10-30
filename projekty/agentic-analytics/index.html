@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-en="Agentic Analytics - Techtlee">Agentic Analytics - Techtlee</title>
+<meta name="description" content="Agentic Analytics: sémantická vrstva a AI agenti nad firemními daty a pražská komunita kolem AI v datech.">
+<meta name="theme-color" content="#0A0C0B" id="tc">
+<link rel="stylesheet" href="/assets/darktec.css?v=20261103v">
+<link rel="stylesheet" href="/assets/techtlee.css?v=20261103v">
+<script>
+/* Applied before first paint. Every visitor gets the dark site - a light
+   choice saved earlier is ignored. The light theme still exists in the CSS:
+   add ?theme=light to the URL to preview it (not remembered). To give
+   visitors the switch back, remove `hidden` from #theme in the header and
+   restore the localStorage read here. */
+(function(){document.documentElement.className+=' js';try{
+  if(/[?&]theme=light\b/.test(location.search))document.documentElement.setAttribute('data-theme','light');
+}catch(e){}
+  /* arrived through a page transition: let that be the only animation */
+  window.addEventListener('pagereveal',function(e){if(e.viewTransition)document.documentElement.classList.add('vt');});
+})();
+</script>
+<link rel="canonical" href="https://techtlee.com/projekty/agentic-analytics">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="alternate" hreflang="cs" href="https://techtlee.com/projekty/agentic-analytics">
+<link rel="alternate" hreflang="x-default" href="https://techtlee.com/projekty/agentic-analytics">
+
+<!-- Fonts are self-hosted, so there is no third-party connection to warm up.
+     All four subsets are preloaded: Czech copy needs latin-ext from the first
+     paint, not as a second wave, or the diacritics reflow. 82 kB total. -->
+<link rel="preload" href="/assets/fonts/google-sans-flex-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/google-sans-flex-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Techtlee">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:url" content="https://techtlee.com/projekty/agentic-analytics">
+<meta property="og:title" content="Agentic Analytics - Techtlee">
+<meta property="og:description" content="Agentic Analytics: sémantická vrstva a AI agenti nad firemními daty a pražská komunita kolem AI v datech.">
+<meta property="og:image" content="https://techtlee.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agentic Analytics - Techtlee">
+<meta name="twitter:description" content="Agentic Analytics: sémantická vrstva a AI agenti nad firemními daty a pražská komunita kolem AI v datech.">
+<meta name="twitter:image" content="https://techtlee.com/assets/og-image.png">
+
+</head>
+<body>
+<a class="skip" href="#top" data-en="Skip to content">Přeskočit na obsah</a>
+
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="mark" href="/" aria-label="Techtlee"><img class="logo" src="/assets/img/techtlee-logo.svg?v=2" alt="" width="88" height="16"></a>
+    <nav class="nav" aria-label="Hlavní navigace" data-en-al="Main navigation">
+      <a href="/sluzby" data-en="Services">Služby</a>
+      <a href="/zkusenosti" data-en="Experience">Zkušenosti</a>
+      <a href="/lide" data-en="People">Lidé</a>
+      <div class="nav__dd"><a aria-current="page" href="/projekty" data-en="Projects" aria-haspopup="true">Projekty</a><div class="nav__menu" role="menu"><a href="/projekty/agentic-analytics"><b>Agentic Analytics</b></a><a href="/projekty/appolino"><b>Appolino</b></a><a href="/projekty#revizar"><b>Revizář</b></a><a href="/projekty#vlkorez"><b>Vlkorez</b></a><a class="nav__all" href="/projekty" data-en="All projects <span>→</span>">Všechny projekty <span>→</span></a></div></div>
+      <a href="/pristup" data-en="Approach">Přístup</a>
+      <a href="/kontakt" data-en="Contact">Kontakt</a>
+    </nav>
+    <div class="hdr__r">
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="navm" aria-label="Menu" data-en-al="Menu"><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+      <span class="eyebrow" id="clock">Praha -:-</span>
+      <button class="theme" type="button" id="theme" hidden aria-pressed="false" aria-label="Přepnout světlý a tmavý režim" data-en-al="Toggle light and dark mode"><span class="t-l" data-en="Light">Světlý</span><span class="t-d" data-en="Dark">Tmavý</span></button>
+      <span class="lang" role="group" aria-label="Jazyk / Language"><button data-lang="cs" type="button" lang="cs" aria-label="Čeština">CZ</button><i aria-hidden="true">/</i><button data-lang="en" type="button" lang="en" aria-label="English">EN</button></span>
+    </div>
+  </div>
+</header>
+<nav class="nav--m" id="navm" aria-label="Hlavní navigace" data-en-al="Main navigation">
+  <ul>
+    <li><a href="/sluzby" data-en="Services">Služby</a></li>
+    <li><a href="/zkusenosti" data-en="Experience">Zkušenosti</a></li>
+    <li><a href="/lide" data-en="People">Lidé</a></li>
+    <li><a aria-current="page" href="/projekty" data-en="Projects">Projekty</a></li><li class="nav--m__sub"><a href="/projekty/agentic-analytics">Agentic Analytics</a></li><li class="nav--m__sub"><a href="/projekty/appolino">Appolino</a></li><li class="nav--m__sub"><a href="/projekty#revizar">Revizář</a></li><li class="nav--m__sub"><a href="/projekty#vlkorez">Vlkorez</a></li>
+    <li><a href="/pristup" data-en="Approach">Přístup</a></li>
+    <li><a href="/kontakt" data-en="Contact">Kontakt</a></li>
+  </ul>
+</nav>
+
+<main id="top">
+
+<section class="phead">
+  <div class="wrap">
+    <p class="eyebrow"><a class="crumb" href="/projekty" data-en="Projects">Projekty</a><span aria-hidden="true"> / </span><span data-en="Agentic Analytics">Agentic Analytics</span></p>
+    <h1>Agentic Analytics</h1>
+    <p class="hero__lede" data-en="Agentic analytics over company data - a semantic layer and AI agents for management, BI and AI - and a Prague community around AI in data.">Agentická analytika nad firemními daty - sémantická vrstva a AI agenti pro management, BI i AI - a pražská komunita kolem AI v datech.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════ AGENTIC ANALYTICS (service; was Semanthics) ══════════════════════ -->
+<section class="sec" id="semanthics">
+  <div class="wrap">
+    <div class="spec">
+      <p class="eyebrow"><span class="ix">A</span>Agentic Analytics</p>
+      <p class="eyebrow" data-en="Service &amp; community">Služba a komunita</p>
+    </div>
+    <div class="shead">
+      <h2 data-en="Agentic Analytics: let agents watch your business.">Agentic Analytics: nechte agenty hlídat váš byznys.</h2>
+      <p class="lede" data-en="We build your company a single, shared meaning of its key metrics - so management, BI and AI agents all work with the same numbers. And so agents can watch how the business develops, flag problems and prepare recommendations.">Postavíme vaší firmě jednotný význam klíčových metrik - aby management, BI i&nbsp;AI agenti pracovali se stejnými čísly. A&nbsp;aby agenti sami hlídali vývoj byznysu, upozorňovali na problémy a&nbsp;připravovali doporučení.</p>
+    </div>
+
+    <p class="mini" data-en="Why Agentic Analytics exists">Proč Agentic Analytics existuje</p>
+    <div class="four" data-reveal-s data-stagger>
+      <div><h3 data-en="Reports take days">Report trvá dny</h3><p data-en="The data team runs in sprints and ad-hoc requests queue behind planned work. Every change to the brief is a new ticket - and decisions drag on.">Datový tým jede ve sprintech a&nbsp;ad-hoc požadavky se řadí do fronty. Každá úprava zadání je nový ticket - a&nbsp;rozhodnutí se protahují.</p></div>
+      <div><h3 data-en="Two numbers for one metric">Dvě čísla pro tutéž metriku</h3><p data-en="Marketing reports 1,240, Sales 1,455. There is no single definition - the rules live in people's heads and in separate dashboards.">Marketing hlásí 1&nbsp;240, Sales 1&nbsp;455. Neexistuje jedna definice - pravidla žijí v&nbsp;hlavách a&nbsp;v&nbsp;jednotlivých dashboardech.</p></div>
+      <div><h3 data-en="Decisions from the hip">Rozhodování od stolu</h3><p data-en="Before their turn in the analytics queue, a director needs to decide now - so they guess the number in Excel. The data exists, it just is not there in time.">Než se ředitel dostane na řadu v&nbsp;analytické frontě, potřebuje rozhodnout teď - tak si číslo tipne v&nbsp;Excelu. Data existují, ale nejsou dostupná včas.</p></div>
+      <div><h3 data-en="Brute-force AI fails">AI „na sílu“ nefunguje</h3><p data-en="Pointing AI straight at raw data is not enough. Without firm definitions AI hallucinates - exactly where it should help most.">Pustit AI přímo na surová data nestačí. Bez pevných definic AI halucinuje - přesně tam, kde má pomáhat nejvíc.</p></div>
+    </div>
+
+    <p class="mini" data-en="How it works">Jak to funguje</p>
+    <div class="rail" data-reveal-s data-stagger>
+      <div><p class="eyebrow">01</p><h3 data-en="Business question">Byznys otázka</h3><p data-en="“Revenue YoY by region?” In natural language, in a chat. The agent picks only from allowed, certified metrics - it writes no SQL of its own.">„Revenue meziročně po regionech?“ Přirozeným jazykem, v&nbsp;chatu. Agent vybírá jen z&nbsp;povolených, certifikovaných metrik - žádné SQL si nevymýšlí.</p></div>
+      <div><p class="eyebrow">02</p><h3 data-en="Semantic graph">Sémantický graf</h3><p data-en="The engine builds a graph from the definitions and resolves the correct join path itself. Leap years and calendars live in the definition, not in luck.">Engine si z&nbsp;definic postaví graf a&nbsp;sám najde správnou cestu mezi tabulkami. Přestupné roky a&nbsp;kalendáře řeší definice, ne náhoda.</p></div>
+      <div><p class="eyebrow">03</p><h3 data-en="Correct SQL">Správné SQL</h3><p data-en="The definition compiles into SQL for your warehouse. Deterministically - the same question always gives the same query and result.">Definice se zkompiluje do SQL pro váš sklad. Deterministicky - stejná otázka dá vždy stejný dotaz i&nbsp;výsledek.</p></div>
+      <div><p class="eyebrow">04</p><h3 data-en="Answer + audit">Odpověď + audit</h3><p data-en="You get the number with an audit trail: which metric, which rules, which source. The whole calculation, not a black box.">Dostanete číslo i&nbsp;s&nbsp;auditem: jaká metrika, jaká pravidla, jaký zdroj. Celý výpočet, ne černou skříňku.</p></div>
+    </div>
+
+    <p class="mini" data-en="What the agent does on its own">Co agent dělá sám</p>
+    <div class="four four--3" data-reveal-s data-stagger>
+      <div><h3 data-en="Overnight monitoring">Noční hlídání</h3><p data-en="The agent runs every governed metric against its expected range. By morning you get a summary of deviations - not forty raw alerts nobody reads.">Agent projede všechny řízené metriky proti očekávaným rozsahům. Ráno máte shrnutí odchylek - ne čtyřicet syrových alertů, které nikdo nečte.</p></div>
+      <div><h3 data-en="Automatic root cause">Automatická root-cause</h3><p data-en="The agent breaks an outlier down by channel, campaign, region and day, and finds exactly where the change happened.">Číslo, které vybočilo, agent rozpadne po kanálech, kampaních, regionech a&nbsp;dnech a&nbsp;najde, kde přesně změna vznikla.</p></div>
+      <div><h3>Self-service</h3><p data-en="Management asks in natural language and gets the number with its calculation audit - plus a recommended next step, not just a chart.">Management se ptá přirozeným jazykem a&nbsp;dostane číslo i&nbsp;s&nbsp;auditem výpočtu - a&nbsp;k&nbsp;tomu doporučený další krok, ne jen graf.</p></div>
+    </div>
+    <p class="note" data-en="This pattern is called agentic analytics: agents reason over a governed model, not raw data.">Tomuhle vzoru se říká agentická analytika: agenti uvažují nad řízeným modelem, ne nad surovými daty.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════ AGENTIC ANALYTICS ══════════════════════ -->
+<section class="sec" id="agentic">
+  <div class="wrap">
+    <div class="spec">
+      <p class="eyebrow"><span class="ix">E</span>agenticanalytics.cz</p>
+      <p class="eyebrow" data-en="Agentic Analytics · community">Agentic Analytics · komunita</p>
+    </div>
+    <div class="split shead" data-reveal-s>
+      <div>
+        <h2 data-en="Agentic Analytics: a community around AI in data.">Agentic Analytics: komunita kolem AI v datech.</h2>
+        <p class="lede" style="margin-top:var(--s5)" data-en="In Prague we run meetups for analysts, analytics and data engineers and data scientists who work with AI agents every day. We share practical experience and honest lessons - with no sales pitches.">V Praze pořádáme setkání pro analytiky, analytics a data engineery a data scientisty, kteří s AI agenty pracují každý den. Sdílíme praktické zkušenosti a poctivé lekce - bez prodejních prezentací.</p>
+        <p class="lede" data-en="Topics range from semantic layers in production and agents on top of dbt to pipeline monitoring and the future of data work. The meetups are held in English.">Témata sahají od sémantických vrstev v produkci a agentů nad dbt po monitoring pipeline a budoucnost práce s daty. Setkání probíhají v angličtině.</p>
+        <p class="more"><a href="https://agenticanalytics.cz" target="_blank" rel="noopener">agenticanalytics.cz <span>↗</span></a></p>
+      </div>
+      <figure class="shot shot--panel"><div class="panel mp "><div class="panel__h"><b data-en="The meetup">Setkání</b></div><div class="mp__body"><div class="mp__kv" data-s style="--s:1"><span class="k" data-en="For">Pro koho</span><span data-en="analysts, data engineers, data scientists">analytici, data engineeři, data scientisté</span></div><div class="mp__kv" data-s style="--s:2"><span class="k" data-en="Format">Formát</span><span data-en="discussion, short talks, beer">diskuse, krátké talky, pivo</span></div><div class="mp__kv" data-s style="--s:3"><span class="k" data-en="Topics">Témata</span><span data-en="agents, semantic layers, dbt">agenti, sémantické vrstvy, dbt</span></div><div class="mp__kv" data-s style="--s:4"><span class="k" data-en="Language">Jazyk</span><span data-en="English">angličtina</span></div><div class="mp__kv" data-s style="--s:5"><span class="k" data-en="Where">Kde</span><span data-en="Prague">Praha</span></div></div><div class="panel__f mp__f" data-s style="--s:6"><span class="eyebrow ok" data-en="No sales pitches">Bez prodejních prezentací</span></div></div></figure>
+    </div>
+  </div>
+</section>
+<section class="sec sec--tight">
+  <div class="wrap"><p class="more"><a href="/projekty" data-en="<span>←</span> All projects"><span>←</span> Všechny projekty</a></p></div>
+</section>
+
+<section class="cta">
+  <div class="wrap cta__in" data-reveal-s>
+    <h2 data-en="Got a problem nobody can crack?">Máte problém, který nikdo neumí uchopit?</h2>
+    <a class="btn" href="/kontakt" data-en="Book a consultation">Domluvit konzultaci</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap ftr__in">
+    <p class="eyebrow"><svg class="tmark" viewBox="73 31 119 236.2" aria-hidden="true"><path d="M148.556 31C150.212 31.0001 151.556 32.3432 151.556 34V66.3652C151.556 68.0219 152.899 69.3652 154.556 69.3652H189C190.657 69.3652 192 70.7085 192 72.3652V104.467C192 106.123 190.657 107.467 189 107.467H154.556C152.899 107.467 151.556 108.81 151.556 110.467V194.886C151.556 213.766 166.862 229.072 185.742 229.072H186.396C188.052 229.072 189.396 230.415 189.396 232.072V264.173C189.395 265.83 188.052 267.173 186.396 267.173H185.742C145.819 267.173 113.455 234.809 113.455 194.886V110.467C113.455 108.81 112.112 107.467 110.455 107.467H76C74.3434 107.467 73.0004 106.123 73 104.467V72.3652C73.0002 70.7085 74.3432 69.3652 76 69.3652H110.455C112.112 69.365 113.455 68.0218 113.455 66.3652V34C113.455 32.3431 114.798 31 116.455 31H148.556ZM115.193 69.623C114.089 69.6232 113.194 70.5189 113.193 71.623V105.202C113.193 106.307 114.089 107.202 115.193 107.202H149.816C150.921 107.202 151.816 106.307 151.816 105.202V71.623C151.816 70.5189 150.921 69.6233 149.816 69.623H115.193Z"/></svg><span data-en="Techtlee. From a problem to a modern solution.">Techtlee. Od problému k modernímu řešení.</span></p>
+    <nav aria-label="Stránky" data-en-al="Pages"><a class="eyebrow" href="/sluzby" data-en="Services">Služby</a><a class="eyebrow" href="/zkusenosti" data-en="Experience">Zkušenosti</a><a class="eyebrow" href="/lide" data-en="People">Lidé</a><a class="eyebrow" href="/projekty" data-en="Projects">Projekty</a><a class="eyebrow" href="/pristup" data-en="Approach">Přístup</a><a class="eyebrow" href="/kontakt" data-en="Contact">Kontakt</a></nav>
+    <p class="eyebrow">© 2026 · <a href="mailto:info@techtlee.com">info@techtlee.com</a> · <a href="tel:+420724355777">+420 724 355 777</a> · Praha</p>
+  </div>
+</footer>
+
+<script src="/assets/i18n.js"></script>
+<script src="/assets/site.js?v=20261103v"></script>
+<script src="/assets/motion.js?v=20261103v"></script>
+<script src="/assets/interact.js?v=20261103v"></script>
+<script src="/assets/semanthics.js?v=20261103v"></script>
+</body>
+</html>
