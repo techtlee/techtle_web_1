@@ -8,6 +8,7 @@
 <meta name="theme-color" content="#0A0C0B" id="tc">
 <link rel="stylesheet" href="/assets/darktec.css?v=20261103v">
 <link rel="stylesheet" href="/assets/techtlee.css?v=20261103v">
+<link rel="stylesheet" href="/assets/sluzby.css?v=20261104h">
 <script>
 /* Applied before first paint. Every visitor gets the dark site - a light
    choice saved earlier is ignored. The light theme still exists in the CSS:
@@ -90,32 +91,41 @@
     <p class="eyebrow"><span class="ix">02</span><span data-en="Services">Služby</span></p>
     <h1 data-en="What we actually do for you.">Co pro vás konkrétně děláme.</h1>
     <p class="hero__lede" data-en="Four pillars, seven services. Take one, or the whole path from decision to finished solution.">Čtyři pilíře, sedm služeb. Vezmete si jednu, nebo celou cestu od rozhodnutí po hotové řešení.</p>
-    <p class="more__links pilx__jump"><a href="#ai" data-en="AI">AI</a> <a href="#data" data-en="Data">Data</a> <a href="#vedeni" data-en="Experience &amp; leadership">Zkušenost &amp; vedení</a> <a href="#software" data-en="Custom software">Software na míru</a></p>
   </div>
 </section>
 
-<section class="sec sec--page" id="sluzby">
+<section class="sec sec--page si" id="sluzby">
   <div class="wrap">
-    <div class="svlayout">
-    <nav class="svx svx--mini" aria-label="Služby" data-en-al="Services"><a href="#ai"><b data-en="AI">AI</b></a><a href="#data"><b data-en="Data">Data</b></a><a href="#vedeni"><b data-en="Leadership">Vedení</b></a><a href="#software"><b data-en="Software">Software</b></a><a href="#sv-procesy"><b data-en="Automation">Automatizace</b></a></nav>
-    <div class="pilxs">
-      <section class="pilx" id="ai" aria-labelledby="ai-h">
-        <div class="pilx__head" data-reveal-s>
-          <div class="pilx__title"><h2 id="ai-h" data-en="AI">AI</h2><svg class="pxa pxa--ai" viewBox="0 0 200 120" aria-hidden="true"><g class="pxa__edges"><path d="M30 60L80 25M30 60L80 60M30 60L80 95M80 25L130 40M80 60L130 40M80 60L130 80M80 95L130 80M130 40L175 60M130 80L175 60"/></g><g class="pxa__nodes"><circle cx="30" cy="60" r="5"/><circle cx="80" cy="25" r="5"/><circle cx="80" cy="60" r="5"/><circle cx="80" cy="95" r="5"/><circle cx="130" cy="40" r="5"/><circle cx="130" cy="80" r="5"/><circle cx="175" cy="60" r="6"/></g><circle class="pxa__pulse" cx="0" cy="0" r="3.5"><animateMotion dur="2.6s" repeatCount="indefinite" path="M30 60L80 60L130 40L175 60"/></circle></svg></div>
-          <div class="pilx__txt">
-            <p class="lede" data-en="We turn bought licences into everyday work: specific processes, clear rules for company data and a team that actually uses AI.">Z nakoupených licencí uděláme každodenní práci: konkrétní procesy, jasná pravidla pro firemní data a tým, který AI opravdu používá.</p>
-            <p class="disc__body" data-en="Companies buy AI licences quickly, but only a few people use them and pilots stall without a decision. We start with specific processes where AI saves time - reading documents, answering questions over company data, watching for deviations. We set the rules for working with data and teach the team to use AI day to day.">Licence na AI nástroje firmy nakoupí rychle, ale používá je jen pár lidí a piloty se zaseknou bez rozhodnutí. Začínáme konkrétními procesy, kde AI ušetří čas - čtení dokumentů, odpovědi nad firemními daty, hlídání odchylek. Nastavíme pravidla pro práci s daty a naučíme tým AI používat každý den.</p>
-            <p class="mini" data-en="What it looks like in practice">Jak to vypadá v praxi</p>
+    <div class="si-f" role="group" aria-label="Filtr služeb" data-en-al="Filter services">
+      <button type="button" data-f="all" aria-pressed="true"><span data-en="All">Vše</span><sup>7</sup></button>
+      <button type="button" data-f="ai" aria-pressed="false"><span data-en="AI">AI</span><sup>1</sup></button>
+      <button type="button" data-f="data" aria-pressed="false"><span data-en="Data">Data</span><sup>1</sup></button>
+      <button type="button" data-f="vedeni" aria-pressed="false"><span data-en="Leadership">Vedení</span><sup>2</sup></button>
+      <button type="button" data-f="software" aria-pressed="false"><span data-en="Software">Software</span><sup>3</sup></button>
+    </div>
+    <div class="si-list">
+    <div class="si-g" id="ai" data-cat="ai">
+      <div class="si-head">
+        <div class="si-head__t"><h2 class="si-gn" data-en="AI implementation">Implementace AI</h2><p class="si-gl" data-en="We turn bought licences into everyday work: specific processes, clear rules for company data and a team that actually uses AI.">Z nakoupených licencí uděláme každodenní práci: konkrétní procesy, jasná pravidla pro firemní data a tým, který AI opravdu používá.</p>
+          <p class="disc__body" data-en="Companies buy AI licences quickly, but only a few people use them and pilots stall without a decision. We start with specific processes where AI saves time - reading documents, answering questions over company data, watching for deviations. We set the rules for working with data and teach the team to use AI day to day.">Licence na AI nástroje firmy nakoupí rychle, ale používá je jen pár lidí a piloty se zaseknou bez rozhodnutí. Začínáme konkrétními procesy, kde AI ušetří čas - čtení dokumentů, odpovědi nad firemními daty, hlídání odchylek. Nastavíme pravidla pro práci s daty a naučíme tým AI používat každý den.</p>
+          <div class="si-head__more"><p class="mini" data-en="What it looks like in practice">Jak to vypadá v praxi</p>
             <ul class="more__list pilx__list"><li data-en="Agents that read documents and answer questions.">Agenti, kteří čtou dokumenty a odpovídají na otázky.</li><li data-en="Agents that find a deviation and explain it.">Agenti, kteří odchylku najdou a vysvětlí.</li><li data-en="Rules and training so people actually use AI.">Pravidla a školení, aby lidé AI opravdu používali.</li></ul>
-          <p class="mini" data-en="Related">Souvisí</p><p class="more__links"><a href="https://agenticanalytics.cz" target="_blank" rel="noopener" data-en="Agentic Analytics <span>↗</span>">Agentic Analytics <span>↗</span></a></p>
-          </div>
+          <p class="mini" data-en="Related">Souvisí</p><p class="more__links"><a href="https://agenticanalytics.cz" target="_blank" rel="noopener" data-en="Agentic Analytics <span>↗</span>">Agentic Analytics <span>↗</span></a></p></div>
         </div>
-        <div class="discs">
-        <article class="disc svc" id="sv-ai" data-reveal-s>
-          <div class="disc__txt">
-            <p class="eyebrow"><span class="ix" data-en="AI">AI</span></p>
-            <h2 data-en="AI implementation and adoption">Implementace a adopce AI ve firmě</h2>
-            <p class="lede" data-en="We deploy AI where it delivers a measurable result, and make sure people in the company actually use it.">AI nasazujeme tam, kde přináší měřitelný výsledek, a staráme se o to, aby ji lidé ve firmě opravdu používali.</p>
+        <div class="si-head__art"><svg class="si-art si-art--ai" viewBox="0 0 480 320" aria-hidden="true">
+<g class="sa-edges"><path id="sai0" d="M88 70 C160 70 160 160 204 160"/><path id="sai1" d="M88 160 L204 160"/><path id="sai2" d="M88 250 C160 250 160 160 204 160"/><path id="sai3" d="M276 160 C320 160 320 70 372 70"/><path id="sai4" d="M276 160 L372 160"/><path id="sai5" d="M276 160 C320 160 320 250 372 250"/></g>
+<g class="sa-dots"><circle r="3.2"><animateMotion dur="2.6s" begin="0s" repeatCount="indefinite"><mpath href="#sai0"/></animateMotion></circle><circle r="3.2"><animateMotion dur="2.6s" begin="0.5s" repeatCount="indefinite"><mpath href="#sai1"/></animateMotion></circle><circle r="3.2"><animateMotion dur="2.6s" begin="1s" repeatCount="indefinite"><mpath href="#sai2"/></animateMotion></circle><circle r="3.2"><animateMotion dur="2.6s" begin="1.3s" repeatCount="indefinite"><mpath href="#sai3"/></animateMotion></circle><circle r="3.2"><animateMotion dur="2.6s" begin="1.8s" repeatCount="indefinite"><mpath href="#sai4"/></animateMotion></circle><circle r="3.2"><animateMotion dur="2.6s" begin="2.3s" repeatCount="indefinite"><mpath href="#sai5"/></animateMotion></circle></g>
+<g class="sa-doc" style="--d:0" transform="translate(44 46)"><rect width="44" height="48" rx="6"/><path d="M10 14h24M10 24h24M10 34h15"/></g><g class="sa-doc" style="--d:1" transform="translate(44 136)"><rect width="44" height="48" rx="6"/><path d="M10 14h24M10 24h24M10 34h15"/></g><g class="sa-doc" style="--d:2" transform="translate(44 226)"><rect width="44" height="48" rx="6"/><path d="M10 14h24M10 24h24M10 34h15"/></g>
+<g class="sa-core"><circle class="sa-pulse" cx="240" cy="160" r="36"/><circle class="sa-pulse sa-pulse--2" cx="240" cy="160" r="36"/><circle class="sa-ring" cx="240" cy="160" r="50"/><circle class="sa-disc" cx="240" cy="160" r="36"/><path class="sa-spark" d="M240 141l4.5 14.5L259 160l-14.5 4.5L240 179l-4.5-14.5L221 160l14.5-4.5z"/></g>
+<g class="sa-out sa-out--a" style="--d:0" transform="translate(372 52)"><rect width="72" height="36" rx="18"/><path d="M18 13h36M18 22h24"/></g><g class="sa-out sa-out--b" style="--d:1" transform="translate(372 142)"><rect width="72" height="36" rx="18"/><path d="M22 24l7-12 7 12z M29 17v3"/><path d="M44 18h14"/></g><g class="sa-out sa-out--c" style="--d:2" transform="translate(372 232)"><rect width="72" height="36" rx="18"/><path d="M22 18l5 5 9-10"/><path d="M44 18h14"/></g>
+</svg></div>
+      </div>
+      <ol class="si-rows" role="list">
+        <li class="si-row si-flip" id="sv-ai" data-cat="ai">
+          <div class="si-h">
+            <span class="si-t"><span class="si-name" data-en="AI adoption in your company">Adopce AI ve vaší firmě</span><span class="si-d" data-en="We deploy AI where it delivers a measurable result, and make sure people in the company actually use it.">AI nasazujeme tam, kde přináší měřitelný výsledek, a staráme se o to, aby ji lidé ve firmě opravdu používali.</span></span>
+            </div>
+          <div class="si-x__in">
             <p class="mini" data-en="When it makes sense">Kdy to dává smysl</p>
             <p class="disc__body" data-en="It fits when you want to use AI but do not know where to start - or when you have tried it and people do not use it.">Hodí se, když chcete AI využít, ale nevíte kde začít - nebo když jste ji už zkusili a lidé ji nepoužívají.</p>
             <div class="more__grid">
@@ -123,27 +133,32 @@
               <div><p class="mini" data-en="What you end up with">Na konci máte</p><p class="more__end" data-en="AI that runs in daily operations, not just in a presentation.">AI, která běží v každodenním provozu, ne jen v prezentaci.</p><p class="mini" data-en="Related">Souvisí</p><p class="more__links"><a href="/projekty/agentic-analytics" data-en="Agentic Analytics <span>→</span>">Agentic Analytics <span>→</span></a><a href="/pristup" data-en="How we work <span>→</span>">Jak pracujeme <span>→</span></a></p></div>
             </div>
           </div>
-          <figure class="disc__viz"><div class="panel mp mp--adopt"><div class="panel__h"><b data-en="AI adoption · sales team">Adopce AI · obchodní tým</b><span class="eyebrow" data-en="Example">Ukázka</span></div><div class="mp__body"><div class="mp__kv" data-s style="--s:1"><span class="k" data-en="Paid AI licences">Zaplacené licence AI</span><span>40</span></div><div class="mp__kv" data-s style="--s:2"><span class="k" data-en="Actively used by">Aktivně používá</span><span class="sw" data-s style="--s:2"><span class="was" data-en="6 people">6 lidí</span><span class="now" data-en="34 people">34 lidí</span></span></div><div class="mp__kv" data-s style="--s:3"><span class="k" data-en="Company data in private AI tools">Firemní data v soukromých AI nástrojích</span><span class="sw" data-s style="--s:3"><span class="was" data-en="yes">ano</span><span class="now" data-en="no">ne</span></span></div><div class="mp__kv" data-s style="--s:4"><span class="k" data-en="Usage rules">Pravidla používání</span><span class="sw" data-s style="--s:4"><span class="was" data-en="missing">chybí</span><span class="now" data-en="approved">schválená</span></span></div><div class="mp__kv" data-s style="--s:5"><span class="k">Pilot</span><span class="sw" data-s style="--s:5"><span class="was" data-en="3 months, no decision">3 měsíce bez rozhodnutí</span><span class="now" data-en="in operation">v provozu</span></span></div></div><div class="panel__f mp__f" data-s style="--s:7"><span class="eyebrow ok" data-en="From pilot to daily work">Od pilotu k každodenní práci</span></div></div></figure>
-        </article>
-        </div>
-      </section>
-      <section class="pilx" id="data" aria-labelledby="data-h">
-        <div class="pilx__head" data-reveal-s>
-          <div class="pilx__title"><h2 id="data-h" data-en="Data">Data</h2><svg class="pxa pxa--data" viewBox="0 0 200 120" aria-hidden="true"><line class="pxa__axis" x1="20" y1="104" x2="190" y2="104"/><g class="pxa__bars"><rect x="28" y="64" width="18" height="40"/><rect x="58" y="48" width="18" height="56"/><rect x="88" y="72" width="18" height="32"/><rect x="118" y="36" width="18" height="68"/><rect x="148" y="22" width="18" height="82"/></g><path class="pxa__trend" d="M37 58L67 42L97 66L127 30L157 16"/></svg></div>
-          <div class="pilx__txt">
-            <p class="lede" data-en="We build a data foundation the whole company draws the same numbers from. Our Agentic Analytics service watches the business before a deviation becomes a problem.">Postavíme datový základ, ze kterého celá firma čerpá stejná čísla. Naše služba Agentic Analytics hlídá vývoj firmy dřív, než se z odchylky stane problém.</p>
-            <p class="disc__body" data-en="Most companies have plenty of data, but every department counts differently. So first we give the data a firm foundation - connected sources and one definition per metric. Reporting, overviews and forecasts then stand on it, and so does any AI that comes later.">Většina firem má dat dost, ale každé oddělení počítá jinak. Nejdřív proto dáme datům pevný základ - propojené zdroje a jednu definici každé metriky. Na tom pak stojí reporting, přehledy i předpovědi a stejně tak AI, která přijde později.</p>
-            <p class="mini" data-en="What it looks like in practice">Jak to vypadá v praxi</p>
+          <figure class="si-viz" data-reveal-s><div class="panel mp mp--adopt"><div class="panel__h"><b data-en="AI adoption · sales team">Adopce AI · obchodní tým</b><span class="eyebrow" data-en="Example">Ukázka</span></div><div class="mp__body"><div class="mp__kv" data-s style="--s:1"><span class="k" data-en="Paid AI licences">Zaplacené licence AI</span><span>40</span></div><div class="mp__kv" data-s style="--s:2"><span class="k" data-en="Actively used by">Aktivně používá</span><span class="sw" data-s style="--s:2"><span class="was" data-en="6 people">6 lidí</span><span class="now" data-en="34 people">34 lidí</span></span></div><div class="mp__kv" data-s style="--s:3"><span class="k" data-en="Company data in private AI tools">Firemní data v soukromých AI nástrojích</span><span class="sw" data-s style="--s:3"><span class="was" data-en="yes">ano</span><span class="now" data-en="no">ne</span></span></div><div class="mp__kv" data-s style="--s:4"><span class="k" data-en="Usage rules">Pravidla používání</span><span class="sw" data-s style="--s:4"><span class="was" data-en="missing">chybí</span><span class="now" data-en="approved">schválená</span></span></div><div class="mp__kv" data-s style="--s:5"><span class="k">Pilot</span><span class="sw" data-s style="--s:5"><span class="was" data-en="3 months, no decision">3 měsíce bez rozhodnutí</span><span class="now" data-en="in operation">v provozu</span></span></div></div><div class="panel__f mp__f" data-s style="--s:7"><span class="eyebrow ok" data-en="From pilot to daily work">Od pilotu k každodenní práci</span></div></div></figure>
+        </li>
+      </ol>
+    </div>
+    <div class="si-g" id="data" data-cat="data">
+      <div class="si-head">
+        <div class="si-head__t"><h2 class="si-gn" data-en="Data">Data</h2><p class="si-gl" data-en="We build a data foundation the whole company draws the same numbers from. Our Agentic Analytics service watches the business before a deviation becomes a problem.">Postavíme datový základ, ze kterého celá firma čerpá stejná čísla. Naše služba Agentic Analytics hlídá vývoj firmy dřív, než se z odchylky stane problém.</p>
+          <p class="disc__body" data-en="Most companies have plenty of data, but every department counts differently. So first we give the data a firm foundation - connected sources and one definition per metric. Reporting, overviews and forecasts then stand on it, and so does any AI that comes later.">Většina firem má dat dost, ale každé oddělení počítá jinak. Nejdřív proto dáme datům pevný základ - propojené zdroje a jednu definici každé metriky. Na tom pak stojí reporting, přehledy i předpovědi a stejně tak AI, která přijde později.</p>
+          <div class="si-head__more"><p class="mini" data-en="What it looks like in practice">Jak to vypadá v praxi</p>
             <ul class="more__list pilx__list"><li data-en="One definition of metrics for management, BI and AI.">Jedna definice metrik pro management, BI i AI.</li><li data-en="Reporting that builds itself.">Reporting, který se skládá sám.</li><li data-en="An overview of the business every morning, not once a month.">Přehled o firmě každé ráno, ne jednou měsíčně.</li></ul>
-          <p class="mini" data-en="Related">Souvisí</p><p class="more__links"><a href="/projekty/agentic-analytics" data-en="Agentic Analytics <span>→</span>">Agentic Analytics <span>→</span></a></p>
-          </div>
+          <p class="mini" data-en="Related">Souvisí</p><p class="more__links"><a href="/projekty/agentic-analytics" data-en="Agentic Analytics <span>→</span>">Agentic Analytics <span>→</span></a></p></div>
         </div>
-        <div class="discs">
-        <article class="disc svc" id="sv-data" data-reveal-s>
-          <div class="disc__txt">
-            <p class="eyebrow"><span class="ix" data-en="Data">Data</span></p>
-            <h2 data-en="Data engineering and analytics">Datové inženýrství a analytika</h2>
-            <p class="lede" data-en="We collect and connect your data and turn it into insight and forecasts - with one definition per metric, so everyone works with the same numbers.">Data sbíráme, propojujeme a měníme v přehledy a předpovědi - s jednou definicí každé metriky, aby všichni pracovali se stejnými čísly.</p>
+        <div class="si-head__art"><svg class="si-art si-art--data" viewBox="0 0 480 320" aria-hidden="true">
+<g class="sa-edges"><path id="sda0" d="M70 84 C120 84 120 150 152 150"/><path id="sda1" d="M70 166 L152 166"/><path id="sda2" d="M70 248 C120 248 120 182 152 182"/><path id="sda3" d="M232 166 L300 166"/></g>
+<g class="sa-dots"><circle r="3.2"><animateMotion dur="2.2s" begin="0s" repeatCount="indefinite"><mpath href="#sda0"/></animateMotion></circle><circle r="3.2"><animateMotion dur="2.2s" begin="0.6s" repeatCount="indefinite"><mpath href="#sda1"/></animateMotion></circle><circle r="3.2"><animateMotion dur="2.2s" begin="1.2s" repeatCount="indefinite"><mpath href="#sda2"/></animateMotion></circle><circle r="3.2"><animateMotion dur="2.2s" begin="0.9s" repeatCount="indefinite"><mpath href="#sda3"/></animateMotion></circle></g>
+<g class="sa-cyl"><path d="M24 70 v22 a22 7.04 0 0 0 44 0 v-22"/><ellipse cx="46" cy="70" rx="22" ry="7.04"/><path class="sa-cyl__m" d="M24 81.0 a22 7.04 0 0 0 44 0"/></g><g class="sa-cyl"><path d="M24 152 v22 a22 7.04 0 0 0 44 0 v-22"/><ellipse cx="46" cy="152" rx="22" ry="7.04"/><path class="sa-cyl__m" d="M24 163.0 a22 7.04 0 0 0 44 0"/></g><g class="sa-cyl"><path d="M24 234 v22 a22 7.04 0 0 0 44 0 v-22"/><ellipse cx="46" cy="234" rx="22" ry="7.04"/><path class="sa-cyl__m" d="M24 245.0 a22 7.04 0 0 0 44 0"/></g>
+<g class="sa-cyl sa-cyl--big"><path d="M152 118 v86 a40 12.8 0 0 0 80 0 v-86"/><ellipse cx="192" cy="118" rx="40" ry="12.8"/><path class="sa-cyl__m" d="M152 161.0 a40 12.8 0 0 0 80 0"/></g>
+<g class="sa-chart"><rect class="sa-frame" x="300" y="70" width="168" height="186" rx="12"/><path class="sa-axis" d="M314 238h140"/><rect class="sa-bar" style="--d:0" x="318" y="184" width="14" height="54" rx="2"/><rect class="sa-bar" style="--d:1" x="340" y="160" width="14" height="78" rx="2"/><rect class="sa-bar" style="--d:2" x="362" y="172" width="14" height="66" rx="2"/><rect class="sa-bar" style="--d:3" x="384" y="134" width="14" height="104" rx="2"/><rect class="sa-bar" style="--d:4" x="406" y="146" width="14" height="92" rx="2"/><rect class="sa-bar" style="--d:5" x="428" y="110" width="14" height="128" rx="2"/><path class="sa-trend" d="M325 168 L347 150 L369 158 L391 124 L413 132 L435 98"/><circle class="sa-tip" cx="435" cy="98" r="5"/></g>
+</svg></div>
+      </div>
+      <ol class="si-rows" role="list">
+        <li class="si-row si-flip" id="sv-data" data-cat="data">
+          <div class="si-h">
+            <span class="si-t"><span class="si-name" data-en="Data engineering and analytics">Datové inženýrství a analytika</span><span class="si-d" data-en="We collect and connect your data and turn it into insight and forecasts - with one definition per metric, so everyone works with the same numbers.">Data sbíráme, propojujeme a měníme v přehledy a předpovědi - s jednou definicí každé metriky, aby všichni pracovali se stejnými čísly.</span></span>
+            </div>
+          <div class="si-x__in">
             <p class="mini" data-en="When it makes sense">Kdy to dává smysl</p>
             <p class="disc__body" data-en="It fits when reporting is put together by hand, every department has different numbers, or an answer from the data takes days.">Hodí se, když se reporting skládá ručně, každé oddělení má jiná čísla nebo když na odpověď z dat čekáte dny.</p>
             <div class="more__grid">
@@ -151,27 +166,31 @@
               <div><p class="mini" data-en="What you end up with">Na konci máte</p><p class="more__end" data-en="One truth about the numbers and answers without queuing for an analyst.">Jednu pravdu o číslech a odpovědi bez fronty na analytika.</p><p class="mini" data-en="Related">Souvisí</p><p class="more__links"><a href="/projekty/agentic-analytics" data-en="Agentic Analytics <span>→</span>">Agentic Analytics <span>→</span></a></p></div>
             </div>
           </div>
-          <figure class="disc__viz"><div class="panel mp "><div class="panel__h"><b data-en="Overview · October">Přehled · říjen</b><span class="eyebrow" data-en="Example">Ukázka</span></div><div class="mp__tiles"><div class="mp__tile" data-s style="--s:1"><span class="eyebrow" data-en="Revenue">Tržby</span><b data-en="14.8 M">14,8 mil.</b><span class="up" data-en="+2.9 %">+2,9 %</span></div><div class="mp__tile" data-s style="--s:2"><span class="eyebrow" data-en="Gross margin">Hrubá marže</span><b data-en="31.4 %">31,4 %</b><span class="up" data-en="+0.4 pp">+0,4 pb</span></div><div class="mp__tile" data-s style="--s:3"><span class="eyebrow" data-en="Orders">Objednávky</span><b data-en="1,240">1 240</b><span class="dn" data-en="−1.2 %">−1,2 %</span></div></div><svg class="mp__spark" viewBox="0 0 300 60" aria-hidden="true" data-s style="--s:4"><path pathLength="1" d="M0 44 L30 40 L60 42 L90 34 L120 36 L150 28 L180 30 L210 22 L240 26 L270 16 L300 12"/></svg><div class="panel__f mp__f" data-s style="--s:6"><span class="eyebrow " data-en="Sources: ERP · e-shop · CRM">Zdroje: ERP · e-shop · CRM</span><span class="eyebrow" data-en="1 metric definition">1 definice metrik</span></div></div></figure>
-        </article>
-        </div>
-      </section>
-      <section class="pilx" id="vedeni" aria-labelledby="vedeni-h">
-        <div class="pilx__head" data-reveal-s>
-          <div class="pilx__title"><h2 id="vedeni-h" data-en="Experience &amp; leadership">Zkušenost &amp; vedení</h2><svg class="pxa pxa--lead" viewBox="0 0 200 120" aria-hidden="true"><path class="pxa__opt" d="M30 60C80 60 90 20 175 20"/><path class="pxa__opt" d="M30 60C80 60 90 100 175 100"/><path class="pxa__pick" d="M30 60C80 60 100 60 175 60"/><circle class="pxa__dot" cx="30" cy="60" r="6"/><circle class="pxa__end" cx="175" cy="20" r="4"/><circle class="pxa__end" cx="175" cy="100" r="4"/><circle class="pxa__win" cx="175" cy="60" r="6"/></svg></div>
-          <div class="pilx__txt">
-            <p class="lede" data-en="We have run both small and large companies by the numbers. We look at your problem the way a COO, CFO or CEO does - what the decision brings and who will live with it.">Sami jsme řídili malé i velké firmy pomocí čísel. Na váš problém se díváme pohledem COO, CFO a CEO - co rozhodnutí přinese a kdo s ním bude žít.</p>
-            <p class="disc__body" data-en="Ivan Vodička has led companies for almost 30 years as CEO and CFO - in e-commerce, retail, financial services and venture building. Turnarounds, post-merger integrations, digital transformation. We bring that experience into every project: first we understand the business, only then do we deal with the technology.">Ivan Vodička vedl firmy téměř 30 let v rolích CEO a CFO - v e-commerce, retailu, finančních službách i venture buildingu. Turnaroundy, integrace po akvizicích, digitální transformace. Tuhle zkušenost přinášíme do každého projektu: nejdřív rozumíme byznysu, teprve pak řešíme technologii.</p>
-            <p class="mini" data-en="What it looks like in practice">Jak to vypadá v praxi</p>
+          <figure class="si-viz" data-reveal-s><div class="panel mp "><div class="panel__h"><b data-en="Overview · October">Přehled · říjen</b><span class="eyebrow" data-en="Example">Ukázka</span></div><div class="mp__tiles"><div class="mp__tile" data-s style="--s:1"><span class="eyebrow" data-en="Revenue">Tržby</span><b data-en="14.8 M">14,8 mil.</b><span class="up" data-en="+2.9 %">+2,9 %</span></div><div class="mp__tile" data-s style="--s:2"><span class="eyebrow" data-en="Gross margin">Hrubá marže</span><b data-en="31.4 %">31,4 %</b><span class="up" data-en="+0.4 pp">+0,4 pb</span></div><div class="mp__tile" data-s style="--s:3"><span class="eyebrow" data-en="Orders">Objednávky</span><b data-en="1,240">1 240</b><span class="dn" data-en="−1.2 %">−1,2 %</span></div></div><svg class="mp__spark" viewBox="0 0 300 60" aria-hidden="true" data-s style="--s:4"><path pathLength="1" d="M0 44 L30 40 L60 42 L90 34 L120 36 L150 28 L180 30 L210 22 L240 26 L270 16 L300 12"/></svg><div class="panel__f mp__f" data-s style="--s:6"><span class="eyebrow " data-en="Sources: ERP · e-shop · CRM">Zdroje: ERP · e-shop · CRM</span><span class="eyebrow" data-en="1 metric definition">1 definice metrik</span></div></div></figure>
+        </li>
+      </ol>
+    </div>
+    <div class="si-g" id="vedeni" data-cat="vedeni">
+      <div class="si-head">
+        <div class="si-head__t"><h2 class="si-gn" data-en="Experience &amp; leadership">Zkušenost &amp; vedení</h2><p class="si-gl" data-en="We have run both small and large companies by the numbers. We look at your problem the way a COO, CFO or CEO does - what the decision brings and who will live with it.">Sami jsme řídili malé i velké firmy pomocí čísel. Na váš problém se díváme pohledem COO, CFO a CEO - co rozhodnutí přinese a kdo s ním bude žít.</p>
+          <p class="disc__body" data-en="Ivan Vodička has led companies for almost 30 years as CEO and CFO - in e-commerce, retail, financial services and venture building. Turnarounds, post-merger integrations, digital transformation. We bring that experience into every project: first we understand the business, only then do we deal with the technology.">Ivan Vodička vedl firmy téměř 30 let v rolích CEO a CFO - v e-commerce, retailu, finančních službách i venture buildingu. Turnaroundy, integrace po akvizicích, digitální transformace. Tuhle zkušenost přinášíme do každého projektu: nejdřív rozumíme byznysu, teprve pak řešíme technologii.</p>
+          <div class="si-head__more"><p class="mini" data-en="What it looks like in practice">Jak to vypadá v praxi</p>
             <ul class="more__list pilx__list"><li data-en="Decisions backed by numbers, not by gut feel.">Rozhodnutí podložená čísly, ne dojmem.</li><li data-en="The impact of each option on cash flow, people and operations.">Dopad každé varianty na cash flow, lidi a provoz.</li><li data-en="A sparring partner for owners and management.">Sparring partner pro majitele a management.</li></ul>
-          <p class="mini" data-en="Related">Souvisí</p><p class="more__links"><a href="/lide" data-en="The people of Techtlee <span>→</span>">Lidé z Techtlee <span>→</span></a></p>
-          </div>
+          <p class="mini" data-en="Related">Souvisí</p><p class="more__links"><a href="/lide" data-en="The people of Techtlee <span>→</span>">Lidé z Techtlee <span>→</span></a></p></div>
         </div>
-        <div class="discs">
-        <article class="disc svc" id="sv-delivery" data-reveal-s>
-          <div class="disc__txt">
-            <p class="eyebrow"><span class="ix" data-en="Delivery">Delivery</span></p>
-            <h2 data-en="Project management and delivery">Projektové řízení a delivery</h2>
-            <p class="lede" data-en="Projects are rarely slowed down by the technology - it is how they are managed. We take the lead from brief to handover into operations.">Projekty většinou nezdrží technologie, ale způsob, jakým se řídí. Převezmeme vedení od zadání až po předání do provozu.</p>
+        <div class="si-head__art"><svg class="si-art si-art--lead" viewBox="0 0 480 320" aria-hidden="true">
+<g class="sa-edges sa-edges--dash"><path d="M70 160 C200 160 220 70 351 70"/><path d="M70 160 L351 160"/><path d="M70 160 C200 160 220 250 351 250"/></g>
+<g class="sa-try"><path class="sa-try--a" pathLength="1" d="M70 160 C200 160 220 70 351 70"/><path class="sa-try--b" pathLength="1" d="M70 160 L351 160"/><path class="sa-try--c" pathLength="1" d="M70 160 C200 160 220 250 351 250"/></g>
+<g class="sa-start"><circle class="sa-pulse" cx="56" cy="160" r="16"/><circle class="sa-disc" cx="56" cy="160" r="16"/><path d="M50 160h12M57 154l6 6-6 6"/></g>
+<g class="sa-opt sa-opt--a" transform="translate(366 70)"><circle r="15"/><text y="5">A</text><rect class="sa-m" x="28" y="-9" width="64" height="5" rx="2.5"/><rect class="sa-m" x="28" y="-1" width="30" height="5" rx="2.5"/><rect class="sa-m" x="28" y="7" width="52" height="5" rx="2.5"/></g><g class="sa-opt sa-opt--b" transform="translate(366 160)"><circle r="15"/><text y="5">B</text><rect class="sa-m" x="28" y="-9" width="34" height="5" rx="2.5"/><rect class="sa-m" x="28" y="-1" width="46" height="5" rx="2.5"/><rect class="sa-m" x="28" y="7" width="30" height="5" rx="2.5"/></g><g class="sa-opt sa-opt--c" transform="translate(366 250)"><circle r="15"/><text y="5">C</text><rect class="sa-m" x="28" y="-9" width="48" height="5" rx="2.5"/><rect class="sa-m" x="28" y="-1" width="56" height="5" rx="2.5"/><rect class="sa-m" x="28" y="7" width="18" height="5" rx="2.5"/></g>
+</svg></div>
+      </div>
+      <ol class="si-rows" role="list">
+        <li class="si-row si-flip" id="sv-delivery" data-cat="vedeni">
+          <div class="si-h">
+            <span class="si-t"><span class="si-name" data-en="Project management and delivery">Projektové řízení a delivery</span><span class="si-d" data-en="Projects are rarely slowed down by the technology - it is how they are managed. We take the lead from brief to handover into operations.">Projekty většinou nezdrží technologie, ale způsob, jakým se řídí. Převezmeme vedení od zadání až po předání do provozu.</span></span>
+            </div>
+          <div class="si-x__in">
             <p class="mini" data-en="When it makes sense">Kdy to dává smysl</p>
             <p class="disc__body" data-en="It fits when a project has no real owner, suppliers pass responsibility back and forth, or deadlines keep slipping.">Hodí se, když projekt nemá skutečného vlastníka, dodavatelé si přehazují odpovědnost nebo termíny opakovaně ujíždějí.</p>
             <div class="more__grid">
@@ -179,13 +198,13 @@
               <div><p class="mini" data-en="What you end up with">Na konci máte</p><p class="more__end" data-en="A project delivered on time and on budget, handed over to operations.">Projekt dodaný v termínu a rozpočtu a předaný do provozu.</p><p class="mini" data-en="Related">Souvisí</p><p class="more__links"><a href="/lide" data-en="Josef Vodička <span>→</span>">Josef Vodička <span>→</span></a><a href="/pristup" data-en="How we work <span>→</span>">Jak pracujeme <span>→</span></a></p></div>
             </div>
           </div>
-          <figure class="disc__viz"><div class="panel mp "><div class="panel__h"><b data-en="Project status">Stav projektu</b><span class="eyebrow" data-en="Example">Ukázka</span></div><div class="mp__st"><span class="st done" data-s style="--s:1"><i></i><span data-en="Brief">Zadání</span></span><span class="st done" data-s style="--s:2"><i></i><span data-en="Prototype">Prototyp</span></span><span class="st now" data-s style="--s:3"><i></i><span data-en="Build">Vývoj</span></span><span class="st todo" data-s style="--s:4"><i></i><span data-en="Handover">Předání</span></span></div><div class="mp__body"><div class="mp__kv" data-s style="--s:5"><span class="k" data-en="Deadline">Termín</span><span class="up" data-en="on track">držíme</span></div><div class="mp__kv" data-s style="--s:6"><span class="k" data-en="Budget">Rozpočet</span><span data-en="92 % of plan">92 % plánu</span></div><div class="mp__kv" data-s style="--s:7"><span class="k" data-en="Risks">Rizika</span><span class="dn" data-en="1 open">1 otevřené</span></div><div class="mp__kv" data-s style="--s:8"><span class="k" data-en="Next decision">Další rozhodnutí</span><span data-en="Tuesday">úterý</span></div></div><div class="panel__f mp__f" data-s style="--s:9"><span class="eyebrow ok" data-en="Weekly report sent to management">Týdenní report odeslán vedení</span></div></div></figure>
-        </article>
-        <article class="disc svc disc--flip" id="sv-poradenstvi" data-reveal-s>
-          <div class="disc__txt">
-            <p class="eyebrow"><span class="ix" data-en="Advisory">Poradenství</span></p>
-            <h2 data-en="Advisory and mentoring">Poradenství a mentoring</h2>
-            <p class="lede" data-en="An outside view and structure for decisions no manual covers. We work directly with owners and management - as a sparring partner, mentor or interim advisor.">Pohled zvenčí a struktura pro rozhodnutí, která nejsou v žádné příručce. Pracujeme přímo s majiteli a managementem - jako sparring partner, mentor nebo interim poradce.</p>
+          <figure class="si-viz" data-reveal-s><div class="panel mp "><div class="panel__h"><b data-en="Project status">Stav projektu</b><span class="eyebrow" data-en="Example">Ukázka</span></div><div class="mp__st"><span class="st done" data-s style="--s:1"><i></i><span data-en="Brief">Zadání</span></span><span class="st done" data-s style="--s:2"><i></i><span data-en="Prototype">Prototyp</span></span><span class="st now" data-s style="--s:3"><i></i><span data-en="Build">Vývoj</span></span><span class="st todo" data-s style="--s:4"><i></i><span data-en="Handover">Předání</span></span></div><div class="mp__body"><div class="mp__kv" data-s style="--s:5"><span class="k" data-en="Deadline">Termín</span><span class="up" data-en="on track">držíme</span></div><div class="mp__kv" data-s style="--s:6"><span class="k" data-en="Budget">Rozpočet</span><span data-en="92 % of plan">92 % plánu</span></div><div class="mp__kv" data-s style="--s:7"><span class="k" data-en="Risks">Rizika</span><span class="dn" data-en="1 open">1 otevřené</span></div><div class="mp__kv" data-s style="--s:8"><span class="k" data-en="Next decision">Další rozhodnutí</span><span data-en="Tuesday">úterý</span></div></div><div class="panel__f mp__f" data-s style="--s:9"><span class="eyebrow ok" data-en="Weekly report sent to management">Týdenní report odeslán vedení</span></div></div></figure>
+        </li>
+        <li class="si-row" id="sv-poradenstvi" data-cat="vedeni">
+          <div class="si-h">
+            <span class="si-t"><span class="si-name" data-en="Advisory and mentoring">Poradenství a mentoring</span><span class="si-d" data-en="An outside view and structure for decisions no manual covers. We work directly with owners and management - as a sparring partner, mentor or interim advisor.">Pohled zvenčí a struktura pro rozhodnutí, která nejsou v žádné příručce. Pracujeme přímo s majiteli a managementem - jako sparring partner, mentor nebo interim poradce.</span></span>
+            </div>
+          <div class="si-x__in">
             <p class="mini" data-en="When it makes sense">Kdy to dává smysl</p>
             <p class="disc__body" data-en="It fits when you face a decision that will shape the company for years - expansion, restructuring, a change of leadership or a new business model - and want to talk it through with someone who has run such situations himself.">Hodí se, když stojíte před rozhodnutím, které firmu ovlivní na roky - expanze, restrukturalizace, změna vedení nebo nový obchodní model - a chcete ho probrat s někým, kdo podobné situace sám řídil.</p>
             <div class="more__grid">
@@ -193,27 +212,38 @@
               <div><p class="mini" data-en="What you end up with">Na konci máte</p><p class="more__end" data-en="A clear decision, a plan of steps and someone who sees the execution through with you.">Jasné rozhodnutí, plán kroků a někoho, kdo s vámi dotáhne realizaci.</p><p class="mini" data-en="Related">Souvisí</p><p class="more__links"><a href="/lide" data-en="Ivan Vodička <span>→</span>">Ivan Vodička <span>→</span></a></p></div>
             </div>
           </div>
-          <figure class="disc__viz"><div class="panel mp "><div class="panel__h"><b data-en="Decision options">Varianty rozhodnutí</b><span class="eyebrow" data-en="Example">Ukázka</span></div><table><thead><tr><th data-en="Option">Varianta</th><th class="r">Cash flow</th><th class="r" data-en="People">Lidé</th><th class="r" data-en="Risk">Riziko</th></tr></thead><tbody><tr class="" data-s style="--s:1"><td class="k" data-en="A · Own branch">A · Vlastní pobočka</td><td class="r" data-en="−4.2 M">−4,2 mil.</td><td class="r">+6</td><td class="r dn" data-en="high">vysoké</td></tr><tr class="" data-s style="--s:2"><td class="k">B · Partner</td><td class="r" data-en="−0.8 M">−0,8 mil.</td><td class="r">+1</td><td class="r" data-en="medium">střední</td></tr><tr class="hl" data-s style="--s:3"><td class="k" data-en="C · Online sales">C · Online prodej</td><td class="r" data-en="−1.5 M">−1,5 mil.</td><td class="r">+2</td><td class="r up" data-en="low">nízké</td></tr></tbody></table><div class="panel__f mp__f" data-s style="--s:5"><span class="eyebrow ok" data-en="Recommendation: option C">Doporučení: varianta C</span></div></div></figure>
-        </article>
-        </div>
-      </section>
-      <section class="pilx" id="software" aria-labelledby="software-h">
-        <div class="pilx__head" data-reveal-s>
-          <div class="pilx__title"><h2 id="software-h" data-en="Custom software">Software na míru</h2><svg class="pxa pxa--soft" viewBox="0 0 200 120" aria-hidden="true"><g class="pxa__blocks"><rect x="24" y="74" width="46" height="26" rx="5"/><rect x="77" y="74" width="46" height="26" rx="5"/><rect x="130" y="74" width="46" height="26" rx="5"/><rect x="50" y="42" width="46" height="26" rx="5"/><rect x="103" y="42" width="46" height="26" rx="5"/><rect x="77" y="10" width="46" height="26" rx="5"/></g></svg></div>
-          <div class="pilx__txt">
-            <p class="lede" data-en="When the solution needs its own tool, we build it - from first prototype to production. That is how Revizář.cz came to be.">Když řešení potřebuje vlastní nástroj, postavíme ho - od prvního prototypu po produkci. Tak vznikl i Revizář.cz.</p>
-            <p class="disc__body" data-en="When off-the-shelf software does not fit, people work around it with Excel and e-mail. We build tools for your process instead. We start with a quick prototype you can decide on and carry on into production - with tests, deployment and ongoing care. Revizář.cz is an example of the whole journey.">Když krabicový software nesedí, lidé ho obcházejí Excelem a e-maily. My stavíme nástroje přímo pro váš proces. Začínáme rychlým prototypem, na kterém se dá rozhodnout, a pokračujeme až do produkce - s testy, nasazením a další péčí. Revizář.cz je příklad celé té cesty.</p>
-            <p class="mini" data-en="What it looks like in practice">Jak to vypadá v praxi</p>
+          <figure class="si-viz" data-reveal-s><div class="panel mp "><div class="panel__h"><b data-en="Decision options">Varianty rozhodnutí</b><span class="eyebrow" data-en="Example">Ukázka</span></div><table><thead><tr><th data-en="Option">Varianta</th><th class="r">Cash flow</th><th class="r" data-en="People">Lidé</th><th class="r" data-en="Risk">Riziko</th></tr></thead><tbody><tr class="" data-s style="--s:1"><td class="k" data-en="A · Own branch">A · Vlastní pobočka</td><td class="r" data-en="−4.2 M">−4,2 mil.</td><td class="r">+6</td><td class="r dn" data-en="high">vysoké</td></tr><tr class="" data-s style="--s:2"><td class="k">B · Partner</td><td class="r" data-en="−0.8 M">−0,8 mil.</td><td class="r">+1</td><td class="r" data-en="medium">střední</td></tr><tr class="hl" data-s style="--s:3"><td class="k" data-en="C · Online sales">C · Online prodej</td><td class="r" data-en="−1.5 M">−1,5 mil.</td><td class="r">+2</td><td class="r up" data-en="low">nízké</td></tr></tbody></table><div class="panel__f mp__f" data-s style="--s:5"><span class="eyebrow ok" data-en="Recommendation: option C">Doporučení: varianta C</span></div></div></figure>
+        </li>
+      </ol>
+    </div>
+    <div class="si-g" id="software" data-cat="software">
+      <div class="si-head si-flip">
+        <div class="si-head__t"><h2 class="si-gn" data-en="Custom software">Software na míru</h2><p class="si-gl" data-en="When the solution needs its own tool, we build it - from first prototype to production. That is how Revizář.cz came to be.">Když řešení potřebuje vlastní nástroj, postavíme ho - od prvního prototypu po produkci. Tak vznikl i Revizář.cz.</p>
+          <p class="disc__body" data-en="When off-the-shelf software does not fit, people work around it with Excel and e-mail. We build tools for your process instead. We start with a quick prototype you can decide on and carry on into production - with tests, deployment and ongoing care. Revizář.cz is an example of the whole journey.">Když krabicový software nesedí, lidé ho obcházejí Excelem a e-maily. My stavíme nástroje přímo pro váš proces. Začínáme rychlým prototypem, na kterém se dá rozhodnout, a pokračujeme až do produkce - s testy, nasazením a další péčí. Revizář.cz je příklad celé té cesty.</p>
+          <div class="si-head__more"><p class="mini" data-en="What it looks like in practice">Jak to vypadá v praxi</p>
             <ul class="more__list pilx__list"><li data-en="A prototype before anything is invested in the full build.">Prototyp dřív, než se investuje do plné stavby.</li><li data-en="Apps on the web and on the phone.">Aplikace na webu i v mobilu.</li><li data-en="Connections to the systems you already have.">Napojení na systémy, které už máte.</li></ul>
-          <p class="mini" data-en="Related">Souvisí</p><p class="more__links"><a href="/projekty#revizar" data-en="Revizář <span>→</span>">Revizář <span>→</span></a></p>
-          </div>
+          <p class="mini" data-en="Related">Souvisí</p><p class="more__links"><a href="/projekty#revizar" data-en="Revizář <span>→</span>">Revizář <span>→</span></a></p></div>
         </div>
-        <div class="discs">
-        <article class="disc svc" id="sv-aplikace" data-reveal-s>
-          <div class="disc__txt">
-            <p class="eyebrow"><span class="ix" data-en="Build">Build</span></p>
-            <h2 data-en="Application development">Vývoj aplikací</h2>
-            <p class="lede" data-en="Sometimes off-the-shelf software is not enough. You do not adapt to the software - the software adapts to you. From first prototype to production.">Někdy krabicový software nestačí. Nepřizpůsobujete vy sebe softwaru - software se přizpůsobí vám. Od prvního prototypu po produkci.</p>
+        <div class="si-head__art"><svg class="si-art si-art--soft" viewBox="0 0 480 320" aria-hidden="true">
+<g class="sa-code" transform="translate(28 110)"><path class="sa-br" d="M18 14 L4 50 L18 86 M66 14 L80 50 L66 86"/><rect class="sa-ln" style="--d:0" x="26" y="30" width="30" height="5" rx="2.5"/><rect class="sa-ln" style="--d:1" x="26" y="46" width="22" height="5" rx="2.5"/><rect class="sa-ln" style="--d:2" x="26" y="62" width="34" height="5" rx="2.5"/></g>
+<g class="sa-edges"><path id="ssw0" d="M118 160 L176 160"/></g>
+<g class="sa-dots"><circle r="3.2"><animateMotion dur="1.4s" repeatCount="indefinite"><mpath href="#ssw0"/></animateMotion></circle><circle r="3.2"><animateMotion dur="1.4s" begin=".7s" repeatCount="indefinite"><mpath href="#ssw0"/></animateMotion></circle></g>
+<g class="sa-win"><rect class="sa-frame" x="176" y="52" width="288" height="216" rx="14"/><path class="sa-bar-top" d="M176 80h288"/><circle cx="194" cy="66" r="4"/><circle cx="208" cy="66" r="4"/><circle cx="222" cy="66" r="4"/>
+<rect class="sa-pc" style="--d:0" x="190" y="94" width="56" height="160" rx="8"/>
+<rect class="sa-pc" style="--d:1" x="258" y="94" width="192" height="26" rx="7"/>
+<rect class="sa-pc" style="--d:2" x="258" y="132" width="58" height="52" rx="8"/>
+<rect class="sa-pc" style="--d:3" x="325" y="132" width="58" height="52" rx="8"/>
+<rect class="sa-pc sa-pc--hl" style="--d:4" x="392" y="132" width="58" height="52" rx="8"/>
+<rect class="sa-pc" style="--d:5" x="258" y="196" width="192" height="58" rx="8"/>
+<path class="sa-pc sa-pc--line" style="--d:6" d="M270 238 L300 226 L328 232 L360 214 L392 220 L436 206"/></g>
+</svg></div>
+      </div>
+      <ol class="si-rows" role="list">
+        <li class="si-row" id="sv-aplikace" data-cat="software">
+          <div class="si-h">
+            <span class="si-t"><span class="si-name" data-en="Application development">Vývoj aplikací</span><span class="si-d" data-en="Sometimes off-the-shelf software is not enough. You do not adapt to the software - the software adapts to you. From first prototype to production.">Někdy krabicový software nestačí. Nepřizpůsobujete vy sebe softwaru - software se přizpůsobí vám. Od prvního prototypu po produkci.</span></span>
+            </div>
+          <div class="si-x__in">
             <p class="mini" data-en="When it makes sense">Kdy to dává smysl</p>
             <p class="disc__body" data-en="It fits when off-the-shelf software does not fit and you work around it in Excel, or when you need a tool for customers or people in the field. That is exactly how Revizář.cz came to be.">Hodí se, když krabicový software nesedí a obcházíte ho Excelem, nebo když potřebujete nástroj pro zákazníky či lidi v terénu. Přesně tak vznikl Revizář.cz.</p>
             <div class="more__grid">
@@ -221,13 +251,13 @@
               <div><p class="mini" data-en="What you end up with">Na konci máte</p><p class="more__end" data-en="Your own tool that people actually use.">Vlastní nástroj, který lidé opravdu používají.</p><p class="mini" data-en="Related">Souvisí</p><p class="more__links"><a href="/projekty#revizar" data-en="Revizář <span>→</span>">Revizář <span>→</span></a></p></div>
             </div>
           </div>
-          <figure class="disc__viz"><div class="panel mp "><div class="panel__h"><b data-en="Inspections · October">Revize · říjen</b><span class="eyebrow" data-en="Example">Ukázka</span></div><table><thead><tr><th data-en="Site">Objekt</th><th class="r" data-en="Date">Termín</th><th class="r" data-en="Status">Stav</th></tr></thead><tbody><tr class="" data-s style="--s:1"><td class="k" data-en="Apartment block, Vinohrady">Bytový dům Vinohrady</td><td class="r" data-en="12 Oct">12. 10.</td><td class="r up" data-en="Done">Hotovo</td></tr><tr class="" data-s style="--s:2"><td class="k" data-en="Warehouse, Hostivař">Sklad Hostivař</td><td class="r" data-en="15 Oct">15. 10.</td><td class="r dn" data-en="In progress">Probíhá</td></tr><tr class="" data-s style="--s:3"><td class="k" data-en="School, Kladno">Škola Kladno</td><td class="r" data-en="21 Oct">21. 10.</td><td class="r" data-en="Planned">Naplánováno</td></tr><tr class="hl new" data-s style="--s:5"><td class="k" data-en="New inspection from the field">Nová revize z terénu</td><td class="r" data-en="today">dnes</td><td class="r up" data-en="PDF ready">PDF hotové</td></tr></tbody></table><div class="panel__f mp__f" data-s style="--s:6"><span class="eyebrow ok" data-en="Synced with the technician&#x27;s phone">Synchronizováno s mobilem technika</span></div></div></figure>
-        </article>
-        <article class="disc svc disc--flip" id="sv-systemy" data-reveal-s>
-          <div class="disc__txt">
-            <p class="eyebrow"><span class="ix" data-en="Systems">Systémy</span></p>
-            <h2 data-en="System selection and implementation">Výběr a implementace systémů</h2>
-            <p class="lede" data-en="The market is full of systems promising miracles. We select independently - a solution that fits your size, budget and way of working - then deploy it so people actually use it.">Trh je plný systémů, které slibují zázraky. Vybíráme nezávisle - řešení odpovídající vaší velikosti, rozpočtu a způsobu práce - a nasadíme ho tak, aby ho lidé skutečně používali.</p>
+          <figure class="si-viz" data-reveal-s><div class="panel mp "><div class="panel__h"><b data-en="Inspections · October">Revize · říjen</b><span class="eyebrow" data-en="Example">Ukázka</span></div><table><thead><tr><th data-en="Site">Objekt</th><th class="r" data-en="Date">Termín</th><th class="r" data-en="Status">Stav</th></tr></thead><tbody><tr class="" data-s style="--s:1"><td class="k" data-en="Apartment block, Vinohrady">Bytový dům Vinohrady</td><td class="r" data-en="12 Oct">12. 10.</td><td class="r up" data-en="Done">Hotovo</td></tr><tr class="" data-s style="--s:2"><td class="k" data-en="Warehouse, Hostivař">Sklad Hostivař</td><td class="r" data-en="15 Oct">15. 10.</td><td class="r dn" data-en="In progress">Probíhá</td></tr><tr class="" data-s style="--s:3"><td class="k" data-en="School, Kladno">Škola Kladno</td><td class="r" data-en="21 Oct">21. 10.</td><td class="r" data-en="Planned">Naplánováno</td></tr><tr class="hl new" data-s style="--s:5"><td class="k" data-en="New inspection from the field">Nová revize z terénu</td><td class="r" data-en="today">dnes</td><td class="r up" data-en="PDF ready">PDF hotové</td></tr></tbody></table><div class="panel__f mp__f" data-s style="--s:6"><span class="eyebrow ok" data-en="Synced with the technician&#x27;s phone">Synchronizováno s mobilem technika</span></div></div></figure>
+        </li>
+        <li class="si-row si-flip" id="sv-systemy" data-cat="software">
+          <div class="si-h">
+            <span class="si-t"><span class="si-name" data-en="System selection and implementation">Výběr a implementace systémů</span><span class="si-d" data-en="The market is full of systems promising miracles. We select independently - a solution that fits your size, budget and way of working - then deploy it so people actually use it.">Trh je plný systémů, které slibují zázraky. Vybíráme nezávisle - řešení odpovídající vaší velikosti, rozpočtu a způsobu práce - a nasadíme ho tak, aby ho lidé skutečně používali.</span></span>
+            </div>
+          <div class="si-x__in">
             <p class="mini" data-en="When it makes sense">Kdy to dává smysl</p>
             <p class="disc__body" data-en="It fits when you are choosing a new ERP, CRM or another key system - or when the current one never took hold.">Hodí se, když vybíráte nové ERP, CRM nebo jiný klíčový systém, případně když ten současný firma nepřijala.</p>
             <div class="more__grid">
@@ -235,13 +265,13 @@
               <div><p class="mini" data-en="What you end up with">Na konci máte</p><p class="more__end" data-en="A system that fits the company and gets used.">Systém, který sedí na firmu a používá se.</p><p class="mini" data-en="Related">Souvisí</p><p class="more__links"><a href="/pristup" data-en="How we work <span>→</span>">Jak pracujeme <span>→</span></a></p></div>
             </div>
           </div>
-          <figure class="disc__viz"><div class="panel mp mp--cols"><div class="panel__h"><b data-en="ERP selection">Výběr ERP</b><span class="eyebrow" data-en="Example">Ukázka</span></div><table><thead><tr><th data-en="Criterion">Kritérium</th><th class="r">A</th><th class="r">B</th><th class="r">C</th></tr></thead><tbody><tr class="" data-s style="--s:1"><td class="k" data-en="E-shop integration">Napojení na e-shop</td><td class="r">✓</td><td class="r colb">✓</td><td class="r">–</td></tr><tr class="" data-s style="--s:2"><td class="k" data-en="Support in CZ">Podpora v ČR</td><td class="r">✓</td><td class="r colb">✓</td><td class="r">✓</td></tr><tr class="" data-s style="--s:3"><td class="k" data-en="People can use it">Zvládnou to lidé</td><td class="r">–</td><td class="r colb">✓</td><td class="r">–</td></tr><tr class="" data-s style="--s:4"><td class="k" data-en="5-year cost">Cena na 5 let</td><td class="r" data-en="3.1 M">3,1 mil.</td><td class="r colb" data-en="2.4 M">2,4 mil.</td><td class="r" data-en="1.9 M">1,9 mil.</td></tr></tbody></table><div class="panel__f mp__f" data-s style="--s:6"><span class="eyebrow ok" data-en="Recommendation: B">Doporučení: B</span></div></div></figure>
-        </article>
-        <article class="disc svc" id="sv-procesy" data-reveal-s>
-          <div class="disc__txt">
-            <p class="eyebrow"><span class="ix" data-en="Processes">Procesy</span></p>
-            <h2 data-en="Process analysis and automation">Analýza a automatizace procesů</h2>
-            <p class="lede" data-en="We map how the company actually works - not how it is supposed to. We automate the routine and connect systems so they talk to each other.">Zmapujeme, jak firma skutečně funguje - ne jak by fungovat měla. Rutinu zautomatizujeme a systémy propojíme tak, aby spolu mluvily samy.</p>
+          <figure class="si-viz" data-reveal-s><div class="panel mp mp--cols"><div class="panel__h"><b data-en="ERP selection">Výběr ERP</b><span class="eyebrow" data-en="Example">Ukázka</span></div><table><thead><tr><th data-en="Criterion">Kritérium</th><th class="r">A</th><th class="r">B</th><th class="r">C</th></tr></thead><tbody><tr class="" data-s style="--s:1"><td class="k" data-en="E-shop integration">Napojení na e-shop</td><td class="r">✓</td><td class="r colb">✓</td><td class="r">–</td></tr><tr class="" data-s style="--s:2"><td class="k" data-en="Support in CZ">Podpora v ČR</td><td class="r">✓</td><td class="r colb">✓</td><td class="r">✓</td></tr><tr class="" data-s style="--s:3"><td class="k" data-en="People can use it">Zvládnou to lidé</td><td class="r">–</td><td class="r colb">✓</td><td class="r">–</td></tr><tr class="" data-s style="--s:4"><td class="k" data-en="5-year cost">Cena na 5 let</td><td class="r" data-en="3.1 M">3,1 mil.</td><td class="r colb" data-en="2.4 M">2,4 mil.</td><td class="r" data-en="1.9 M">1,9 mil.</td></tr></tbody></table><div class="panel__f mp__f" data-s style="--s:6"><span class="eyebrow ok" data-en="Recommendation: B">Doporučení: B</span></div></div></figure>
+        </li>
+        <li class="si-row" id="sv-procesy" data-cat="software">
+          <div class="si-h">
+            <span class="si-t"><span class="si-name" data-en="Process analysis and automation">Analýza a automatizace procesů</span><span class="si-d" data-en="We map how the company actually works - not how it is supposed to. We automate the routine and connect systems so they talk to each other.">Zmapujeme, jak firma skutečně funguje - ne jak by fungovat měla. Rutinu zautomatizujeme a systémy propojíme tak, aby spolu mluvily samy.</span></span>
+            </div>
+          <div class="si-x__in">
             <p class="mini" data-en="When it makes sense">Kdy to dává smysl</p>
             <p class="disc__body" data-en="It fits when the workload grows faster than the team, when the same data is entered in several places, or when only one person knows how a process works.">Hodí se, když objem práce roste rychleji než tým, když se stejné údaje zadávají na více místech nebo když proces zná jen jeden člověk.</p>
             <div class="more__grid">
@@ -249,13 +279,11 @@
               <div><p class="mini" data-en="What you end up with">Na konci máte</p><p class="more__end" data-en="Fewer manual steps and a process that does not depend on one person.">Méně ručních kroků a proces, který nestojí na jednom člověku.</p><p class="mini" data-en="Related">Souvisí</p><p class="more__links"><a href="/pristup" data-en="How we work <span>→</span>">Jak pracujeme <span>→</span></a></p></div>
             </div>
           </div>
-          <figure class="disc__viz"><div class="panel mp mp--swap"><div class="panel__h"><b data-en="Order → dispatch">Objednávka → expedice</b><span class="eyebrow" data-en="Example">Ukázka</span></div><table><thead><tr><th data-en="Step">Krok</th><th class="r" data-en="Today">Dnes</th><th class="r" data-en="After">Po</th></tr></thead><tbody><tr class="" data-s style="--s:1"><td class="k" data-en="Order intake">Přijetí objednávky</td><td class="r was">15 min</td><td class="r now up">auto</td></tr><tr class="" data-s style="--s:2"><td class="k" data-en="Stock check">Kontrola skladu</td><td class="r was">30 min</td><td class="r now up">auto</td></tr><tr class="" data-s style="--s:3"><td class="k" data-en="Invoicing">Fakturace</td><td class="r was">20 min</td><td class="r now up">auto</td></tr><tr class="" data-s style="--s:4"><td class="k" data-en="Handover to carrier">Předání dopravci</td><td class="r was" data-en="1 day">1 den</td><td class="r now up">4 h</td></tr></tbody></table><div class="panel__f mp__f" data-s style="--s:6"><span class="eyebrow ok" data-en="Lead time: 4.1 → 1.2 days">Průběžná doba: 4,1 → 1,2 dne</span></div></div></figure>
-        </article>
-        </div>
-      </section>
+          <figure class="si-viz" data-reveal-s><div class="panel mp mp--swap"><div class="panel__h"><b data-en="Order → dispatch">Objednávka → expedice</b><span class="eyebrow" data-en="Example">Ukázka</span></div><table><thead><tr><th data-en="Step">Krok</th><th class="r" data-en="Today">Dnes</th><th class="r" data-en="After">Po</th></tr></thead><tbody><tr class="" data-s style="--s:1"><td class="k" data-en="Order intake">Přijetí objednávky</td><td class="r was">15 min</td><td class="r now up">auto</td></tr><tr class="" data-s style="--s:2"><td class="k" data-en="Stock check">Kontrola skladu</td><td class="r was">30 min</td><td class="r now up">auto</td></tr><tr class="" data-s style="--s:3"><td class="k" data-en="Invoicing">Fakturace</td><td class="r was">20 min</td><td class="r now up">auto</td></tr><tr class="" data-s style="--s:4"><td class="k" data-en="Handover to carrier">Předání dopravci</td><td class="r was" data-en="1 day">1 den</td><td class="r now up">4 h</td></tr></tbody></table><div class="panel__f mp__f" data-s style="--s:6"><span class="eyebrow ok" data-en="Lead time: 4.1 → 1.2 days">Průběžná doba: 4,1 → 1,2 dne</span></div></div></figure>
+        </li>
+      </ol>
     </div>
     </div>
-    <p class="more"><a href="/pristup" data-en="How we work <span>→</span>">Jak pracujeme <span>→</span></a></p>
   </div>
 </section>
 
@@ -280,5 +308,6 @@
 <script src="/assets/site.js?v=20261103v"></script>
 <script src="/assets/motion.js?v=20261103v"></script>
 <script src="/assets/interact.js?v=20261103v"></script>
+<script src="/assets/sluzby.js?v=20261104h"></script>
 </body>
 </html>

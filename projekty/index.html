@@ -8,6 +8,7 @@
 <meta name="theme-color" content="#0A0C0B" id="tc">
 <link rel="stylesheet" href="/assets/darktec.css?v=20261103v">
 <link rel="stylesheet" href="/assets/techtlee.css?v=20261103v">
+<link rel="stylesheet" href="/assets/projekty.css?v=20261104d">
 <script>
 /* Applied before first paint. Every visitor gets the dark site - a light
    choice saved earlier is ignored. The light theme still exists in the CSS:
@@ -84,85 +85,116 @@
 
 <main id="top">
 
-<section class="phead">
+<section class="phead pj-head">
   <div class="glow" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="wrap">
     <p class="eyebrow"><span class="ix">05</span><span data-en="Projects">Projekty</span></p>
     <h1 data-en="What we work on.">Na čem pracujeme.</h1>
-    <p class="hero__lede" data-en="Our own products, the studio we run and the community we build.">Vlastní produkty, studio, které provozujeme, a komunita, kterou tvoříme.</p>
+    <p class="hero__lede" data-en="Our own products, the studio we run and the community we build.">Vlastní produkty, studio, které provozujeme, a komunita, kterou tvoříme.</p>
   </div>
 </section>
 
-<section class="sec sec--page" id="projekty">
+<section class="sec sec--page pj" id="projekty">
   <div class="wrap">
+    <div class="pj-f" role="group" aria-label="Filtr projektů" data-en-al="Filter projects">
+      <button type="button" data-f="all" aria-pressed="true"><span data-en="All">Vše</span><sup>4</sup></button>
+      <button type="button" data-f="data" aria-pressed="false"><span data-en="Data &amp; AI">Data a AI</span><sup>2</sup></button>
+      <button type="button" data-f="sw" aria-pressed="false"><span>Software</span><sup>1</sup></button>
+      <button type="button" data-f="studio" aria-pressed="false"><span data-en="Creative">Kreativa</span><sup>1</sup></button>
+    </div>
 
-    <div class="pcards" data-reveal-s data-stagger>
-      <article class="pcard">
-        <p class="pcard__st" data-en="Service &amp; community">Služba a komunita</p>
-        <h2 class="pcard__name"><a href="/projekty/agentic-analytics">Agentic Analytics</a></h2>
-        <p class="pcard__d" data-en="A semantic layer and AI agents over company data, plus a Prague community around AI in data.">Sémantická vrstva a AI agenti nad firemními daty a pražská komunita kolem AI v datech.</p>
-        <p class="pcard__go" data-en="Project details <span>→</span>">Detail projektu <span>→</span></p>
-      </article>
-      <article class="pcard">
-        <p class="pcard__st" data-en="Coming soon">Již brzy</p>
-        <h2 class="pcard__name"><a href="/projekty/appolino">Appolino</a></h2>
-        <p class="pcard__d" data-en="Every data source in one shared cloud - for analysts and business users alike.">Všechny zdroje dat v jednom sdíleném cloudu - pro analytiky i business.</p>
-        <p class="pcard__go" data-en="Project details <span>→</span>">Detail projektu <span>→</span></p>
-      </article>
-      <article class="pcard pcard--ext">
-        <p class="pcard__st" data-en="In operation">V provozu</p>
-        <h2 class="pcard__name"><a href="https://revizar.cz" target="_blank" rel="noopener">Revizář</a></h2>
-        <p class="pcard__d" data-en="An application for managing inspections. From first prototype to live operation.">Aplikace pro správu revizí. Od prvního prototypu po běžící provoz.</p>
-        <p class="pcard__go" data-en="revizar.cz <span>↗</span>">revizar.cz <span>↗</span></p>
-      </article>
-      <article class="pcard pcard--ext">
-        <p class="pcard__st" data-en="In operation">V provozu</p>
-        <h2 class="pcard__name"><a href="https://vlkorez.com" target="_blank" rel="noopener">Vlkorez</a></h2>
-        <p class="pcard__d" data-en="A creative studio. Brands, visual identity and production.">Kreativní studio. Značky, vizuální identita a produkce.</p>
-        <p class="pcard__go" data-en="vlkorez.com <span>↗</span>">vlkorez.com <span>↗</span></p>
-      </article>
+    <div class="pj-grid">
+      <ol class="pj-list" role="list">
+        <li class="pj-row" id="agentic-analytics" data-cat="data" data-p="aa">
+          <a class="pj-h" href="/projekty/agentic-analytics">
+            <span class="pj-n">01</span>
+            <span class="pj-t">
+              <span class="pj-name">Agentic Analytics</span>
+              <span class="pj-d" data-en="A semantic layer and AI agents over company data, plus a Prague community around AI in data.">Sémantická vrstva a AI agenti nad firemními daty a pražská komunita kolem AI v datech.</span>
+            </span>
+            <span class="pj-meta"><span data-en="Service &amp; community">Služba a komunita</span><span class="pj-st"><i></i><span data-en="Running">Běží</span></span></span>
+            <span class="pj-go" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="pj-row" id="appolino" data-cat="data" data-p="ap">
+          <a class="pj-h" href="/projekty/appolino">
+            <span class="pj-n">02</span>
+            <span class="pj-t">
+              <span class="pj-name">Appolino</span>
+              <span class="pj-d" data-en="Every data source in one shared cloud - for analysts and business users alike.">Všechny zdroje dat v jednom sdíleném cloudu - pro analytiky i business.</span>
+            </span>
+            <span class="pj-meta"><span data-en="Data platform">Datová platforma</span><span class="pj-st pj-st--soon"><i></i><span data-en="Coming soon">Již brzy</span></span></span>
+            <span class="pj-go" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="pj-row" id="revizar" data-cat="sw" data-p="rv">
+          <button type="button" class="pj-h" aria-expanded="false" aria-controls="pj-x-rv">
+            <span class="pj-n">03</span>
+            <span class="pj-t">
+              <span class="pj-name">Revizář</span>
+              <span class="pj-d" data-en="An application for managing inspections. From first prototype to live operation.">Aplikace pro správu revizí. Od prvního prototypu po běžící provoz.</span>
+            </span>
+            <span class="pj-meta"><span>Software</span><span class="pj-st"><i></i><span data-en="In operation">V provozu</span></span></span>
+            <span class="pj-go pj-go--x" aria-hidden="true"></span>
+          </button>
+          <div class="pj-x" id="pj-x-rv"><div><div class="pj-x__in">
+            <div class="pj-x__live" data-live="rv"></div>
+            <h2 data-en="Revizář.cz: inspection reports without the paperwork.">Revizář.cz: revizní zprávy bez papírování.</h2>
+            <p data-en="Revizář runs the whole lightning-protection inspection process in one place: clients, sites, deadlines and reports per ČSN EN 62305 - with cadastral-map annotations and instant PDF export.">Revizář vede celý proces revize hromosvodů na jednom místě: klienti, objekty, termíny a&nbsp;revizní zprávy podle ČSN EN 62305 - s&nbsp;anotacemi v&nbsp;katastru a&nbsp;okamžitým PDF exportem.</p>
+            <p data-en="For us it also shows the whole journey: from first prototype through production to live operation with real customers.">Pro nás je to zároveň ukázka celé cesty: od prvního prototypu přes produkci až po běžící provoz s&nbsp;reálnými zákazníky.</p>
+            <p class="more"><a href="https://revizar.cz" target="_blank" rel="noopener">revizar.cz <span>↗</span></a></p>
+          </div></div></div>
+        </li>
+        <li class="pj-row" id="vlkorez" data-cat="studio" data-p="vk">
+          <button type="button" class="pj-h" aria-expanded="false" aria-controls="pj-x-vk">
+            <span class="pj-n">04</span>
+            <span class="pj-t">
+              <span class="pj-name">Vlkorez</span>
+              <span class="pj-d" data-en="A creative studio. Brands, visual identity and production.">Kreativní studio. Značky, vizuální identita a produkce.</span>
+            </span>
+            <span class="pj-meta"><span data-en="Creative studio">Kreativní studio</span><span class="pj-st"><i></i><span data-en="In operation">V provozu</span></span></span>
+            <span class="pj-go pj-go--x" aria-hidden="true"></span>
+          </button>
+          <div class="pj-x" id="pj-x-vk"><div><div class="pj-x__in">
+            <div class="pj-x__live" data-live="vk"></div>
+            <h2 data-en="vlkorez: the studio that gives solutions a face.">vlkorez: studio, které dá řešení tvář.</h2>
+            <p data-en="The vlkorez creative studio takes care of the design a customer sees first. From logo and visual identity through print to production.">Kreativní studio vlkorez se stará o design, který zákazník vidí jako první. Od loga a&nbsp;vizuální identity přes tiskoviny až po produkci.</p>
+            <p data-en="When we build a solution, vlkorez makes sure it not only works but looks the part.">Když stavíme řešení, vlkorez zajistí, že bude nejen fungovat, ale i&nbsp;vypadat.</p>
+            <p class="more"><a href="https://vlkorez.com" target="_blank" rel="noopener">vlkorez.com <span>↗</span></a></p>
+          </div></div></div>
+        </li>
+      </ol>
+
+      <aside class="pj-pv" aria-label="Náhled projektu" data-en-al="Project preview">
+        <div class="pj-pv__in">
+          <div class="pj-v pj-v--aa" data-p="aa">
+            <div class="pj-chat">
+              <p class="pj-chat__q"></p>
+              <div class="pj-chat__a">
+                <span class="pj-chat__b" data-en="✓ Verified · definition v2.3">✓ Ověřeno · definice v2.3</span>
+                <span class="pj-chat__l" data-en="Net revenue in Q3">Čisté tržby za Q3</span>
+                <b class="pj-chat__n" data-en="CZK 11.1M">11,1 mil. Kč</b>
+                <span class="pj-chat__kv"><span data-en="Definition">Definice</span><span data-en="without VAT, after returns">bez DPH, po vratkách</span></span>
+                <span class="pj-chat__kv"><span data-en="Source">Zdroj</span><span data-en="your warehouse · fct_orders">váš sklad · fct_orders</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="pj-v pj-v--ap" data-p="ap">
+            <svg class="pj-flow" viewBox="0 0 400 300">
+              <g class="pj-flow__p"><path id="pjf-0" d="M96 70 C150 70 140 150 186 150"/><path id="pjf-1" d="M96 150 L186 150"/><path id="pjf-2" d="M96 230 C150 230 140 150 186 150"/><path id="pjf-3" d="M244 150 C290 150 270 80 312 80"/><path id="pjf-4" d="M244 150 L312 150"/><path id="pjf-5" d="M244 150 C290 150 270 220 312 220"/></g>
+              <g class="pj-flow__d"><circle r="3"><animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#pjf-0"/></animateMotion></circle><circle r="3"><animateMotion dur="2.2s" begin=".7s" repeatCount="indefinite"><mpath href="#pjf-1"/></animateMotion></circle><circle r="3"><animateMotion dur="2.2s" begin="1.4s" repeatCount="indefinite"><mpath href="#pjf-2"/></animateMotion></circle><circle r="3"><animateMotion dur="2.2s" begin="1.1s" repeatCount="indefinite"><mpath href="#pjf-3"/></animateMotion></circle><circle r="3"><animateMotion dur="2.2s" begin="1.8s" repeatCount="indefinite"><mpath href="#pjf-4"/></animateMotion></circle><circle r="3"><animateMotion dur="2.2s" begin="2.5s" repeatCount="indefinite"><mpath href="#pjf-5"/></animateMotion></circle></g>
+              <g class="pj-flow__src"><rect x="12" y="56" width="84" height="28" rx="14"/><text x="54" y="74">Excel</text><rect x="12" y="136" width="84" height="28" rx="14"/><text x="54" y="154">PostgreSQL</text><rect x="12" y="216" width="84" height="28" rx="14"/><text x="54" y="234">E-mail</text></g>
+              <g class="pj-flow__core"><rect x="186" y="118" width="58" height="64" rx="14"/><path d="M215 134l11 6-11 6-11-6z M204 152l11 6 11-6 M204 160l11 6 11-6"/></g>
+              <g class="pj-flow__out"><rect x="312" y="66" width="80" height="28" rx="14"/><text x="352" y="84" data-en="Tables">Tabulky</text><rect x="312" y="136" width="80" height="28" rx="14"/><text x="352" y="154" data-en="Transforms">Transformace</text><rect class="hl" x="312" y="206" width="80" height="28" rx="14"/><text x="352" y="224" data-en="Semantics">Sémantika</text></g>
+            </svg>
+          </div>
+          <div class="pj-v pj-v--live" data-p="rv" data-live="rv"></div>
+          <div class="pj-v pj-v--live" data-p="vk" data-live="vk"></div>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
-
-<!-- ══════════════════════ REVIZÁŘ ══════════════════════ -->
-<section class="sec" id="revizar">
-  <div class="wrap">
-    <div class="spec">
-      <p class="eyebrow"><span class="ix">A</span>Revizář</p>
-      <p class="eyebrow" data-en="Software · in operation">Software · v provozu</p>
-    </div>
-    <div class="split shead" data-reveal-s>
-      <div>
-        <h2 data-en="Revizář.cz: inspection reports without the paperwork.">Revizář.cz: revizní zprávy bez papírování.</h2>
-        <p class="lede" style="margin-top:var(--s5)" data-en="Revizář runs the whole lightning-protection inspection process in one place: clients, sites, deadlines and reports per ČSN EN 62305 - with cadastral-map annotations and instant PDF export.">Revizář vede celý proces revize hromosvodů na jednom místě: klienti, objekty, termíny a&nbsp;revizní zprávy podle ČSN EN 62305 - s&nbsp;anotacemi v&nbsp;katastru a&nbsp;okamžitým PDF exportem.</p>
-        <p class="lede" data-en="For us it also shows the whole journey: from first prototype through production to live operation with real customers.">Pro nás je to zároveň ukázka celé cesty: od prvního prototypu přes produkci až po běžící provoz s&nbsp;reálnými zákazníky.</p>
-        <p class="more"><a href="https://revizar.cz" target="_blank" rel="noopener">revizar.cz <span>↗</span></a></p>
-      </div>
-      <figure class="shot"><img src="/assets/img/revizar-hero.jpg" width="1920" height="1080" alt="Aplikace Revizář.cz - seznam revizních zpráv" loading="lazy"></figure>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════ VLKOREZ ══════════════════════ -->
-<section class="sec" id="vlkorez">
-  <div class="wrap">
-    <div class="spec">
-      <p class="eyebrow"><span class="ix">B</span>Vlkorez</p>
-      <p class="eyebrow" data-en="Creative · in operation">Kreativa · v provozu</p>
-    </div>
-    <div class="split shead" data-reveal-s>
-      <div>
-        <h2 data-en="vlkorez: the studio that gives solutions a face.">vlkorez: studio, které dá řešení tvář.</h2>
-        <p class="lede" style="margin-top:var(--s5)" data-en="The vlkorez creative studio takes care of the design a customer sees first. From logo and visual identity through print to production.">Kreativní studio vlkorez se stará o design, který zákazník vidí jako první. Od loga a&nbsp;vizuální identity přes tiskoviny až po produkci.</p>
-        <p class="lede" data-en="When we build a solution, vlkorez makes sure it not only works but looks the part.">Když stavíme řešení, vlkorez zajistí, že bude nejen fungovat, ale i&nbsp;vypadat.</p>
-        <p class="more"><a href="https://vlkorez.com" target="_blank" rel="noopener">vlkorez.com <span>↗</span></a></p>
-      </div>
-      <figure class="shot"><img src="/assets/img/vlkorez-hero.jpg" width="1600" height="900" alt="Studio vlkorez - úvodní vizuál s kamenným vlkem" loading="lazy"></figure>
-    </div>
-  </div>
-</section>
-
 
 <section class="cta">
   <div class="wrap cta__in" data-reveal-s>
@@ -185,6 +217,7 @@
 <script src="/assets/site.js?v=20261103v"></script>
 <script src="/assets/motion.js?v=20261103v"></script>
 <script src="/assets/interact.js?v=20261103v"></script>
+<script src="/assets/projekty.js?v=20261104d"></script>
 <script>
 /* old in-page anchors moved to their own pages */
 (function(){var m={'#semanthics':'/projekty/agentic-analytics','#agentic':'/projekty/agentic-analytics#agentic','#appolino':'/projekty/appolino'};
