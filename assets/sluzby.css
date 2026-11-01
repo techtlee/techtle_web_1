@@ -107,6 +107,21 @@
 .si-card--ask .si-card__a:hover .aq-mark{animation-duration:2.6s}
 
 /* ═════════ service page ═════════ */
+/* hero: the service's render sits in the background on the right, like
+   the T on the landing page - it fades out to the left under the title
+   and to the bottom into the dot grid */
+.sd-head{position:relative;overflow:hidden;min-height:clamp(380px,44vw,580px);display:flex;align-items:center}
+.sd-head .glow{display:none}
+.sd-head::before{content:'';position:absolute;top:0;bottom:0;right:0;width:min(64vw,1040px);z-index:0;pointer-events:none;
+  background:var(--sd-img) no-repeat 50% 40% / cover;
+  -webkit-mask-image:linear-gradient(90deg,transparent 10%,rgba(0,0,0,.55) 38%,#000 60%),linear-gradient(to bottom,#000 58%,transparent);
+  -webkit-mask-composite:source-in;
+          mask-image:linear-gradient(90deg,transparent 10%,rgba(0,0,0,.55) 38%,#000 60%),linear-gradient(to bottom,#000 58%,transparent);
+          mask-composite:intersect}
+.sd-head--wide::before{background-position:50% 30%}
+.sd-head .wrap{position:relative;z-index:1;width:100%}
+.sd-head__in{display:block}
+.sd-head__t{max-width:min(660px,56%)}
 .sd-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:clamp(32px,4.5vw,72px);align-items:start}
 .sd-t > .mini{margin:0 0 var(--s3)}
 .sd-t .disc__body{margin:0 0 var(--s8);max-width:60ch}
@@ -237,6 +252,9 @@
 }
 @media(max-width:900px){
   .sd-grid,.sd-ctx__in{grid-template-columns:1fr}
+  .sd-head{min-height:0}
+  .sd-head__t{max-width:none}
+  .sd-head::before{width:100%;opacity:.38;-webkit-mask-image:linear-gradient(to bottom,#000 45%,transparent);mask-image:linear-gradient(to bottom,#000 45%,transparent)}
   .sd-viz{position:static;margin-top:var(--s8)}
   .sd-ctx__art{margin-top:var(--s8)}
   .si-art{margin:0 auto;max-width:420px}
