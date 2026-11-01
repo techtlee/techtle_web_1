@@ -1,9 +1,10 @@
-/* Techtlee - /sluzby
-   Four chapters, one per pillar. The page zig-zags block by block: a
-   chapter's intro on one side with its animation on the other, then each
-   service with its text and example panel swapping sides again. Prefix si-. */
+/* Techtlee - /sluzby and /sluzby/<service>
+   The overview is one grid of cards, a card per service, each opening the
+   service's own page. A service page carries the full copy, its example
+   panel and the drawing of the field it belongs to. Prefix si- (overview),
+   sd- (service page), sa- (field drawings). */
 
-.si{--si-ease:cubic-bezier(.2,.8,.2,1);--si-cols:minmax(0,7fr) minmax(0,5fr);--si-flip:minmax(0,5fr) minmax(0,7fr);--si-gap:clamp(32px,4.5vw,72px)}
+.si,.sd,.sd-ctx{--si-ease:cubic-bezier(.2,.8,.2,1)}
 
 /* filter */
 .si-f{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(28px,4vw,48px)}
@@ -15,61 +16,82 @@
 .si-f sup{font-size:11px;top:0;color:var(--fg-4);font-variant-numeric:tabular-nums}
 .si-f button[aria-pressed="true"] sup{color:var(--accent)}
 
-/* chapters */
-.si-g{padding:clamp(56px,7vw,104px) 0 0}
-.si-g + .si-g{margin-top:clamp(56px,7vw,104px);border-top:1px solid var(--line-2)}
-.si-g:first-child,.si-g.first{padding-top:0;margin-top:0;border-top:0}
-.si-g[hidden]{display:none}
-.si-g.si-in{animation:si-in .45s var(--si-ease) backwards;animation-delay:calc(var(--i,0) * 70ms)}
+.si-tag{align-self:flex-start;padding:4px 10px;border-radius:999px;border:1px solid var(--line-2);
+  font-size:var(--fs-micro);color:var(--fg-3);font-variant-numeric:tabular-nums}
+
+/* ═════════ overview: card grid ═════════ */
+.si-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.si-card{display:flex;min-width:0}
+.si-card[hidden]{display:none}
+.si-card.si-in{animation:si-in .45s var(--si-ease) backwards;animation-delay:calc(var(--i,0) * 60ms)}
 @keyframes si-in{from{opacity:0;transform:translateY(10px)}}
+.si-card__a{display:flex;flex-direction:column;gap:var(--s6);width:100%;min-width:0;padding:clamp(22px,2.2vw,30px);
+  border-radius:var(--r);border:1px solid rgba(188,197,216,.12);color:inherit;text-decoration:none;
+  background:linear-gradient(160deg,rgba(188,197,216,.06),rgba(188,197,216,.02) 45%,rgba(188,197,216,.04));
+  transition:border-color .25s,transform .25s var(--si-ease),box-shadow .3s}
+.si-card__a:hover{border-color:rgba(149,173,216,.4);transform:translateY(-2px);box-shadow:0 20px 44px -26px rgba(62,90,142,.8)}
+.si-card__a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.si-card__t{display:flex;flex-direction:column;gap:var(--s3);min-width:0}
+.si-card__name{margin-top:var(--s2);font-size:clamp(23px,.9vw + 15px,30px);line-height:1.12;letter-spacing:-.02em;font-weight:var(--fw-disp);color:var(--fg)}
+.si-card__d{color:var(--fg-2);line-height:var(--lh-body);max-width:52ch}
+.si-card__end{display:flex;flex-direction:column;gap:4px;margin-top:var(--s2);padding-top:var(--s3);border-top:1px solid var(--line);
+  font-size:var(--fs-sm);color:var(--fg);line-height:1.5}
+.si-card__end .mini{margin:0}
+.si-card__go{margin-top:var(--s2);font-weight:var(--fw-med);color:var(--accent)}
+.si-card__go span{display:inline-block;transition:transform .2s}
+.si-card__a:hover .si-card__go span{transform:translateX(4px)}
+.si-card__viz{display:block;margin-top:auto;pointer-events:none}
+.si-card__viz .mp{font-size:var(--fs-sm)}
+/* the lead service spans two columns: words left, panel right */
+.si-card--feat{grid-column:span 2}
+.si-card--feat .si-card__a{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(24px,3vw,44px);align-items:center}
+.si-card--feat .si-card__viz{margin-top:0}
+.si-grid.is-filtered .si-card--feat{grid-column:auto}
+.si-grid.is-filtered .si-card--feat .si-card__a{display:flex}
+.si-grid.is-filtered .si-card--feat .si-card__viz{margin-top:auto}
+/* the closing "not sure" card */
+.si-card--ask .si-card__a{justify-content:center;border-style:dashed;background:none}
+.si-card--ask .si-card__name{margin-top:0}
+/* panels stack in as they scroll into view */
+.js .si-viz:not([data-reveal-s="in"]) .mp [data-s]{opacity:0;transform:translateY(6px)}
 
-/* every block is two columns; .si-flip swaps them */
-.si-head,.si-row{display:grid;grid-template-columns:var(--si-cols);column-gap:var(--si-gap);align-items:start}
-.si-flip{grid-template-columns:var(--si-flip)}
-
-/* chapter head: all the words on one side, only the animation on the other */
-.si-head{padding-bottom:clamp(40px,5vw,72px);align-items:center}
-.si-head__t{grid-column:1;grid-row:1}
-.si-head__art{grid-column:2;grid-row:1}
-.si-flip .si-head__t{grid-column:2}
-.si-flip .si-head__art{grid-column:1}
+/* ═════════ service page ═════════ */
+.sd-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:clamp(32px,4.5vw,72px);align-items:start}
+.sd-t > .mini{margin:0 0 var(--s3)}
+.sd-t .disc__body{margin:0 0 var(--s8);max-width:60ch}
+.sd-viz{margin:0;position:sticky;top:110px}
+.sd-ctx{border-top:1px solid var(--line-2)}
+.sd-ctx__in{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:clamp(32px,4.5vw,72px);align-items:center}
+.sd-ctx__t > .eyebrow{margin:0 0 var(--s3)}
 .si-gn{margin:0;font-size:var(--fs-h2);line-height:1.05;letter-spacing:var(--ls-h2,-.02em);font-weight:var(--fw-disp);color:var(--fg)}
 .si-gl{margin:var(--s4) 0 0;max-width:52ch;font-size:var(--fs-lede);line-height:1.5;color:var(--fg-2)}
-.si-head__t > .disc__body{margin:var(--s6) 0 0;max-width:62ch}
+.sd-ctx__t > .disc__body{margin:var(--s6) 0 0;max-width:62ch}
 .si-head__more{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:var(--s3) var(--s8);margin-top:var(--s8)}
 .si-head__more .mini{margin:0}
 .si-head__more .pilx__list{display:block}
 .si-head__more .pilx__list li{margin:0}
 .si-head__more .pilx__list li + li{margin-top:8px !important}
-/* "in practice" on the left, "related" beside it */
 .si-head__more > :nth-child(1){grid-column:1;grid-row:1}
 .si-head__more > :nth-child(2){grid-column:1;grid-row:2}
 .si-head__more > :nth-child(3){grid-column:2;grid-row:1}
 .si-head__more > :nth-child(4){grid-column:2;grid-row:2;flex-direction:column;align-items:flex-start;align-self:start}
-
-/* services: text one side, example panel the other */
-.si-rows{list-style:none;margin:0;padding:0}
-.si-row{padding:clamp(36px,4vw,56px) 0;border-top:1px solid var(--line-2)}
-.si-h,.si-x__in{grid-column:1}
-.si-viz{grid-column:2;grid-row:1 / span 2;margin:0;position:sticky;top:110px}
-.si-flip .si-h,.si-flip .si-x__in{grid-column:2}
-.si-flip .si-viz{grid-column:1}
-.si-t{display:flex;flex-direction:column;min-width:0}
-.si-name{font-size:clamp(24px,1.1vw + 15px,34px);line-height:1.1;letter-spacing:-.02em;font-weight:var(--fw-disp);color:var(--fg)}
-.si-d{margin-top:var(--s4);font-size:var(--fs-lede);line-height:1.5;color:var(--fg-2);max-width:56ch}
-.si-x__in{padding-top:var(--s8)}
-.si-x__in > .mini{margin:0 0 var(--s3)}
-.si-x__in .disc__body{margin:0 0 var(--s8);max-width:60ch}
-.js .si-viz:not([data-reveal-s="in"]) .mp [data-s]{opacity:0;transform:translateY(6px)}
+.sd-more .mini{margin:0 0 var(--s4)}
+.sd-more__list{list-style:none;margin:0 0 var(--s8);padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line-2)}
+.sd-more__list a{display:flex;align-items:center;gap:var(--s3);padding:var(--s5) var(--s4) var(--s5) 0;border-bottom:1px solid var(--line);
+  color:var(--fg-2);text-decoration:none;transition:color .2s}
+.sd-more__list a span:not(.si-tag){flex:1}
+.sd-more__list a i{font-style:normal;color:var(--fg-4);transition:transform .2s,color .2s}
+.sd-more__list a:hover{color:var(--fg)}
+.sd-more__list a:hover i{color:var(--accent);transform:translateX(4px)}
+.sd-more__list .si-tag{min-width:5.6em;text-align:center}
 
 /* ═════════ chapter animations ═════════
    Drawn in the site's own line language; they start the first time the
    chapter is on screen (.seen) and then keep breathing slowly. */
 .si-art{display:block;width:100%;max-width:540px;height:auto;margin-left:auto;overflow:visible}
-.si-flip .si-art{margin-left:0;margin-right:auto}
 .si-art *{animation-play-state:paused}
-.si-g.seen .si-art *{animation-play-state:running}
-.si-g:not(.seen) .sa-dots{opacity:0}
+.seen .si-art *{animation-play-state:running}
+.sd-ctx:not(.seen) .sa-dots{opacity:0}
 .si-art .sa-edges path{fill:none;stroke:var(--line-3);stroke-width:1.3}
 .si-art .sa-edges--dash path{stroke-dasharray:4 6}
 .sa-dots circle{fill:#fff;filter:drop-shadow(0 0 5px rgba(149,173,216,.95))}
@@ -149,22 +171,33 @@
 .sa-pc--line{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 @keyframes sa-pc{0%{opacity:0;transform:translateY(-14px) scale(.96)}10%,78%{opacity:1;transform:none}90%,100%{opacity:0;transform:translateY(6px)}}
 
+
+@media(max-width:1100px){
+  .si-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sd-more__list{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 @media(max-width:900px){
-  .si-head,.si-row,.si-flip{grid-template-columns:1fr}
-  .si-head__t,.si-head__art,.si-flip .si-head__t,.si-flip .si-head__art,
-  .si-h,.si-x__in,.si-flip .si-h,.si-flip .si-x__in{grid-column:1;grid-row:auto}
-  .si-head__art{margin-top:var(--s8)}
-  .si-art,.si-flip .si-art{margin:0 auto;max-width:420px}
-  .si-viz,.si-flip .si-viz{grid-column:1;grid-row:auto;position:static;margin-top:var(--s8)}
+  .sd-grid,.sd-ctx__in{grid-template-columns:1fr}
+  .sd-viz{position:static;margin-top:var(--s8)}
+  .sd-ctx__art{margin-top:var(--s8)}
+  .si-art{margin:0 auto;max-width:420px}
+}
+@media(max-width:700px){
+  .si-grid{grid-template-columns:1fr}
+  .si-card--feat{grid-column:auto}
+  .si-card--feat .si-card__a{display:flex}
+  .si-card--feat .si-card__viz{margin-top:auto}
+  .sd-more__list{grid-template-columns:1fr}
 }
 @media(max-width:600px){
   .si-head__more{grid-template-columns:1fr}
   .si-head__more > :nth-child(n){grid-column:1;grid-row:auto}
   .si-head__more > :nth-child(3){margin-top:var(--s5)}
-  .si-x__in .more__grid{grid-template-columns:1fr}
+  .sd-t .more__grid{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){
-  .si-g.si-in{animation:none}
+  .si-card.si-in{animation:none}
+  .si-card__a{transition:none}
   .si-art *{animation:none !important}
   .sa-dots{display:none}
   .sa-trend{stroke-dashoffset:0}.sa-tip{opacity:1}

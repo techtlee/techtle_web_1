@@ -375,10 +375,11 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 .cl li:first-child{padding-left:0;border-left:0}
 
 /* ═══════════════ PEOPLE ══════════════════════════════════════════ */
-.who{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line-2)}
+.who{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line-2)}
 .who article{padding:var(--s6) var(--s6) var(--s8);border-left:1px solid var(--line)}
-.who article:first-child{padding-left:0;border-left:0}
-.who article:last-child{padding-right:0}
+.who article:nth-child(odd){padding-left:0;border-left:0}
+.who article:nth-child(even){padding-right:0}
+.who article:nth-child(n+3){border-top:1px solid var(--line)}
 .who img{width:112px;height:112px;object-fit:cover;margin-bottom:var(--s5);
   border:1px solid var(--line-2);
   /* Colour, not greyscale. Knocked back on the dark ground because the white
@@ -397,6 +398,7 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
   .who{grid-template-columns:1fr}
   .who article{border-left:0;padding:var(--s6) 0;border-bottom:1px solid var(--line)}
   .who article:last-child{border-bottom:0}
+  .who article:nth-child(n+3){border-top:0}
 }
 
 /* ═══════════════ PROCESS RAIL ════════════════════════════════════ */
@@ -1679,6 +1681,13 @@ html.is-lit .hero .glow{opacity:1;transition-duration:.35s}
   .ppl__h{display:none}
 }
 @media (prefers-reduced-motion:reduce){.ppl--js .ppl__card,.ppl--js .ppl__txt,.ppl__pick .ppl__ph{transition:none}}
+/* four people + one open bio no longer fit at 190px each below ~1400px:
+   faces and the open bio scale with the viewport so the row never overflows */
+@media(min-width:901px) and (max-width:1400px){
+  .ppl--js .ppl__card,.ppl__pick{flex-basis:12vw}
+  .ppl__pick .ppl__ph{width:12vw}
+  .ppl--js .ppl__card.is-on .ppl__txt{max-width:min(440px,32vw);flex-basis:min(440px,32vw)}
+}
 
 /* ══ TEST 2026-10-28: no section rules, no "01 Název" rows ══════════
    Revert = delete this whole block.                                   */
@@ -2096,6 +2105,17 @@ html{scroll-behavior:smooth}
 .apf[data-reveal-s="in"] .apf__meta i{transform:none}
 .js .apf[data-reveal-s]{transform:none !important;opacity:1 !important}
 .apf__facts{margin-top:var(--s10)}
+/* six facts = two rows of three */
+@media(min-width:701px){
+  .apf__facts > div{padding-left:var(--s6);padding-right:var(--s6);border-left:1px solid var(--line);border-bottom:0}
+  .apf__facts > div:nth-child(3n+1){padding-left:0;border-left:0}
+  .apf__facts > div:nth-child(3n){padding-right:0}
+  .apf__facts > div:nth-child(n+4){border-top:1px solid var(--line)}
+}
+@media(max-width:700px){
+  .apf__facts > div{border-left:0;padding:var(--s5) 0 var(--s6);border-bottom:1px solid var(--line)}
+  .apf__facts > div:last-child{border-bottom:0}
+}
 @media (prefers-reduced-motion:reduce){
   .apf *{transition:none !important;animation:none !important}
   .apf .apf__paths path{stroke-dashoffset:0}.apf .apf__chip,.apf .apf__core,.apf .apf__meta{opacity:1;translate:0 0;scale:1}
