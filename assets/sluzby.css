@@ -19,47 +19,103 @@
 .si-tag{align-self:flex-start;padding:4px 10px;border-radius:999px;border:1px solid var(--line-2);
   font-size:var(--fs-micro);color:var(--fg-3);font-variant-numeric:tabular-nums}
 
-/* ═════════ overview: card grid ═════════ */
-.si-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+/* ═════════ overview: card grid ═════════
+   A card is a render on top, the field tag floating over its corner, then
+   the name, one sentence and "Více". The lead service spans two columns. */
+.si-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.2vw,30px)}
 .si-card{display:flex;min-width:0}
 .si-card[hidden]{display:none}
 .si-card.si-in{animation:si-in .45s var(--si-ease) backwards;animation-delay:calc(var(--i,0) * 60ms)}
 @keyframes si-in{from{opacity:0;transform:translateY(10px)}}
-.si-card__a{display:flex;flex-direction:column;gap:var(--s6);width:100%;min-width:0;padding:clamp(22px,2.2vw,30px);
-  border-radius:var(--r);border:1px solid rgba(188,197,216,.12);color:inherit;text-decoration:none;
-  background:linear-gradient(160deg,rgba(188,197,216,.06),rgba(188,197,216,.02) 45%,rgba(188,197,216,.04));
-  transition:border-color .25s,transform .25s var(--si-ease),box-shadow .3s}
-.si-card__a:hover{border-color:rgba(149,173,216,.4);transform:translateY(-2px);box-shadow:0 20px 44px -26px rgba(62,90,142,.8)}
+.si-card__a{position:relative;display:flex;flex-direction:column;width:100%;min-width:0;overflow:hidden;
+  border-radius:var(--r);border:1px solid rgba(188,197,216,.13);background:#0B0D0E;color:inherit;text-decoration:none;
+  transition:border-color .3s,transform .3s var(--si-ease),box-shadow .35s}
+/* the faint light along the bottom-left edge */
+.si-card__a::after{content:'';position:absolute;left:clamp(18px,2vw,28px);bottom:-1px;width:96px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(214,226,246,.75),transparent);transition:width .45s var(--si-ease)}
+.si-card__a:hover{border-color:rgba(149,173,216,.38);transform:translateY(-3px);box-shadow:0 26px 60px -34px rgba(62,90,142,.9)}
+.si-card__a:hover::after{width:180px}
 .si-card__a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.si-card__t{display:flex;flex-direction:column;gap:var(--s3);min-width:0}
-.si-card__name{margin-top:var(--s2);font-size:clamp(23px,.9vw + 15px,30px);line-height:1.12;letter-spacing:-.02em;font-weight:var(--fw-disp);color:var(--fg)}
-.si-card__d{color:var(--fg-2);line-height:var(--lh-body);max-width:52ch}
-.si-card__end{display:flex;flex-direction:column;gap:4px;margin-top:var(--s2);padding-top:var(--s3);border-top:1px solid var(--line);
-  font-size:var(--fs-sm);color:var(--fg);line-height:1.5}
-.si-card__end .mini{margin:0}
-.si-card__go{margin-top:var(--s2);font-weight:var(--fw-med);color:var(--accent)}
-.si-card__go span{display:inline-block;transition:transform .2s}
-.si-card__a:hover .si-card__go span{transform:translateX(4px)}
-.si-card__viz{display:block;margin-top:auto;pointer-events:none}
-.si-card__viz .mp{font-size:var(--fs-sm)}
-/* the lead service spans two columns: words left, panel right */
+.si-card__img{display:block;aspect-ratio:9/7;overflow:hidden;background:#05080c}
+.si-card__img img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--si-ease),filter .5s}
+.si-card__a:hover .si-card__img img{transform:scale(1.04);filter:brightness(1.08)}
+.si-card > a > .si-tag{position:absolute;top:clamp(14px,1.4vw,18px);left:clamp(14px,1.4vw,18px);padding:6px 16px;
+  font-size:var(--fs-sm);color:var(--fg);background:rgba(8,10,12,.82);border-color:rgba(188,197,216,.18);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.si-card__t{display:flex;flex-direction:column;flex:1;padding:clamp(18px,1.8vw,26px) clamp(20px,2vw,28px) clamp(20px,2vw,28px)}
+.si-card__name{font-size:clamp(23px,.9vw + 15px,30px);line-height:1.12;letter-spacing:-.02em;font-weight:var(--fw-med,500);color:var(--fg)}
+.si-card__d{margin-top:var(--s4);font-size:var(--fs-sm);color:var(--fg-2);line-height:1.55;max-width:46ch}
+.si-card__go{display:inline-flex;align-items:center;gap:10px;margin-top:auto;padding-top:var(--s6);font-size:var(--fs-body);color:var(--fg)}
+.si-card__go svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s var(--si-ease)}
+.si-card__a:hover .si-card__go svg{transform:translateX(4px)}
+/* the lead service: two columns wide, a wider render and a bigger name */
 .si-card--feat{grid-column:span 2}
-.si-card--feat .si-card__a{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:clamp(24px,3vw,44px);align-items:center}
-.si-card--feat .si-card__viz{margin-top:0}
+.si-card--feat .si-card__img{position:relative;aspect-ratio:auto;flex:1 1 0;min-height:clamp(240px,22vw,340px)}
+.si-card--feat .si-card__img img{position:absolute;inset:0}
+.si-card--feat .si-card__t{flex:0 0 auto;padding-left:clamp(24px,3.4vw,48px);padding-right:clamp(24px,3.4vw,48px)}
+.si-card--feat .si-card__name{font-size:clamp(32px,2.6vw + 12px,52px);line-height:1.04;font-weight:var(--fw-semi,600)}
+.si-card--feat .si-card__d{max-width:58ch}
 .si-grid.is-filtered .si-card--feat{grid-column:auto}
-.si-grid.is-filtered .si-card--feat .si-card__a{display:flex}
-.si-grid.is-filtered .si-card--feat .si-card__viz{margin-top:auto}
-/* the closing "not sure" card */
-.si-card--ask .si-card__a{justify-content:center;border-style:dashed;background:none}
-.si-card--ask .si-card__name{margin-top:0}
-/* panels stack in as they scroll into view */
-.js .si-viz:not([data-reveal-s="in"]) .mp [data-s]{opacity:0;transform:translateY(6px)}
+.si-grid.is-filtered .si-card--feat .si-card__img{aspect-ratio:9/7;flex:none;min-height:0}
+.si-grid.is-filtered .si-card--feat .si-card__img img{position:static}
+.si-grid.is-filtered .si-card--feat .si-card__name{font-size:clamp(23px,.9vw + 15px,30px)}
+/* the "not sure" card closes the grid as one full-width row: words on the
+   left, a glowing question mark on the right, the whole card lit in blue */
+.si-card--ask{grid-column:1 / -1}
+.si-card--ask .si-card__a{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:center;
+  border-color:rgba(110,155,255,.42);
+  background:
+    radial-gradient(70% 120% at 78% 50%,rgba(64,118,255,.34),rgba(38,78,190,.14) 45%,transparent 72%),
+    linear-gradient(120deg,#0C1222,#0A0E18 55%,#0B1430);
+  box-shadow:inset 0 0 0 1px rgba(140,180,255,.08),inset 0 1px 0 rgba(170,200,255,.18),
+    0 0 46px -12px rgba(70,125,255,.55),0 34px 90px -40px rgba(50,105,255,.75)}
+.si-card--ask .si-card__a::after{width:160px;background:linear-gradient(90deg,transparent,rgba(150,190,255,.95),transparent)}
+.si-card--ask .si-card__a:hover{border-color:rgba(140,180,255,.7);
+  box-shadow:inset 0 0 0 1px rgba(140,180,255,.12),inset 0 1px 0 rgba(170,200,255,.25),
+    0 0 70px -10px rgba(80,135,255,.7),0 40px 100px -40px rgba(60,115,255,.9)}
+.si-card--ask .si-card__t{flex:0 0 auto;padding:clamp(28px,3.4vw,52px) clamp(24px,3.4vw,52px)}
+.si-card--ask .si-card__name{font-size:clamp(28px,1.8vw + 14px,42px);line-height:1.08;font-weight:var(--fw-med)}
+.si-card--ask .si-card__d{font-size:var(--fs-body);color:#C9D6F2;max-width:44ch}
+.si-card--ask .si-card__go{align-self:flex-start;margin-top:var(--s8);padding:11px 20px;border-radius:999px;
+  background:linear-gradient(180deg,rgba(96,146,255,.32),rgba(60,105,230,.22));border:1px solid rgba(150,190,255,.5);
+  box-shadow:0 0 28px -6px rgba(80,135,255,.65),inset 0 1px 0 rgba(200,220,255,.25)}
+.si-ask__art{display:block;align-self:stretch;min-height:clamp(200px,20vw,280px);position:relative}
+.si-ask__svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+/* question mark: floats, its stroke shimmers, rings ripple out from it */
+.aq-mark{transform-box:fill-box;transform-origin:center;animation:aq-float 5s ease-in-out infinite}
+@keyframes aq-float{0%,100%{transform:translateY(-5px)}50%{transform:translateY(6px)}}
+.aq-q{fill:none;stroke:url(#aqs);stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0;
+  animation:aq-draw 7s cubic-bezier(.65,0,.35,1) infinite}
+@keyframes aq-draw{0%{stroke-dashoffset:1}22%,88%{stroke-dashoffset:0}100%{stroke-dashoffset:-1}}
+.aq-dot{fill:#DCE8FF;transform-box:fill-box;transform-origin:center;animation:aq-dot 7s ease infinite}
+@keyframes aq-dot{0%,18%{transform:scale(0)}26%{transform:scale(1.25)}32%,88%{transform:scale(1)}96%,100%{transform:scale(0)}}
+.aq-glow path{fill:none;stroke:#4F86FF;stroke-width:22;stroke-linecap:round;opacity:.9}
+.aq-glow circle{fill:#4F86FF}
+.aq-glow{animation:aq-pulse 3.5s ease-in-out infinite}
+@keyframes aq-pulse{0%,100%{opacity:.55}50%{opacity:1}}
+.aq-halo{transform-box:fill-box;transform-origin:center;animation:aq-halo 3.5s ease-in-out infinite}
+@keyframes aq-halo{0%,100%{opacity:.7;transform:scale(.94)}50%{opacity:1;transform:scale(1.04)}}
+.aq-ring{fill:none;stroke:rgba(130,170,255,.55);stroke-width:1.2;transform-box:fill-box;transform-origin:center;animation:aq-ring 4.2s ease-out infinite}
+.aq-ring--2{animation-delay:1.4s}.aq-ring--3{animation-delay:2.8s}
+@keyframes aq-ring{0%{opacity:.8;transform:scale(.7)}100%{opacity:0;transform:scale(1.9)}}
+.aq-orbit{fill:none;stroke:rgba(130,170,255,.22);stroke-width:1;stroke-dasharray:2 7}
+.aq-sp circle{fill:#E8F0FF;filter:drop-shadow(0 0 6px rgba(110,160,255,1))}
+.aq-tw circle{fill:#BFD3FF;animation:aq-tw 3s ease-in-out infinite}
+.aq-tw circle:nth-child(2){animation-delay:.6s}.aq-tw circle:nth-child(3){animation-delay:1.2s}
+.aq-tw circle:nth-child(4){animation-delay:1.8s}.aq-tw circle:nth-child(5){animation-delay:2.4s}
+@keyframes aq-tw{0%,100%{opacity:.15}50%{opacity:.95}}
+.si-card--ask .si-card__a:hover .aq-mark{animation-duration:2.6s}
 
 /* ═════════ service page ═════════ */
 .sd-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:clamp(32px,4.5vw,72px);align-items:start}
 .sd-t > .mini{margin:0 0 var(--s3)}
 .sd-t .disc__body{margin:0 0 var(--s8);max-width:60ch}
 .sd-viz{margin:0;position:sticky;top:110px}
+/* panels stack in as they scroll into view */
+.js .si-viz:not([data-reveal-s="in"]) .mp [data-s]{opacity:0;transform:translateY(6px)}
+.sd-h{margin:0 0 var(--s6);font-size:var(--fs-h3);line-height:1.15;letter-spacing:var(--ls-h3);font-weight:var(--fw-med)}
+.sd-lede{margin:calc(var(--s6) * -.5) 0 var(--s8);max-width:56ch;font-size:var(--fs-lede);line-height:1.5;color:var(--fg-2)}
+.sd--2{border-top:1px solid var(--line-2)}
 .sd-ctx{border-top:1px solid var(--line-2)}
 .sd-ctx__in{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:clamp(32px,4.5vw,72px);align-items:center}
 .sd-ctx__t > .eyebrow{margin:0 0 var(--s3)}
@@ -174,6 +230,7 @@
 
 @media(max-width:1100px){
   .si-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .si-card__img{aspect-ratio:16/11}
   .sd-more__list{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:900px){
@@ -184,9 +241,11 @@
 }
 @media(max-width:700px){
   .si-grid{grid-template-columns:1fr}
+  .si-card--ask .si-card__a{grid-template-columns:1fr}
+  .si-ask__art{order:-1;min-height:180px}
   .si-card--feat{grid-column:auto}
-  .si-card--feat .si-card__a{display:flex}
-  .si-card--feat .si-card__viz{margin-top:auto}
+  .si-card--feat .si-card__img{aspect-ratio:16/10;flex:none;min-height:0}
+  .si-card--feat .si-card__img img{position:static}
   .sd-more__list{grid-template-columns:1fr}
 }
 @media(max-width:600px){
@@ -196,8 +255,10 @@
   .sd-t .more__grid{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){
+  .aq-mark,.aq-q,.aq-dot,.aq-glow,.aq-halo,.aq-tw circle{animation:none}
+  .aq-ring,.aq-sp{display:none}
   .si-card.si-in{animation:none}
-  .si-card__a{transition:none}
+  .si-card__a,.si-card__img img{transition:none}
   .si-art *{animation:none !important}
   .sa-dots{display:none}
   .sa-trend{stroke-dashoffset:0}.sa-tip{opacity:1}

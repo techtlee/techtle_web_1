@@ -53,6 +53,21 @@
       "source": "/co-delame/",
       "destination": "/sluzby",
       "permanent": true
+    },
+    {
+      "source": "/sluzby/poradenstvi",
+      "destination": "/sluzby/projektove-rizeni#poradenstvi",
+      "permanent": true
+    },
+    {
+      "source": "/sluzby/vyvoj-aplikaci",
+      "destination": "/sluzby/vyvoj-systemu",
+      "permanent": true
+    },
+    {
+      "source": "/sluzby/vyber-systemu",
+      "destination": "/sluzby/vyvoj-systemu#vyber",
+      "permanent": true
     }
   ]
 }

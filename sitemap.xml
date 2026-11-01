@@ -31,19 +31,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://techtlee.com/sluzby/poradenstvi</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtlee.com/sluzby/vyvoj-aplikaci</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://techtlee.com/sluzby/vyber-systemu</loc>
+    <loc>https://techtlee.com/sluzby/vyvoj-systemu</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
