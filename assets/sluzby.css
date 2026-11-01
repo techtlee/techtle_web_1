@@ -36,7 +36,7 @@
 .si-card__a:hover{border-color:rgba(149,173,216,.38);transform:translateY(-3px);box-shadow:0 26px 60px -34px rgba(62,90,142,.9)}
 .si-card__a:hover::after{width:180px}
 .si-card__a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.si-card__img{display:block;aspect-ratio:9/7;overflow:hidden;background:#05080c}
+.si-card__img{display:block;flex:1 0 auto;aspect-ratio:9/7;overflow:hidden;background:#05080c}
 .si-card__img img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--si-ease),filter .5s}
 .si-card__a:hover .si-card__img img{transform:scale(1.04);filter:brightness(1.08)}
 .si-card > a > .si-tag{position:absolute;top:clamp(14px,1.4vw,18px);left:clamp(14px,1.4vw,18px);padding:6px 16px;
@@ -50,8 +50,8 @@
 .si-card__a:hover .si-card__go svg{transform:translateX(4px)}
 /* the lead service: two columns wide, a wider render and a bigger name */
 .si-card--feat{grid-column:span 2}
-.si-card--feat .si-card__img{position:relative;aspect-ratio:auto;flex:1 1 0;min-height:clamp(240px,22vw,340px)}
-.si-card--feat .si-card__img img{position:absolute;inset:0}
+.si-card--feat .si-card__img{position:relative;aspect-ratio:auto;flex:1 1 0;min-height:clamp(260px,30vw,440px)}
+.si-card--feat .si-card__img img{position:absolute;inset:0;object-position:50% 18%}
 .si-card--feat .si-card__t{flex:0 0 auto;padding-left:clamp(24px,3.4vw,48px);padding-right:clamp(24px,3.4vw,48px)}
 .si-card--feat .si-card__name{font-size:clamp(32px,2.6vw + 12px,52px);line-height:1.04;font-weight:var(--fw-semi,600)}
 .si-card--feat .si-card__d{max-width:58ch}
@@ -231,6 +231,8 @@
 @media(max-width:1100px){
   .si-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .si-card__img{aspect-ratio:16/11}
+  .si-card--feat .si-card__img{aspect-ratio:1150/684;flex:none;min-height:0}
+  .si-card--feat .si-card__img img{position:static}
   .sd-more__list{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:900px){
