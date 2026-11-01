@@ -59,52 +59,33 @@
 .si-grid.is-filtered .si-card--feat .si-card__img{aspect-ratio:9/7;flex:none;min-height:0}
 .si-grid.is-filtered .si-card--feat .si-card__img img{position:static}
 .si-grid.is-filtered .si-card--feat .si-card__name{font-size:clamp(23px,.9vw + 15px,30px)}
-/* the "not sure" card closes the grid as one full-width row: words on the
-   left, a glowing question mark on the right, the whole card lit in blue */
-.si-card--ask{grid-column:1 / -1}
-.si-card--ask .si-card__a{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:center;
-  border-color:rgba(110,155,255,.42);
-  background:
-    radial-gradient(70% 120% at 78% 50%,rgba(64,118,255,.34),rgba(38,78,190,.14) 45%,transparent 72%),
-    linear-gradient(120deg,#0C1222,#0A0E18 55%,#0B1430);
-  box-shadow:inset 0 0 0 1px rgba(140,180,255,.08),inset 0 1px 0 rgba(170,200,255,.18),
-    0 0 46px -12px rgba(70,125,255,.55),0 34px 90px -40px rgba(50,105,255,.75)}
-.si-card--ask .si-card__a::after{width:160px;background:linear-gradient(90deg,transparent,rgba(150,190,255,.95),transparent)}
-.si-card--ask .si-card__a:hover{border-color:rgba(140,180,255,.7);
-  box-shadow:inset 0 0 0 1px rgba(140,180,255,.12),inset 0 1px 0 rgba(170,200,255,.25),
-    0 0 70px -10px rgba(80,135,255,.7),0 40px 100px -40px rgba(60,115,255,.9)}
-.si-card--ask .si-card__t{flex:0 0 auto;padding:clamp(28px,3.4vw,52px) clamp(24px,3.4vw,52px)}
-.si-card--ask .si-card__name{font-size:clamp(28px,1.8vw + 14px,42px);line-height:1.08;font-weight:var(--fw-med)}
-.si-card--ask .si-card__d{font-size:var(--fs-body);color:#C9D6F2;max-width:44ch}
-.si-card--ask .si-card__go{align-self:flex-start;margin-top:var(--s8);padding:11px 20px;border-radius:999px;
-  background:linear-gradient(180deg,rgba(96,146,255,.32),rgba(60,105,230,.22));border:1px solid rgba(150,190,255,.5);
-  box-shadow:0 0 28px -6px rgba(80,135,255,.65),inset 0 1px 0 rgba(200,220,255,.25)}
-.si-ask__art{display:block;align-self:stretch;min-height:clamp(200px,20vw,280px);position:relative}
-.si-ask__svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-/* question mark: floats, its stroke shimmers, rings ripple out from it */
-.aq-mark{transform-box:fill-box;transform-origin:center;animation:aq-float 5s ease-in-out infinite}
-@keyframes aq-float{0%,100%{transform:translateY(-5px)}50%{transform:translateY(6px)}}
-.aq-q{fill:none;stroke:url(#aqs);stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0;
-  animation:aq-draw 7s cubic-bezier(.65,0,.35,1) infinite}
-@keyframes aq-draw{0%{stroke-dashoffset:1}22%,88%{stroke-dashoffset:0}100%{stroke-dashoffset:-1}}
-.aq-dot{fill:#DCE8FF;transform-box:fill-box;transform-origin:center;animation:aq-dot 7s ease infinite}
-@keyframes aq-dot{0%,18%{transform:scale(0)}26%{transform:scale(1.25)}32%,88%{transform:scale(1)}96%,100%{transform:scale(0)}}
-.aq-glow path{fill:none;stroke:#4F86FF;stroke-width:22;stroke-linecap:round;opacity:.9}
-.aq-glow circle{fill:#4F86FF}
-.aq-glow{animation:aq-pulse 3.5s ease-in-out infinite}
-@keyframes aq-pulse{0%,100%{opacity:.55}50%{opacity:1}}
-.aq-halo{transform-box:fill-box;transform-origin:center;animation:aq-halo 3.5s ease-in-out infinite}
-@keyframes aq-halo{0%,100%{opacity:.7;transform:scale(.94)}50%{opacity:1;transform:scale(1.04)}}
-.aq-ring{fill:none;stroke:rgba(130,170,255,.55);stroke-width:1.2;transform-box:fill-box;transform-origin:center;animation:aq-ring 4.2s ease-out infinite}
-.aq-ring--2{animation-delay:1.4s}.aq-ring--3{animation-delay:2.8s}
-@keyframes aq-ring{0%{opacity:.8;transform:scale(.7)}100%{opacity:0;transform:scale(1.9)}}
-.aq-orbit{fill:none;stroke:rgba(130,170,255,.22);stroke-width:1;stroke-dasharray:2 7}
-.aq-sp circle{fill:#E8F0FF;filter:drop-shadow(0 0 6px rgba(110,160,255,1))}
-.aq-tw circle{fill:#BFD3FF;animation:aq-tw 3s ease-in-out infinite}
-.aq-tw circle:nth-child(2){animation-delay:.6s}.aq-tw circle:nth-child(3){animation-delay:1.2s}
-.aq-tw circle:nth-child(4){animation-delay:1.8s}.aq-tw circle:nth-child(5){animation-delay:2.4s}
-@keyframes aq-tw{0%,100%{opacity:.15}50%{opacity:.95}}
-.si-card--ask .si-card__a:hover .aq-mark{animation-duration:2.6s}
+/* the "not sure" card closes the grid as one full-width row in the same
+   dark glass as the service cards: the question top-left, the answer in the
+   middle, the link bottom-left, and a big backlit question mark breaking
+   out over the top and bottom edges on the right */
+.si{overflow-x:clip}
+.si-card--ask{grid-column:1 / -1;margin:clamp(48px,6vw,96px) 0 clamp(40px,5vw,72px)}
+.si-card--ask .si-card__a{display:grid;overflow:visible;align-items:start;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,.95fr);grid-template-areas:"q d art" "go go art";
+  column-gap:clamp(24px,3.4vw,56px);min-height:clamp(240px,20vw,300px);
+  padding:clamp(32px,3.4vw,52px) 0 clamp(28px,2.8vw,40px) clamp(28px,3.4vw,56px);
+  background:linear-gradient(160deg,rgba(188,197,216,.05),rgba(188,197,216,.015) 45%,rgba(188,197,216,.03)),#0B0D0E}
+.si-card--ask .si-card__a::after{width:220px}
+.si-card--ask .si-card__a:hover{transform:none}
+.si-card--ask .si-card__t{display:contents}
+.si-card--ask .si-card__name{grid-area:q;margin:0;font-size:clamp(26px,1.5vw + 14px,38px);line-height:1.12;font-weight:var(--fw-med)}
+.si-card--ask .si-card__d{grid-area:d;margin:6px 0 0;font-size:var(--fs-body);color:var(--fg-2);max-width:40ch}
+.si-card--ask .si-card__go{grid-area:go;align-self:end;margin:0;padding-top:var(--s8)}
+.si-ask__art{grid-area:art;position:relative;align-self:stretch}
+/* the render has a black ground; it is cut out, so it can leave the card */
+.si-ask__q{max-width:none;aspect-ratio:492/455;object-fit:contain;position:absolute;left:50%;top:50%;width:auto;height:clamp(360px,34vw,500px);
+  translate:-50% -51%;transform-origin:50% 60%;
+  filter:drop-shadow(0 0 40px rgba(90,150,255,.55)) drop-shadow(0 0 90px rgba(60,120,255,.35));
+  animation:aq-float 6s ease-in-out infinite;transition:filter .4s}
+.si-ask__art::before{content:'';position:absolute;left:50%;top:50%;width:150%;aspect-ratio:1;translate:-50% -50%;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(70,130,255,.28),rgba(50,100,230,.08) 55%,transparent)}
+@keyframes aq-float{0%,100%{transform:translateY(-6px) rotate(2deg)}50%{transform:translateY(6px) rotate(-1deg)}}
+.si-card--ask .si-card__a:hover .si-ask__q{filter:drop-shadow(0 0 50px rgba(110,165,255,.75)) drop-shadow(0 0 110px rgba(70,130,255,.5)) brightness(1.08)}
 
 /* ═════════ service page ═════════ */
 /* hero: the service's render sits in the background on the right, like
@@ -261,8 +242,11 @@
 }
 @media(max-width:700px){
   .si-grid{grid-template-columns:1fr}
-  .si-card--ask .si-card__a{grid-template-columns:1fr}
-  .si-ask__art{order:-1;min-height:180px}
+  .si-card--ask .si-card__a{grid-template-columns:1fr;grid-template-areas:"art" "q" "d" "go";padding-right:clamp(24px,6vw,32px);row-gap:var(--s4)}
+  .si-card--ask .si-card__go{padding-top:var(--s4)}
+  .si-ask__art{min-height:150px}
+  .si-ask__q{height:250px;top:auto;bottom:-10px;translate:-50% 0}
+  .si-ask__art::before{width:110%}
   .si-card--feat{grid-column:auto}
   .si-card--feat .si-card__img{aspect-ratio:16/10;flex:none;min-height:0}
   .si-card--feat .si-card__img img{position:static}
@@ -275,8 +259,7 @@
   .sd-t .more__grid{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){
-  .aq-mark,.aq-q,.aq-dot,.aq-glow,.aq-halo,.aq-tw circle{animation:none}
-  .aq-ring,.aq-sp{display:none}
+  .si-ask__q{animation:none;transform:rotate(1deg)}
   .si-card.si-in{animation:none}
   .si-card__a,.si-card__img img{transition:none}
   .si-art *{animation:none !important}
