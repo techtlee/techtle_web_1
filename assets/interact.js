@@ -436,6 +436,7 @@
     var bar = root.querySelector('.ppl__bar i'), count = root.querySelector('.ppl__count');
     if (!cards.length) return;
     root.classList.add('ppl--js');
+    root.style.setProperty('--n', cards.length);
     var cur = -1;                         /* nobody is open until picked */
     function show(i, focus) {
       cur = i < 0 ? -1 : (i + cards.length) % cards.length;

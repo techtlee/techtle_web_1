@@ -220,7 +220,6 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 }
 .nav a:hover{color:var(--fg);background:var(--bg-hover)}
 .hdr__r{display:flex;align-items:center;gap:var(--s4)}
-#clock{color:var(--fg-4)}
 .lang{display:flex;align-items:center}
 .lang button{background:none;border:0;padding:5px 6px;min-height:32px;min-width:32px;cursor:pointer;color:var(--fg-4);
   font-family:inherit;font-variant-numeric:tabular-nums;font-size:var(--fs-micro);letter-spacing:var(--ls-caps)}
@@ -240,7 +239,6 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 .nav--m{display:none}
 @media(max-width:1120px){
   .nav{display:none}
-  #clock{display:none}
   .nav--m{display:block;border-bottom:1px solid var(--line-2);overflow-x:auto;
   -webkit-overflow-scrolling:touch;scrollbar-width:none;
   -webkit-mask-image:linear-gradient(to right,#000 88%,transparent);
@@ -582,10 +580,11 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 .step__no{font-family:inherit;font-variant-numeric:tabular-nums;font-size:var(--fs-micro);color:var(--fg-4);letter-spacing:var(--ls-caps)}
 .step__before{position:relative;justify-self:start;align-self:flex-start;margin:0;color:var(--fg);
   font-size:var(--fs-sm);font-weight:var(--fw-med);line-height:1.2;transition:color .35s}
-.step__before::after{content:'';position:absolute;left:0;top:55%;height:1.5px;width:100%;background:var(--warn);
-  transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.65,0,.35,1)}
+/* the strike runs line by line, so a two-line step is crossed out properly */
+.step__before > span{background:linear-gradient(var(--warn),var(--warn)) no-repeat 0 58%/0 1.5px;
+  transition:background-size .4s cubic-bezier(.65,0,.35,1)}
 .step.done .step__before{color:var(--fg-4)}
-.step.done .step__before::after{transform:scaleX(1)}
+.step.done .step__before > span{background-size:100% 1.5px}
 .step__why,.step__how{margin:0;font-size:var(--fs-sm);line-height:var(--lh-body);color:var(--fg-3);transition:color .35s}
 .step.done .step__why{color:var(--fg-4)}
 .step__lbl{display:block;margin-bottom:4px;font-family:inherit;font-variant-numeric:tabular-nums;
@@ -613,7 +612,7 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
 }
 @media(max-width:1000px){.flow__steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.flow__steps{grid-template-columns:minmax(0,1fr)}}
-@media (prefers-reduced-motion:reduce){.step,.step__res,.step__before::after,.step__load i{transition:none}}
+@media (prefers-reduced-motion:reduce){.step,.step__res,.step__before > span,.step__load i{transition:none}}
 .flow__f{display:flex;justify-content:space-between;align-items:center;gap:var(--s3);
   padding:12px 16px;border-top:1px solid var(--line)}
 .flow__count{font-family:inherit;font-variant-numeric:tabular-nums;font-size:var(--fs-micro);color:var(--fg-3)}
@@ -655,7 +654,7 @@ h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);f
   .js .spec::before,.rail::after{transition:none}
   .js .spec::before{transform:scaleX(1)}
   .claim span{transition:none;background-size:100% 2px}
-  .step *,.step::after,.step__before::after{transition:none!important}
+  .step *,.step::after{transition:none!important}
 }
 
 /* ═══════════════ MULTI-PAGE ══════════════════════════════════════ */
@@ -1681,13 +1680,20 @@ html.is-lit .hero .glow{opacity:1;transition-duration:.35s}
   .ppl__h{display:none}
 }
 @media (prefers-reduced-motion:reduce){.ppl--js .ppl__card,.ppl--js .ppl__txt,.ppl__pick .ppl__ph{transition:none}}
-/* four people + one open bio no longer fit at 190px each below ~1400px:
-   faces and the open bio scale with the viewport so the row never overflows */
-@media(min-width:901px) and (max-width:1400px){
-  .ppl--js .ppl__card,.ppl__pick{flex-basis:12vw}
-  .ppl__pick .ppl__ph{width:12vw}
-  .ppl--js .ppl__card.is-on .ppl__txt{max-width:min(440px,32vw);flex-basis:min(440px,32vw)}
+/* the row of faces always fits its width: closed, n faces share it (190px
+   at most); with a bio open, the faces shrink to leave room for the bio.
+   --n (the number of people) is set by interact.js; cqw = the track width */
+@media(min-width:901px){
+  .ppl--js .ppl__track{container-type:inline-size}
+  .ppl--js{--pg:clamp(12px,1.4vw,20px);--pt:min(440px,30vw);
+    --pf:min(190px,calc((100cqw - (var(--n,4) - 1) * var(--pg)) / var(--n,4)))}
+  .ppl--js.has-open{--pf:min(190px,calc((100cqw - (var(--n,4) - 1) * var(--pg) - clamp(24px,2.6vw,40px) - var(--pt)) / var(--n,4)))}
+  .ppl--js .ppl__track{gap:var(--pg)}
+  .ppl--js .ppl__card,.ppl__pick{flex-basis:var(--pf)}
+  .ppl__pick .ppl__ph{width:var(--pf);transition:width .55s cubic-bezier(.65,0,.35,1),filter .35s,opacity .35s,box-shadow .35s,transform .35s cubic-bezier(.2,.8,.2,1)}
+  .ppl--js .ppl__card.is-on .ppl__txt{max-width:var(--pt);flex-basis:var(--pt)}
 }
+@media (min-width:901px) and (prefers-reduced-motion:reduce){.ppl__pick .ppl__ph{transition:none}}
 
 /* ══ TEST 2026-10-28: no section rules, no "01 Název" rows ══════════
    Revert = delete this whole block.                                   */

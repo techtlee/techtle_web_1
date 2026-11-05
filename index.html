@@ -7,7 +7,7 @@
 <meta name="description" content="Poradíme vám s problémem a víme, jak ho dnes vyřešit. Lidé, data, AI a software opřené o zkušenost z vedení firem.">
 <meta name="theme-color" content="#0A0C0B" id="tc">
 <link rel="stylesheet" href="/assets/darktec.css?v=20261103v">
-<link rel="stylesheet" href="/assets/techtlee.css?v=20261105c">
+<link rel="stylesheet" href="/assets/techtlee.css?v=20261105f">
 <script>
 /* Applied before first paint. Every visitor gets the dark site - a light
    choice saved earlier is ignored. The light theme still exists in the CSS:
@@ -75,7 +75,6 @@
     </nav>
     <div class="hdr__r">
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="navm" aria-label="Menu" data-en-al="Menu"><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
-      <span class="eyebrow" id="clock">Praha -:-</span>
       <button class="theme" type="button" id="theme" hidden aria-pressed="false" aria-label="Přepnout světlý a tmavý režim" data-en-al="Toggle light and dark mode"><span class="t-l" data-en="Light">Světlý</span><span class="t-d" data-en="Dark">Tmavý</span></button>
       <span class="lang" role="group" aria-label="Jazyk / Language"><button data-lang="cs" type="button" lang="cs" aria-label="Čeština">CZ</button><i aria-hidden="true">/</i><button data-lang="en" type="button" lang="en" aria-label="English">EN</button></span>
     </div>
@@ -127,7 +126,7 @@
     </div>
     <ol class="log" data-reveal-s data-stagger>
       <li><span data-en="We want to automate it, but we don&#39;t know how.">Chceme to zautomatizovat, ale nevíme jak.</span></li>
-      <li><span data-en="Let&#39;s use AI for it.">Použijme na to AI.</span></li>
+      <li><span data-en="We want to speed up with AI.">Chceme se zrychlit pomocí AI.</span></li>
       <li><span data-en="Our systems don&#39;t talk to each other, so we move data by hand.">Systémy spolu nemluví a data přenášíme ručně.</span></li>
       <li><span data-en="Every week we put together reports and presentations by hand in Excel.">Reporting a prezentace skládáme každý týden manuálně v Excelu.</span></li>
       <li><span data-en="A key process depends on a single person.">Klíčový proces stojí na jednom člověku.</span></li>
@@ -148,15 +147,15 @@
              assets/motion.js re-renders it identically and then animates -->
       <div class="flow panel" id="flow" role="region" aria-label="Ukázka: jak přestavíme proces" data-en-al="Example: how we rebuild a process">
         <div class="flow__h">
-          <div class="flow__tabs" role="tablist" aria-label="Scénář" data-en-al="Scenario"><button type="button" role="tab" aria-selected="true">Faktury</button><button type="button" role="tab" aria-selected="false">Servis</button><button type="button" role="tab" aria-selected="false">Reporting</button></div>
+          <div class="flow__tabs" role="tablist" aria-label="Scénář" data-en-al="Scenario"><button type="button" role="tab" aria-selected="true">Adopce AI</button><button type="button" role="tab" aria-selected="false">BI</button><button type="button" role="tab" aria-selected="false">Projekt</button><button type="button" role="tab" aria-selected="false">Faktury</button></div>
           <button class="flow__pause" type="button" aria-label="Pozastavit animaci" aria-pressed="false"><svg viewBox="0 0 10 10" aria-hidden="true"><rect x="1" y="0" width="3" height="10" fill="currentColor"/><rect x="6" y="0" width="3" height="10" fill="currentColor"/></svg></button>
         </div>
-        <div class="flow__title"><b>Zpracování přijatých faktur</b><span class="eyebrow" data-en="Example">Ukázka</span></div>
+        <div class="flow__title"><b>Licence AI, které nikdo nepoužívá</b><span class="eyebrow" data-en="Example">Ukázka</span></div>
         <ol class="flow__steps" aria-live="off">
-          <li class="step"><div class="step__top"><span class="step__no">01</span><span class="step__tag">ručně</span></div><p class="step__before">Faktura přijde e-mailem jako PDF</p><p class="step__why"><span class="step__lbl">Proč to bolí</span><span class="step__w">Faktury chodí v různých formátech a někdo je musí otevírat jednu po druhé.</span></p><span class="step__load" aria-hidden="true"><i></i></span><div class="step__res"><p class="step__after">AI ji přečte a vytáhne údaje</p><p class="step__how"><span class="step__lbl">Jak to řešíme</span><span class="step__h">AI rozpozná dodavatele, částky, DPH i splatnost a nejisté případy označí ke kontrole.</span></p></div></li>
-          <li class="step"><div class="step__top"><span class="step__no">02</span><span class="step__tag">ručně</span></div><p class="step__before">Někdo ji přepíše do účetnictví</p><p class="step__why"><span class="step__lbl">Proč to bolí</span><span class="step__w">Ruční přepis je pomalý a překlepy v částkách se najdou až při uzávěrce.</span></p><span class="step__load" aria-hidden="true"><i></i></span><div class="step__res"><p class="step__after">Údaje se zapíšou samy</p><p class="step__how"><span class="step__lbl">Jak to řešíme</span><span class="step__h">Vytěžené údaje se zapíšou přímo do účetního systému přes jeho rozhraní.</span></p></div></li>
-          <li class="step"><div class="step__top"><span class="step__no">03</span><span class="step__tag">ručně</span></div><p class="step__before">Schvalování přes e-mail a telefon</p><p class="step__why"><span class="step__lbl">Proč to bolí</span><span class="step__w">Faktura čeká v něčí schránce a nikdo neví, u koho zrovna je.</span></p><span class="step__load" aria-hidden="true"><i></i></span><div class="step__res"><p class="step__after">Schválení jedním klikem v aplikaci</p><p class="step__how"><span class="step__lbl">Jak to řešíme</span><span class="step__h">Schvalovatel dostane upozornění, vidí fakturu i objednávku a schválí ji jedním klikem.</span></p></div></li>
-          <li class="step"><div class="step__top"><span class="step__no">04</span><span class="step__tag">ručně</span></div><p class="step__before">Párování s platbou v Excelu</p><p class="step__why"><span class="step__lbl">Proč to bolí</span><span class="step__w">Párování plateb s fakturami se dělá ručně v Excelu a snadno se v něm něco ztratí.</span></p><span class="step__load" aria-hidden="true"><i></i></span><div class="step__res"><p class="step__after">Platby se spárují automaticky</p><p class="step__how"><span class="step__lbl">Jak to řešíme</span><span class="step__h">Bankovní výpis se načte sám, platby se spárují podle symbolu a částky a výjimky jdou k člověku.</span></p></div></li>
+          <li class="step"><div class="step__top"><span class="step__no">01</span><span class="step__tag">ručně</span></div><p class="step__before"><span>Licence koupené, každý zkouší sám</span></p><p class="step__why"><span class="step__lbl">Proč to bolí</span><span class="step__w">Bez konkrétních úloh se AI po pár týdnech přestane používat.</span></p><span class="step__load" aria-hidden="true"><i></i></span><div class="step__res"><p class="step__after">Use-casy pro každý tým</p><p class="step__how"><span class="step__lbl">Jak to řešíme</span><span class="step__h">S týmy vybereme úlohy, kde AI opravdu šetří čas, a naučíme je na jejich vlastní práci.</span></p></div></li>
+          <li class="step"><div class="step__top"><span class="step__no">02</span><span class="step__tag">ručně</span></div><p class="step__before"><span>Firemní data v soukromých AI nástrojích</span></p><p class="step__why"><span class="step__lbl">Proč to bolí</span><span class="step__w">Lidé vkládají smlouvy a čísla do vlastních účtů a firma o tom neví.</span></p><span class="step__load" aria-hidden="true"><i></i></span><div class="step__res"><p class="step__after">Firemní AI prostor a pravidla</p><p class="step__how"><span class="step__lbl">Jak to řešíme</span><span class="step__h">Bezpečné prostředí napojené na firemní data a jasná pravidla, co se smí.</span></p></div></li>
+          <li class="step"><div class="step__top"><span class="step__no">03</span><span class="step__tag">ručně</span></div><p class="step__before"><span>Nikdo neví, jestli to pomáhá</span></p><p class="step__why"><span class="step__lbl">Proč to bolí</span><span class="step__w">Licence se platí, ale přínos nikdo neměří.</span></p><span class="step__load" aria-hidden="true"><i></i></span><div class="step__res"><p class="step__after">Měříme využití a ušetřený čas</p><p class="step__how"><span class="step__lbl">Jak to řešíme</span><span class="step__h">Přehled, kdo AI používá, na co a kolik času to šetří.</span></p></div></li>
+          <li class="step"><div class="step__top"><span class="step__no">04</span><span class="step__tag">ručně</span></div><p class="step__before"><span>Pilot běží měsíce bez rozhodnutí</span></p><p class="step__why"><span class="step__lbl">Proč to bolí</span><span class="step__w">Zkouší se dál, ale nikdo neřekne „ano, rozšiřujeme“.</span></p><span class="step__load" aria-hidden="true"><i></i></span><div class="step__res"><p class="step__after">Rozhodnutí a rozšíření do dalších týmů</p><p class="step__how"><span class="step__lbl">Jak to řešíme</span><span class="step__h">Na konci pilotu jasné vyhodnocení a plán nasazení do dalších týmů.</span></p></div></li>
         </ol>
         <div class="flow__f">
           <span class="flow__count">Ruční kroky <b>4</b></span>
@@ -255,7 +254,7 @@
   <div class="wrap">
     <div class="spec">
       <p class="eyebrow"><span class="ix">04</span><span data-en="The people of Techtlee">Lidé z Techtlee</span></p>
-      <p class="eyebrow" data-en="4 people">4 lidé</p>
+      <p class="eyebrow" data-en="6 people">6 lidí</p>
     </div>
     <div class="shead">
       <h2 data-en="A name, a face, a track record.">Jméno, tvář, reference.</h2>
@@ -271,7 +270,6 @@
           <div class="ppl__txt" id="pp-t0" role="region" aria-labelledby="pp-b0">
             <h3 class="ppl__h">Josef Vodička</h3>
             <p class="ppl__bio" data-en="A senior project manager specialised in software development and data engineering. Has led cross-functional teams across startups, mid-sized companies and corporations. Media, digital marketing and B2B marketplace sectors.">Seniorní projektový manažer specializovaný na vývoj softwaru a datové inženýrství. Vedl mezifunkční týmy napříč startupy, středními firmami i korporacemi. Sektory médií, digitálního marketingu a B2B marketplace.</p>
-            <p class="ppl__cv"><span data-en="Media &amp; Publishing">Média &amp; Publishing</span><span data-en="Digital marketing">Digitální marketing</span><span>B2B Marketplace</span></p>
           </div>
         </article>
         <article class="ppl__card" style="--k:1">
@@ -282,18 +280,16 @@
           <div class="ppl__txt" id="pp-t1" role="region" aria-labelledby="pp-b1">
             <h3 class="ppl__h">Ivan Vodička</h3>
             <p class="ppl__bio" data-en="Almost 30 years of leading companies across Europe - e-commerce, retail, financial services, venture building. CEO and CFO roles, turnarounds, post-merger integrations, digital transformation. Certified coach.">Téměř 30 let vedení firem v Evropě - e-commerce, retail, finanční služby, venture building. CEO a CFO role, turnaroundy, post-merger integrace, digitální transformace. Certifikovaný kouč.</p>
-            <p class="ppl__cv"><span>Creative Dock</span><span>Mall Group</span><span>Alpine Pro</span><span>Generali</span><span>PPF</span><span>Danone Nutricia</span></p>
           </div>
         </article>
         <article class="ppl__card" style="--k:2">
           <button class="ppl__pick" type="button" id="pp-b2" aria-expanded="false" aria-controls="pp-t2">
             <img class="ppl__ph" src="/assets/img/daniel.jpg" alt="" width="190" height="227" loading="lazy">
-            <span class="ppl__id"><span class="ppl__role" data-en="AI specialist">AI specialista</span><span class="ppl__name">Daniel Večeřa</span></span>
+            <span class="ppl__id"><span class="ppl__role">AI/ML Specialist</span><span class="ppl__name">Daniel Večeřa</span></span>
           </button>
           <div class="ppl__txt" id="pp-t2" role="region" aria-labelledby="pp-b2">
             <h3 class="ppl__h">Daniel Večeřa</h3>
             <p class="ppl__bio" data-en="Works on recommendation systems for a major media group and is building the Agentic Analytics community. His earlier work spans energy-market analytics and revenue analytics in global e-commerce. He connects hands-on modelling and software with the decisions a business needs to make.">Pracuje na doporučovacích systémech pro velkou mediální skupinu a rozvíjí komunitu Agentic Analytics. Dříve se věnoval analytice energetických trhů a analytice tržeb v globální e-commerce. Propojuje praktické modelování a software s rozhodnutími, která firma potřebuje udělat.</p>
-            <p class="ppl__cv"><span data-en="Recommender systems">Doporučovací systémy</span><span data-en="Energy markets">Energetické trhy</span><span>E-commerce</span><span>Agentic Analytics</span></p>
           </div>
         </article>
         <article class="ppl__card" style="--k:3">
@@ -304,7 +300,26 @@
           <div class="ppl__txt" id="pp-t3" role="region" aria-labelledby="pp-b3">
             <h3 class="ppl__h">Jakub Koštejn</h3>
             <p class="ppl__bio" data-en="Looks after relationships with key clients and partners - from sales and marketing to operations. He has managed enterprise accounts at a fast-growing tech platform and coordinated UK customer service at a multinational corporation, where he also served as a compliance subject-matter expert. At Techtlee he connects what clients need with what we build.">Stará se o vztahy s klíčovými klienty a partnery: od obchodu přes marketing po provoz. Má za sebou řízení enterprise účtů v rychle rostoucí technologické platformě a koordinaci zákaznického servisu pro britský trh v nadnárodní korporaci, kde působil i jako specialista na compliance. U nás propojuje potřeby klientů s tím, co stavíme.</p>
-            <p class="ppl__cv"><span>Wolt</span><span>Bosch</span><span data-en="Key account management">Key account management</span><span>Compliance</span></p>
+          </div>
+        </article>
+        <article class="ppl__card" style="--k:4">
+          <button class="ppl__pick" type="button" id="pp-b4" aria-expanded="false" aria-controls="pp-t4">
+            <img class="ppl__ph" src="/assets/img/michal.jpg" alt="" width="190" height="227" loading="lazy">
+            <span class="ppl__id"><span class="ppl__role">Data Engineering Lead</span><span class="ppl__name">Michal Cupper</span></span>
+          </button>
+          <div class="ppl__txt" id="pp-t4" role="region" aria-labelledby="pp-b4">
+            <h3 class="ppl__h">Michal Cupper</h3>
+            <p class="ppl__bio" data-en="Leads our data engineering: from connecting sources through data pipelines and warehouses to models you can reliably report on and build AI on top of. He makes sure data is clean, documented and at hand the moment the business needs it.">Vede u nás datové inženýrství: od napojení zdrojů přes datové pipeline a sklady až po modely, nad kterými se dá spolehlivě reportovat a stavět AI. Dbá na to, aby data byla čistá, zdokumentovaná a po ruce ve chvíli, kdy je firma potřebuje.</p>
+          </div>
+        </article>
+        <article class="ppl__card" style="--k:5">
+          <button class="ppl__pick" type="button" id="pp-b5" aria-expanded="false" aria-controls="pp-t5">
+            <img class="ppl__ph" src="/assets/img/josef-s.jpg" alt="" width="190" height="227" loading="lazy">
+            <span class="ppl__id"><span class="ppl__role">Automation Engineer</span><span class="ppl__name">Josef Škrdla</span></span>
+          </button>
+          <div class="ppl__txt" id="pp-t5" role="region" aria-labelledby="pp-b5">
+            <h3 class="ppl__h">Josef Škrdla</h3>
+            <p class="ppl__bio" data-en="Automates processes that needlessly rely on manual work. He connects systems, wires up APIs and builds workflows that run reliably and are easy to adjust. He looks for the places where repetitive work eats time and turns them into processes that look after themselves.">Automatizuje procesy, které ve firmách zbytečně stojí na ruční práci. Propojuje systémy, napojuje API a staví workflow, která běží spolehlivě a dají se snadno upravit. Hledá místa, kde opakovaná práce žere čas, a mění je na procesy, které se starají samy o sebe.</p>
           </div>
         </article>
       </div>
@@ -412,9 +427,9 @@
 </footer>
 
 <script src="/assets/i18n.js"></script>
-<script src="/assets/site.js?v=20261103v"></script>
-<script src="/assets/motion.js?v=20261103v"></script>
-<script src="/assets/interact.js?v=20261103v"></script>
+<script src="/assets/site.js?v=20261105a"></script>
+<script src="/assets/motion.js?v=20261105b"></script>
+<script src="/assets/interact.js?v=20261105a"></script>
 <script src="/assets/form.js?v=20261103v"></script>
 </body>
 </html>
